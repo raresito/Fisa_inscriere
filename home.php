@@ -59,6 +59,8 @@ session_start();
                     <select>
                         <option> Romania </option>
                         <option> Bulgaria </option>
+                        <option> Spania </option>
+                        <option> Italia </option>
                     </select>
                     Localitate: <input type = "text" name = "city" pattern = "^[a-zA-Z -,-]*$"><br>
                     Judet: <input type = "text" name = "county" pattern = "[A-Za-z0-9]{3,30}"><br>
