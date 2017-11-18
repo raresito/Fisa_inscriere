@@ -8,7 +8,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $myusername = mysqli_real_escape_string($conn,$_POST['username']);
     $mypassword = mysqli_real_escape_string($conn,$_POST['password']);
 
-    $sql = "SELECT uniqueEmail FROM utilizator WHERE uniqueEmail = '$myusername' and password = '$mypassword'";
+    $sql = "SELECT uniqueEmail FROM candidat WHERE uniqueEmail = '$myusername' and password = '$mypassword'";
     $result = mysqli_query($conn,$sql);
     $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
 

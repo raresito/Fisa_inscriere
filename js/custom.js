@@ -1,6 +1,5 @@
 function validare(){
     var denumireLiceu = document.getElementById("denumireLiceu");
-    var taraLiceu = document.getElementById("taraLiceu");
 
     if(denumireLiceu.value === ''){
         denumireLiceu.className += ' inputWrong';
@@ -9,9 +8,9 @@ function validare(){
     }
 
 
-}
 
-var grupButoane = document.getElementById("accordion");
+
+}
 
 function coll(e){
     $('.collapse').collapse('hide');

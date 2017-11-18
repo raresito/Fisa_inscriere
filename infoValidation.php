@@ -5,6 +5,7 @@
     <body>
         <?php
         include 'config.php';
+        session_start();
         $conn = new mysqli($servername, $username, $password, $dbname);
 
         if($conn->connect_error) {
@@ -13,7 +14,7 @@
         echo "Connected succesfully";
 
         $uniqueEmail = $_POST["uniqueEmail"];
-        echo $_POST["CNP"];
+        echo $_POST["uniqueEmail"];
 
         $SQL = "INSERT INTO candidat 
                 (uniqueEmail,
@@ -60,6 +61,7 @@
         } else {
             echo "Error: " . $SQL . "<br>" . $conn->error;
         }
+        var_dump($_POST);
         ?>
 
         <div id = "sumbitArea">

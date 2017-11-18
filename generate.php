@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 
 require_once 'fpdf/fpdf.php';
 require_once 'fpdi/src/autoload.php';
@@ -176,9 +178,9 @@ class getData{
             //echo 'Connectat la Baza de Date!';
             //echo '<br>';
 
-            $uniqueEmail = 'rares';
+            $user =  $_SESSION['login_user'];
         //echo $emailField;
-        $sqlData = "SELECT * FROM candidat WHERE uniqueEmail = 'rares'";
+        $sqlData = "SELECT * FROM candidat WHERE uniqueEmail = '$user'";
         $this->result = mysqli_query($conn, $sqlData);
     }
 
@@ -324,7 +326,8 @@ $pdf->Cell($pdf->GetStringWidth('si al/a')+3,4,'si al/a',$border, 0);
 $pdf->Cell(63.2,4,$data['nameMother'],$border,1);
 
 $pdf->Cell($pdf->GetStringWidth('Actul de identitate')+10,4,'Actul de identitate',$border, 0);
-$pdf->Cell(19,4,$data['IDtype'],$border,0);
+//$pdf->Cell(19,4,$data['IDtype'],$border,0);
+$pdf->Cell(19,4,$_SESSION['login_user'],$border,0);
 $pdf->Cell($pdf->GetStringWidth('seria')+13.5,4,'seria',$border, 0);
 $pdf->Cell($pdf->GetStringWidth('si al/a')+3,4,$data['serialID'],$border,0);
 $pdf->Cell(19,4,'nr.',$border,0);
