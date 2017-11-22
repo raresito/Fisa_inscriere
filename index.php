@@ -16,12 +16,19 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if($count == 1) {
         $_SESSION['login_user'] = $myusername;
+        if($myusername == 'admin'){
+            header("location: adminPanel.php");
+        }
+        else{
+            header("location: home.php");
+        }
 
-        header("location: home.php");
     }else {
         $error = "Your Login Name or Password is invalid";
         echo $error;
     }
+
+
 }
 ?>
 <html>

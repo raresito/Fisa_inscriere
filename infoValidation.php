@@ -13,10 +13,9 @@
         }
         echo "Connected succesfully";
 
-        $uniqueEmail = $_POST["uniqueEmail"];
-        echo $_POST["uniqueEmail"];
+        $uniqueEmail = $_SESSION["login_user"];
 
-        $SQL = "INSERT INTO candidat 
+        /*$SQL = "INSERT INTO candidat
                 (uniqueEmail,
                 CNP, 
                 name, 
@@ -55,13 +54,54 @@
                         '".$_POST["ethnicity"] . "',
                          '".$_POST["maritalStatus"] . "')";
 
+*/
+        $dateOfBirth = $_POST["dateOfBirth"] ;
+        $SQL = "
+        UPDATE candidat
+          SET CNP = "."'".$_POST["CNP"]."'".",
+              birthName = "."'".$_POST["birthName"]."'".",
+              name = "."'".$_POST['name']."'".",
+              surname = "."'".$_POST["surname"]."'".",
+              dateOfBirth = "."'".$dateOfBirth."'".",
+              nameFather = "."'".$_POST["nameFather"] ."'". ",
+              nameMother = "."'".$_POST["nameMother"] ."'". ",
+              IDtype = "."'".$_POST["IDtype"] ."'". ",
+              serialID = "."'".$_POST["serialID"] ."'". ",
+              numberId = "."'".$_POST["numberID"] ."'". ",
+              eliberatedBy = "."'".$_POST["eliberatedBy"] ."'". ",
+              dateEliberated = "."'".$_POST["dateEliberated"] ."'". ",
+              valabilityDate = "."'".$_POST["valabilityDate"] ."'". ",
+              country = "."'".$_POST["country"] ."'". ",
+              city = "."'".$_POST["city"] ."'". ",
+              county = "."'".$_POST["county"] ."'". ",
+              citizenship = "."'".$_POST["citizenship"] ."'". ",
+              ethnicity = "."'".$_POST["ethnicity"] ."'". ",
+              maritalStatus = "."'".$_POST["maritalStatus"] ."'". ",
+              taraDomiciliu = "."'".$_POST["taraDomiciliu"] ."'". ",
+              localitateDomiciliu = "."'".$_POST["localitateDomiciliu"] ."'". ",
+              stradaDomiciliu = "."'".$_POST["stradaDomiciliu"] ."'". ",
+              numarDomiciliu = "."'".$_POST["numarDomiciliu"] ."'". ",
+              blocDomiciliu = "."'".$_POST["blocDomiciliu"] ."'". ",
+              scaraDomiciliu = "."'".$_POST["scaraDomiciliu"] ."'". ",
+              etajDomiciliu = "."'".$_POST["etajDomiciliu"] ."'". ",
+              apartamentDomiciliu = "."'".$_POST["apartamentDomiciliu"] ."'". ",
+              codPostalDomiciliu = "."'".$_POST["codPostalDomiciliu"] ."'". ",
+              fixDomiciliu = "."'".$_POST["fixDomiciliu"] ."'". ",
+              mobilDomiciliu = "."'".$_POST["mobilDomiciliu"] ."'". ",
+              fixParinte = "."'".$_POST["fixParinte"] ."'". ",
+              mobilParinte = "."'".$_POST["mobilParinte"] ."'". ",
+              emailParinte = "."'".$_POST["emailParinte"] ."'". ",
+              matematica = "."'".isset($_POST["matematica"]) ."'". ",
+              informatica = "."'". isset($_POST["informatica"]) ."'". ",
+              cti = "."'". isset($_POST["cti"]) ."'". "
+          WHERE uniqueEmail = 'raresito@gmail.com' ";
 
         if($conn->query($SQL) == TRUE){
             echo "New record created successfully";
         } else {
             echo "Error: " . $SQL . "<br>" . $conn->error;
         }
-        var_dump($_POST);
+        //var_dump($_POST);
         ?>
 
         <div id = "sumbitArea">

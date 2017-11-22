@@ -11,12 +11,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
     $count = mysqli_num_rows($result);
-    if($count == 1 && $_POST["password"] === $_POST["confirm_password"]){
+    if($count == 1 ){
         echo "This username is already taken";
     }
-    else{
-        $_SESSION['login_user'] = $email;
-        $SQL = "INSERT INTO candidat 
+    else {
+        if ($_POST["password"] === $_POST["confirm_password"]) {
+            if ($_POST['username'] === '') {
+                echo "Email cannot be empty";
+            } else {
+                $_SESSION['login_user'] = $email;
+                $SQL = "INSERT INTO candidat 
                 (uniqueEmail,
                 CNP, 
                 name, 
@@ -34,13 +38,19 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                 county, 
                 citizenship, 
                 ethnicity, 
-                maritalStatus)
-        VALUES ('$email',null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)";
-        if( $conn->query($SQL) == TRUE) {
-            header("location: home.php");
+                maritalStatus,
+                password)
+        VALUES ('$email',null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,'$password')";
+                if ($conn -> query($SQL) == TRUE) {
+                    header("location: home.php");
+                } else {
+                    echo "Error: " . $SQL . "<br>" . $conn -> error;
+                }
+            }
         }
-        else
-            echo "Error: " . $SQL . "<br>" . $conn->error;
+        else {
+                echo "Passwords do not match";
+        }
     }
 }
 ?>
@@ -58,7 +68,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             <div style = "background-color:#333333; color:#FFFFFF; padding:3px;"><b>Login</b></div>
             <div style = "margin:30px">
                 <form name="newAccountForm" action = "" method = "post" id="newAccountform" >
-                    <label>Email: </label><input type = "text" name = "username" class = "box"/><br /><br />
+                    <label>Email: </label>
+                    <input
+                        type = "email"
+                        name = "username"
+                        class = "box"
+                        maxlength="254"/><br /><br />
                     <label>Parola: </label><input type = "password" name = "password" class = "box" required/><br/><br />
                     <label>Parola: </label><input type = "password" name = "confirm_password" class = "box" required /><br/><br />
                     <input type = "submit" value = " Submit "/><br />

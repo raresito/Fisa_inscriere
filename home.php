@@ -53,6 +53,7 @@ $data = $personData->getRow();
 
         <div class = "buttonGroup" id="accordion">
             <button type="button" onClick = "coll(this)" class="card redCard" data-toggle="collapse" data-target="#personal">Date personale</button>
+            <button type="button" onClick = "coll(this)" class="card lightBlueCard" data-toggle = "collapse" data-target="#contact">Date de contact </button>
             <button type="button" onClick = "coll(this)" class="card blueCard" data-toggle="collapse" data-target="#domeniu"> Optiuni de facultate</button>
             <button type="button" onClick = "coll(this)" class="card burgundyCard" data-toggle="collapse" data-target="#liceu"> Date despre Liceu </button>
             <button type="button" onClick = "coll(this)" class="card azureCard" data-toggle = "collapse" data-target="#specialAdmitere"> Admitere Speciala </button>
@@ -61,27 +62,28 @@ $data = $personData->getRow();
         </div>
 
         <form name="registerForm" action = "infoValidation.php" method = "post" id="form">
+
             <div id = "personal" class = "collapse centrat">
                 <div class = "form-group">
                     <label> Numele de familie la nastere: </label>
-                    <input type = "text" class="form-control" name = "birthName" pattern = "[A-Za-z]{3,30}" value="<?php echo $data['birthName']; ?>">
+                    <input type = "text" class="form-control" name = "birthName" value="<?php echo $data['birthName']; ?>">
                 </div>
                 <div class = "form-group">
                     <label> Numele de familie actual: </label>
-                    <input type = "text" class="form-control" name = "name" pattern = "[A-Za-z]{3,30}" value="<?php echo $data['name']; ?>">
+                    <input type = "text" class="form-control" name = "name" value="<?php echo $data['name']; ?>">
                 </div>
                 <div class = "form-group">
                     <label> Prenumele tau: </label>
-                    <input type = "text" name = "surname" class="form-control" pattern = "[A-Za-z]{3,30}" value="<?php echo $data['surname']; ?>">
+                    <input type = "text" name = "surname" class="form-control" value="<?php echo $data['surname']; ?>">
                 </div>
                 <div class = "form-group">
                     <label> Numele tatalui: </label>
-                    <input type = "text" name = "nameFather" class = "form-control" pattern = "[A-Za-z]{3,30}" value="<?php echo $data['nameFather']; ?>">
+                    <input type = "text" name = "nameFather" class = "form-control" value="<?php echo $data['nameFather']; ?>">
                 </div>
 
                 <div class = "form-group">
                     <label> Numele mamei:  </label>
-                    <input type = "text" name = "nameMother" class = "form-control" pattern = "[A-Za-z]{3,30}" value="<?php echo $data['nameMother']; ?>">
+                    <input type = "text" name = "nameMother" class = "form-control" value="<?php echo $data['nameMother']; ?>">
                 </div>
 
                 <div class = "form-group">
@@ -101,7 +103,7 @@ $data = $personData->getRow();
                 </div>
                 <div class = "form-group">
                     <label> Eliberat de:  </label>
-                    <input type = "text" class = "form-control" name = "eliberatedBy" pattern="[A-Za-z0-9]{3,30}" value="<?php echo $data['eliberatedBy']; ?>">
+                    <input type = "text" class = "form-control" name = "eliberatedBy"  value="<?php echo $data['eliberatedBy']; ?>">
                 </div>
                 <div class = "form-group">
                     <label> Data eliberarii:  </label>
@@ -376,11 +378,11 @@ $data = $personData->getRow();
                 </div>
                 <div class = "form-group">
                     <label>Localitate:</label>
-                    <input type = "text" class = "form-control" name = "city" pattern = "^[a-zA-Z -,-]*$" value="<?php echo $data['city']; ?>">
+                    <input type = "text" class = "form-control" name = "city" value="<?php echo $data['city']; ?>">
                 </div>
                 <div class = "form-group">
                     <label> Judet:  </label>
-                    <input type = "text" class = "form-control" name = "county" pattern = "[A-Za-z0-9]{3,30}" value="<?php echo $data['county']; ?>">
+                    <input type = "text" class = "form-control" name = "county" value="<?php echo $data['county']; ?>">
                 </div>
                 <div class = "form-group">
                     <label> Cetatenie  </label>
@@ -401,6 +403,170 @@ $data = $personData->getRow();
 
             </div>
 
+            <div id = "contact" class="collapse centrat">
+                <label> Domiciliul stabil (din buletin)</label>
+                <div class = "form-group">
+                    <label> Tara </label>
+                    <input
+                            type = "text"
+                            class="form-control"
+                            name = "taraDomiciliu"
+                            value="<?php echo $data['taraDomiciliu']; ?>">
+                </div>
+                <div class = "form-group">
+                    <label> Localitate </label>
+                    <input
+                            type = "text"
+                            class="form-control"
+                            name = "localitateDomiciliu"
+                            value="<?php echo $data['localitateDomiciliu']; ?>">
+                </div>
+                <div class = "form-group">
+                    <label> Strada </label>
+                    <input
+                            type = "text"
+                            class= "form-control"
+                            name = "stradaDomiciliu"
+                            value="<?php echo $data['stradaDomiciliu']; ?>">
+                </div>
+                <div class = "form-group">
+                    <label> Nr. </label>
+                    <input
+                            type = "text"
+                            class= "form-control"
+                            name = "numarDomiciliu"
+                            value="<?php echo $data['numarDomiciliu']; ?>">
+                </div>
+                <div class = "form-group">
+                    <label> Bloc </label>
+                    <input
+                            type = "text"
+                            class= "form-control"
+                            name = "blocDomiciliu"
+                            value="<?php echo $data['blocDomiciliu']; ?>">
+                </div>
+                <div class = "form-group">
+                    <label> Scara </label>
+                    <input
+                            type = "text"
+                            class= "form-control"
+                            name = "scaraDomiciliu"
+                            value="<?php echo $data['scaraDomiciliu']; ?>">
+                </div>
+                <div class = "form-group">
+                    <label> Etaj </label>
+                    <input
+                            type = "text"
+                            class= "form-control"
+                            name = "etajDomiciliu"
+                            value="<?php echo $data['etajDomiciliu']; ?>">
+                </div>
+                <div class = "form-group">
+                    <label> Apartament </label>
+                    <input
+                            type = "text"
+                            class= "form-control"
+                            name = "apartamentDomiciliu"
+                            value="<?php echo $data['apartamentDomiciliu']; ?>">
+                </div>
+                <div class = "form-group">
+                    <label> Judet/Sector </label>
+                    <select class = "form-control" name="judete">
+                        <option value="0">Alege Judet</option>
+                        <option value="Alba">Alba</option>
+                        <option value="Arad">Arad</option>
+                        <option value="Arges">Arges</option>
+                        <option value="Bacau">Bacau</option>
+                        <option value="Bihor">Bihor</option>
+                        <option value="Bistrita Nasaud">Bistrita Nasaud</option>
+                        <option value="Botosani">Botosani</option>
+                        <option value="Brasov">Brasov</option>
+                        <option value="Braila">Braila</option>
+                        <option value="Bucuresti">Bucuresti</option>
+                        <option value="Buzau">Buzau</option>
+                        <option value="Caras Severin">Caras Severin</option>
+                        <option value="Calarasi">Calarasi</option>
+                        <option value="Cluj">Cluj</option>
+                        <option value="Constanta">Constanta</option>
+                        <option value="Covasna">Covasna</option>
+                        <option value="Dambovita">Dambovita</option>
+                        <option value="Dolj">Dolj</option>
+                        <option value="Galati">Galati</option>
+                        <option value="Giurgiu">Giurgiu</option>
+                        <option value="Gorj">Gorj</option>
+                        <option value="Harghita">Harghita</option>
+                        <option value="Hunedoara">Hunedoara</option>
+                        <option value="Ialomita">Ialomita</option>
+                        <option value="Iasi">Iasi</option>
+                        <option value="Ilfov">Ilfov</option>
+                        <option value="Maramures">Maramures</option>
+                        <option value="Mehedinti">Mehedinti</option>
+                        <option value="Mures">Mures</option>
+                        <option value="Neamt">Neamt</option>
+                        <option value="Olt">Olt</option>
+                        <option value="Prahova">Prahova</option>
+                        <option value="Satu Mare">Satu Mare</option>
+                        <option value="Salaj">Salaj</option>
+                        <option value="Sibiu">Sibiu</option>
+                        <option value="Suceava">Suceava</option>
+                        <option value="Teleorman">Teleorman</option>
+                        <option value="Timis">Timis</option>
+                        <option value="Tulcea">Tulcea</option>
+                        <option value="Vaslui">Vaslui</option>
+                        <option value="Valcea">Valcea</option>
+                        <option value="Vrancea">Vrancea</option>
+                    </select>
+                </div>
+                <div class = "form-group">
+                    <label> Cod Postal </label>
+                    <input
+                            type = "text"
+                            class= "form-control"
+                            name = "codPostalDomiciliu"
+                            value="<?php echo $data['codPostalDomiciliu']; ?>">
+                </div>
+                <div class = "form-group">
+                    <label> Telefon fix </label>
+                    <input
+                            type = "text"
+                            class= "form-control"
+                            name = "fixDomiciliu"
+                            value="<?php echo $data['fixDomiciliu']; ?>">
+                </div>
+                <div class = "form-group">
+                    <label> Mobil </label>
+                    <input
+                            type = "text"
+                            class= "form-control"
+                            name = "mobilDomiciliu"
+                            value="<?php echo $data['mobilDomiciliu']; ?>">
+                </div>
+                <div class = "form-group">
+                    <label> Date de contact alternative (parinte, tutore etc.) </label> <br>
+                    <label> Telfon fix </label>
+                    <input
+                            type = "text"
+                            class= "form-control"
+                            name = "fixParinte"
+                            value="<?php echo $data['fixParinte']; ?>">
+                </div>
+                <div class = "form-group">
+                    <label> Telefon mobil </label>
+                    <input
+                            type = "text"
+                            class= "form-control"
+                            name = "mobilParinte"
+                            value="<?php echo $data['mobilParinte']; ?>">
+                </div>
+                <div class = "form-group">
+                    <label> Email: </label>
+                    <input
+                            type = "text"
+                            class= "form-control"
+                            name = "emailParinte"
+                            value="<?php echo $data['emailParinte']; ?>">
+                </div>
+            </div>
 
             <div id = "domeniu" class="collapse centrat">
                 <form>
@@ -408,15 +574,15 @@ $data = $personData->getRow();
                         <label for="domeniu">Domeniul:</label>
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" onchange="afiseaza(this)" value="matematica">
+                                <input type="checkbox" name="matematica"onchange="afiseaza(this)" value="matematica">
                                 Matematica
                             </label>
                         </div>
                         <div class="checkbox">
-                            <label><input type="checkbox" onchange="afiseaza(this)" value="informatica">Informatica</label>
+                            <label><input type="checkbox" name="informatica" onchange="afiseaza(this)" value="informatica">Informatica</label>
                         </div>
                         <div class="checkbox">
-                            <label><input type="checkbox" onchange="afiseaza(this)" value="cti">CTI</label>
+                            <label><input type="checkbox" name="cti" onchange="afiseaza(this)" value="cti">CTI</label>
                         </div>
                     </div>
                     <div class="form-group">
@@ -454,7 +620,7 @@ $data = $personData->getRow();
                 <form id = "liceuForm">
                     <div class = "form-group">
                         <label> Denumire: </label>
-                        <input type = "text" class="form-control" id = "denumireLiceu">
+                        <input type = "text" name = "denumireLiceu" class="form-control" id = "denumireLiceu">
                     </div>
 
                     <div class = "form-group">
@@ -465,7 +631,7 @@ $data = $personData->getRow();
 
                     <div class = "form-group">
                         <label> Localitatea: </label>
-                        <input type = "text" class="form-control" id = "localitateLiceu">
+                        <input type = "text" name = "localitateLiceu" class="form-control" id = "localitateLiceu">
                     </div>
 
 
