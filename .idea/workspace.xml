@@ -2,14 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4af459bb-037b-4b67-b52f-fcaa86ac94c9" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/adminPanel.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/excel1.xlsx" afterPath="$PROJECT_DIR$/excel1.xlsx" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources/f5a77858-a2ac-477f-b445-ff8c6ceaf6da.xml" afterPath="$PROJECT_DIR$/.idea/dataSources/f5a77858-a2ac-477f-b445-ff8c6ceaf6da.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/adminPanel.php" afterPath="$PROJECT_DIR$/adminPanel.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/custom.css" afterPath="$PROJECT_DIR$/css/custom.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/home.php" afterPath="$PROJECT_DIR$/home.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.php" afterPath="$PROJECT_DIR$/index.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/infoValidation.php" afterPath="$PROJECT_DIR$/infoValidation.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAccount.php" afterPath="$PROJECT_DIR$/newAccount.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/custom.js" afterPath="$PROJECT_DIR$/js/custom.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -46,50 +47,7 @@
     <select />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="infoValidation.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/infoValidation.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="193">
-              <caret line="86" column="40" lean-forward="false" selection-start-line="86" selection-start-column="40" selection-end-line="86" selection-end-column="40" />
-              <folding>
-                <marker date="1511277297643" expanded="false" signature="422:1797" ph="INSERT INTO candidat... " />
-                <marker date="1511277297643" expanded="true" signature="1876:1965" ph="UPDATE candi... " />
-                <marker date="1511277297643" expanded="true" signature="1876:1993" ph="UPDATE candi... " />
-                <marker date="1511277297643" expanded="true" signature="1876:1994" ph="UPDATE candi... " />
-                <marker date="1511277297643" expanded="true" signature="1876:2023" ph="UPDATE candi... " />
-                <marker date="1511277297643" expanded="true" signature="1876:2070" ph="UPDATE candi... " />
-                <marker date="1511277297643" expanded="true" signature="1876:2100" ph="UPDATE candi... " />
-                <marker date="1511277297643" expanded="true" signature="1876:2130" ph="UPDATE candi... " />
-                <marker date="1511277297643" expanded="true" signature="1876:2795" ph="UPDATE candi... " />
-                <marker date="1511277297643" expanded="true" signature="1876:3020" ph="UPDATE candi... " />
-                <marker date="1511277297643" expanded="true" signature="1876:4051" ph="UPDATE candi... " />
-                <marker date="1511277297643" expanded="true" signature="1876:4122" ph="UPDATE candi... " />
-                <marker date="1511277297643" expanded="true" signature="1876:4187" ph="UPDATE candi... " />
-                <marker date="1511277297643" expanded="true" signature="1876:4248" ph="UPDATE candi... " />
-                <marker date="1511277297643" expanded="true" signature="1876:4268" ph="UPDATE candi... " />
-                <marker date="1511277297643" expanded="true" signature="1876:4269" ph="UPDATE candi... " />
-                <marker date="1511277297643" expanded="true" signature="1876:4270" ph="UPDATE candi... " />
-                <marker date="1511277297643" expanded="true" signature="1876:4272" ph="UPDATE candi... " />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="home.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/home.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="11718">
-              <caret line="582" column="30" lean-forward="false" selection-start-line="582" selection-start-column="30" selection-end-line="582" selection-end-column="30" />
-              <folding>
-                <element signature="n#getData#0;n#!!top" expanded="false" />
-                <marker date="1511277042164" expanded="true" signature="449:499" ph="SELECT * FRO... candidat" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375" />
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -97,6 +55,7 @@
       <find>this</find>
       <find>session</find>
       <find>rares</find>
+      <find>php</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -112,15 +71,15 @@
         <option value="$PROJECT_DIR$/config.php" />
         <option value="/MySQL Fragment (generate.php:10418).sql" />
         <option value="$PROJECT_DIR$/generate2.php" />
-        <option value="$PROJECT_DIR$/css/custom.css" />
-        <option value="$PROJECT_DIR$/js/custom.js" />
         <option value="$PROJECT_DIR$/generate.php" />
         <option value="$PROJECT_DIR$/newAccount.php" />
         <option value="$PROJECT_DIR$/index.php" />
-        <option value="$PROJECT_DIR$/adminPanel.php" />
         <option value="src:table:/75dca156/f5a77858-a2ac-477f-b445-ff8c6ceaf6da/admitere 2017.candidat" />
-        <option value="$PROJECT_DIR$/home.php" />
+        <option value="$PROJECT_DIR$/css/custom.css" />
+        <option value="$PROJECT_DIR$/adminPanel.php" />
+        <option value="$PROJECT_DIR$/js/custom.js" />
         <option value="$PROJECT_DIR$/infoValidation.php" />
+        <option value="$PROJECT_DIR$/home.php" />
       </list>
     </option>
   </component>
@@ -132,9 +91,8 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" interpreter_name="PHP 7.1.10" />
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="102" />
-    <option name="y" value="-9" />
-    <option name="width" value="1389" />
+    <option name="x" value="1199" />
+    <option name="width" value="729" />
     <option name="height" value="1038" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
@@ -184,12 +142,17 @@
               <item name="Fisa_inscriere" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="css" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
+            <path>
+              <item name="Fisa_inscriere" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Fisa_inscriere" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="js" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
       <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -239,7 +202,9 @@
       <workItem from="1511119492025" duration="4855000" />
       <workItem from="1511193195649" duration="645000" />
       <workItem from="1511273704521" duration="3640000" />
-      <workItem from="1511351200263" duration="5000" />
+      <workItem from="1511351200263" duration="95000" />
+      <workItem from="1511871851263" duration="4279000" />
+      <workItem from="1511882315316" duration="1830000" />
     </task>
     <task id="LOCAL-00001" summary="Am adaugat doua optiuni la tara.">
       <created>1510956313073</created>
@@ -255,20 +220,33 @@
       <option name="project" value="LOCAL" />
       <updated>1511016719492</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="IDK">
+      <created>1511351244251</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1511351244251</updated>
+    </task>
+    <task id="LOCAL-00004" summary="excels">
+      <created>1511351278355</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1511351278355</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="92020000" />
+    <option name="totallyTimeSpent" value="98219000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
-    <editor active="true" />
+    <frame x="-9" y="-9" width="1938" height="1058" extended-state="6" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18474758" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.124060154" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19172932" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="true" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19011815" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -294,7 +272,9 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Am adaugat doua optiuni la tara." />
     <MESSAGE value="Added new Account creation" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added new Account creation" />
+    <MESSAGE value="IDK" />
+    <MESSAGE value="excels" />
+    <option name="LAST_COMMIT_MESSAGE" value="excels" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -572,20 +552,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/session.php" />
-    <entry file="file://$PROJECT_DIR$/css/custom.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="63">
-          <caret line="3" column="1" lean-forward="false" selection-start-line="3" selection-start-column="1" selection-end-line="3" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/custom.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="42">
@@ -601,27 +567,6 @@
           <folding>
             <marker date="1511019294603" expanded="true" signature="242:303" ph="SELECT uniqu... candidat" />
             <marker date="1511019294603" expanded="false" signature="776:1462" ph="INSERT INTO candidat... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="21">
-          <caret line="12" column="52" lean-forward="false" selection-start-line="10" selection-start-column="4" selection-end-line="12" selection-end-column="52" />
-          <folding>
-            <marker date="1511180914345" expanded="true" signature="290:385" ph="SELECT uniqu... utilizator" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/adminPanel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="655">
-          <caret line="37" column="1" lean-forward="true" selection-start-line="37" selection-start-column="1" selection-end-line="37" selection-end-column="1" />
-          <folding>
-            <marker date="1511273856418" expanded="true" signature="92:112" ph="SELECT * FRO... candidat" />
-            <marker date="1511273856418" expanded="true" signature="92:114" ph="SELECT * FRO... candidat" />
           </folding>
         </state>
       </provider>
@@ -654,40 +599,92 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/css/custom.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="546">
+          <caret line="26" column="0" lean-forward="false" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/custom.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="7" column="5" lean-forward="false" selection-start-line="7" selection-start-column="5" selection-end-line="7" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-91">
+          <caret line="17" column="30" lean-forward="false" selection-start-line="17" selection-start-column="18" selection-end-line="17" selection-end-column="30" />
+          <folding>
+            <marker date="1511180914345" expanded="true" signature="290:385" ph="SELECT uniqu... utilizator" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/adminPanel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="21">
+          <caret line="28" column="0" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+          <folding>
+            <marker date="1511873533986" expanded="true" signature="138:158" ph="SELECT * FRO... candidat" />
+            <marker date="1511873533986" expanded="true" signature="138:160" ph="SELECT * FRO... candidat" />
+            <marker date="1511873533986" expanded="true" signature="3019:3302" ph="..." />
+            <marker date="1511873533986" expanded="true" signature="3038:3139" ph="..." />
+            <marker date="1511873533986" expanded="true" signature="3063:3119" ph="..." />
+            <marker date="1511873533986" expanded="true" signature="3167:3284" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/home.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="11718">
-          <caret line="582" column="30" lean-forward="false" selection-start-line="582" selection-start-column="30" selection-end-line="582" selection-end-column="30" />
+        <state relative-caret-position="419">
+          <caret line="639" column="32" lean-forward="true" selection-start-line="639" selection-start-column="32" selection-end-line="639" selection-end-column="32" />
           <folding>
             <element signature="n#getData#0;n#!!top" expanded="false" />
-            <marker date="1511277042164" expanded="true" signature="449:499" ph="SELECT * FRO... candidat" />
+            <element signature="n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#div#1;n#form#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#div#2;n#form#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#div#2;n#div#0;n#form#0;n#div#2;n#form#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#div#1;n#form#0;n#div#2;n#form#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#div#3;n#form#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#div#4;n#form#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#div#5;n#form#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#div#6;n#form#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <marker date="1511883952989" expanded="true" signature="449:499" ph="SELECT * FRO... candidat" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/infoValidation.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="193">
-          <caret line="86" column="40" lean-forward="false" selection-start-line="86" selection-start-column="40" selection-end-line="86" selection-end-column="40" />
+        <state relative-caret-position="357">
+          <caret line="54" column="59" lean-forward="true" selection-start-line="54" selection-start-column="59" selection-end-line="54" selection-end-column="59" />
           <folding>
-            <marker date="1511277297643" expanded="false" signature="422:1797" ph="INSERT INTO candidat... " />
-            <marker date="1511277297643" expanded="true" signature="1876:1965" ph="UPDATE candi... " />
-            <marker date="1511277297643" expanded="true" signature="1876:1993" ph="UPDATE candi... " />
-            <marker date="1511277297643" expanded="true" signature="1876:1994" ph="UPDATE candi... " />
-            <marker date="1511277297643" expanded="true" signature="1876:2023" ph="UPDATE candi... " />
-            <marker date="1511277297643" expanded="true" signature="1876:2070" ph="UPDATE candi... " />
-            <marker date="1511277297643" expanded="true" signature="1876:2100" ph="UPDATE candi... " />
-            <marker date="1511277297643" expanded="true" signature="1876:2130" ph="UPDATE candi... " />
-            <marker date="1511277297643" expanded="true" signature="1876:2795" ph="UPDATE candi... " />
-            <marker date="1511277297643" expanded="true" signature="1876:3020" ph="UPDATE candi... " />
-            <marker date="1511277297643" expanded="true" signature="1876:4051" ph="UPDATE candi... " />
-            <marker date="1511277297643" expanded="true" signature="1876:4122" ph="UPDATE candi... " />
-            <marker date="1511277297643" expanded="true" signature="1876:4187" ph="UPDATE candi... " />
-            <marker date="1511277297643" expanded="true" signature="1876:4248" ph="UPDATE candi... " />
-            <marker date="1511277297643" expanded="true" signature="1876:4268" ph="UPDATE candi... " />
-            <marker date="1511277297643" expanded="true" signature="1876:4269" ph="UPDATE candi... " />
-            <marker date="1511277297643" expanded="true" signature="1876:4270" ph="UPDATE candi... " />
-            <marker date="1511277297643" expanded="true" signature="1876:4272" ph="UPDATE candi... " />
+            <marker date="1511883706770" expanded="false" signature="422:1797" ph="INSERT INTO candidat... " />
+            <marker date="1511883706770" expanded="true" signature="1876:1965" ph="UPDATE candi... " />
+            <marker date="1511883706770" expanded="true" signature="1876:1993" ph="UPDATE candi... " />
+            <marker date="1511883706770" expanded="true" signature="1876:1994" ph="UPDATE candi... " />
+            <marker date="1511883706770" expanded="true" signature="1876:2023" ph="UPDATE candi... " />
+            <marker date="1511883706770" expanded="true" signature="1876:2070" ph="UPDATE candi... " />
+            <marker date="1511883706770" expanded="true" signature="1876:2100" ph="UPDATE candi... " />
+            <marker date="1511883706770" expanded="true" signature="1876:2130" ph="UPDATE candi... " />
+            <marker date="1511883706770" expanded="true" signature="1876:2795" ph="UPDATE candi... " />
+            <marker date="1511883706770" expanded="true" signature="1876:3020" ph="UPDATE candi... " />
+            <marker date="1511883706770" expanded="true" signature="1876:4051" ph="UPDATE candi... " />
+            <marker date="1511883706770" expanded="true" signature="1876:4122" ph="UPDATE candi... " />
+            <marker date="1511883706770" expanded="true" signature="1876:4187" ph="UPDATE candi... " />
+            <marker date="1511883706770" expanded="true" signature="1876:4693" ph="UPDATE candi... " />
+            <marker date="1511883706770" expanded="true" signature="1876:4757" ph="UPDATE candi... " />
+            <marker date="1511883706770" expanded="true" signature="1876:4777" ph="UPDATE candi... " />
+            <marker date="1511883706770" expanded="true" signature="1876:4778" ph="UPDATE candi... " />
+            <marker date="1511883706770" expanded="true" signature="1876:4779" ph="UPDATE candi... " />
+            <marker date="1511883706770" expanded="true" signature="1876:4781" ph="UPDATE candi... " />
+            <marker date="1511883706770" expanded="true" signature="5029:5091" ph="..." />
           </folding>
         </state>
       </provider>

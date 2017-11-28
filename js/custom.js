@@ -6,10 +6,6 @@ function validare(){
     } else {
         denumireLiceu.classList.remove("inputWrong");
     }
-
-
-
-
 }
 
 function coll(e){

@@ -31,6 +31,10 @@ class getData{
 $personData = new getData();
 $data = $personData->getRow();
 
+if($data['informatica'] == 1){
+    echo'avem informatica';
+}
+
 ?>
 
 <html>
@@ -61,7 +65,7 @@ $data = $personData->getRow();
             <button type="button" onClick = "coll(this)" class="card lightBlueCard" data-toggle = "collapse" data-target="#alteStudii">Alte studii universitare </button>
         </div>
 
-        <form name="registerForm" action = "infoValidation.php" method = "post" id="form">
+        <form name = "registerForm" action = "infoValidation.php" method = "post" id="form">
 
             <div id = "personal" class = "collapse centrat">
                 <div class = "form-group">
@@ -70,7 +74,7 @@ $data = $personData->getRow();
                 </div>
                 <div class = "form-group">
                     <label> Numele de familie actual: </label>
-                    <input type = "text" class="form-control" name = "name" value="<?php echo $data['name']; ?>">
+                    <input type = "text" class="form-control" name = "name" value="<?php echo $data['name']; ?>" >
                 </div>
                 <div class = "form-group">
                     <label> Prenumele tau: </label>
@@ -574,15 +578,32 @@ $data = $personData->getRow();
                         <label for="domeniu">Domeniul:</label>
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" name="matematica"onchange="afiseaza(this)" value="matematica">
+                                <input
+                                        type="checkbox"
+                                        name="matematica"
+                                        onchange="afiseaza(this)"
+                                        value="matematica"
+                                        <?php if($data['matematica'] == 1) echo 'checked'; ?> >
                                 Matematica
                             </label>
                         </div>
                         <div class="checkbox">
-                            <label><input type="checkbox" name="informatica" onchange="afiseaza(this)" value="informatica">Informatica</label>
+                            <label><input
+                                        type="checkbox"
+                                        name="informatica"
+                                        onchange="afiseaza(this)"
+                                        value="informatica"
+                                        <?php if($data['informatica'] == 1) echo 'checked'; ?>>
+                                Informatica</label>
                         </div>
                         <div class="checkbox">
-                            <label><input type="checkbox" name="cti" onchange="afiseaza(this)" value="cti">CTI</label>
+                            <label><input
+                                        type="checkbox"
+                                        name="cti"
+                                        onchange="afiseaza(this)"
+                                        value="cti"
+                                        <?php if($data['cti'] == 1) echo 'checked'; ?>>
+                                CTI</label>
                         </div>
                     </div>
                     <div class="form-group">
@@ -620,7 +641,7 @@ $data = $personData->getRow();
                 <form id = "liceuForm">
                     <div class = "form-group">
                         <label> Denumire: </label>
-                        <input type = "text" name = "denumireLiceu" class="form-control" id = "denumireLiceu">
+                        <input type = "text" name = "denumireLiceu" class="form-control" id = "denumireLiceu" value = "<?php echo $data['denumireLiceu']; ?>">
                     </div>
 
                     <div class = "form-group">
@@ -666,37 +687,33 @@ $data = $personData->getRow();
             </div>
 
             <div id = "specialAdmitere" class = "collapse centrat">
-                <form>
-                    <div class = "form-group">
-                        <label for="specialAdmitere">Statut special la admitere </label>
-                        <div class = "checkbox">
-                            <label><input type = "checkbox" value = "rromi"> Locuri pentru rromi </label>
-                        </div>
-                        <div class = "checkbox">
-                            <label><input type = "checkbox" value = "rromi"> Locuri pentru romani de pretutindeni </label>
-                        </div>
-                        <div class = "checkbox">
-                            <label><input type = "checkbox" value = "rromi"> Locuri pentru olimpici, admitere fara examen </label>
-                        </div>
+                <div class = "form-group">
+                    <label for="specialAdmitere">Statut special la admitere </label>
+                    <div class = "checkbox">
+                        <label><input type = "checkbox" name = "rromi" value = "1"> Locuri pentru rromi </label>
                     </div>
-                </form>
+                    <div class = "checkbox">
+                        <label><input type = "checkbox" name = "pretutindeni"> Locuri pentru romani de pretutindeni </label>
+                    </div>
+                    <div class = "checkbox">
+                        <label><input type = "checkbox" name = "olimpicAdmitere"> Locuri pentru olimpici, admitere fara examen </label>
+                    </div>
+                </div>
             </div>
 
             <div id = "specialTaxaAdmitere" class = "collapse centrat">
-                <form>
-                    <div class = "form-group">
-                        <label for="specialTaxaAdmitere">Statut special pentru scutirea de plata a taxei de admitere </label>
-                        <div class = "checkbox">
-                            <label><input type = "checkbox" value = "rromi"> Orfan de ambii părinți sau provenit din casă de copii sau plasament familial </label>
-                        </div>
-                        <div class = "checkbox">
-                            <label><input type = "checkbox" value = "rromi"> Părinte cadru didactic sau angajat la Universitatea din București </label>
-                        </div>
-                        <div class = "checkbox">
-                            <label><input type = "checkbox" value = "rromi"> Olimpic, admis fără examen </label>
-                        </div>
+                <div class = "form-group">
+                    <label for="specialTaxaAdmitere">Statut special pentru scutirea de plata a taxei de admitere </label>
+                    <div class = "checkbox">
+                        <label><input type = "checkbox" name = "orfan"> Orfan de ambii părinți sau provenit din casă de copii sau plasament familial </label>
                     </div>
-                </form>
+                    <div class = "checkbox">
+                        <label><input type = "checkbox" name = "parinteProfesor"> Părinte cadru didactic sau angajat la Universitatea din București </label>
+                    </div>
+                    <div class = "checkbox">
+                        <label><input type = "checkbox" name = "olimpicExamen"> Olimpic, admis fără examen </label>
+                    </div>
+                </div>
             </div>
 
             <div id = "alteStudii" class="collapse centrat">
@@ -782,10 +799,6 @@ $data = $personData->getRow();
                         <input type = "text" class="form-control" name = "licentaALTS">
                     </div>
                 </form>
-            </div>
-
-            <div id = "sumbitArea">
-                <a href="generate.php"> Print </a>
             </div>
 
             <button type = "submit" form = "form" onclick="validare()" >Submit</button>

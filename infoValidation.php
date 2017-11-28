@@ -93,7 +93,14 @@
               emailParinte = "."'".$_POST["emailParinte"] ."'". ",
               matematica = "."'".isset($_POST["matematica"]) ."'". ",
               informatica = "."'". isset($_POST["informatica"]) ."'". ",
-              cti = "."'". isset($_POST["cti"]) ."'". "
+              cti = "."'". isset($_POST["cti"]) ."'". ",
+              rromi = "."'". isset($_POST["rromi"]) ."'". ",
+              pretutindeni = "."'". isset($_POST["pretutindeni"]) ."'". ",
+              olimpicAdmitere = "."'". isset($_POST["olimpicAdmitere"]) ."'". ",
+              orfan = "."'". isset($_POST["orfan"]) ."'". ",
+              parinteProfesor = "."'". isset($_POST["parinteProfesor"]) ."'". ",
+              olimpicExamen = "."'". isset($_POST["olimpicExamen"]) ."'". ",   
+              denumireLiceu = "."'". $_POST["denumireLiceu"] ."'". "
           WHERE uniqueEmail = 'raresito@gmail.com' ";
 
         if($conn->query($SQL) == TRUE){
@@ -101,11 +108,11 @@
         } else {
             echo "Error: " . $SQL . "<br>" . $conn->error;
         }
-        //var_dump($_POST);
+        var_dump($_POST);
         ?>
 
         <div id = "sumbitArea">
-            <a href="test.php"> Print </a>
+            <a href="generate.php"> Print </a>
         </div>
     </body>
 </html>

@@ -112,7 +112,7 @@
       <Position>24</Position>
       <DataType>varchar(50)|0</DataType>
     </column>
-    <column id="36" parent="10" name="nrDomiciliu">
+    <column id="36" parent="10" name="numarDomiciliu">
       <Position>25</Position>
       <DataType>varchar(20)|0</DataType>
     </column>
@@ -156,22 +156,62 @@
       <Position>35</Position>
       <DataType>varchar(254)|0</DataType>
     </column>
-    <key id="47" parent="10" name="PRIMARY">
+    <column id="47" parent="10" name="matematica">
+      <Position>36</Position>
+      <DataType>varchar(6)|0</DataType>
+    </column>
+    <column id="48" parent="10" name="informatica">
+      <Position>37</Position>
+      <DataType>varchar(6)|0</DataType>
+    </column>
+    <column id="49" parent="10" name="cti">
+      <Position>38</Position>
+      <DataType>varchar(6)|0</DataType>
+    </column>
+    <column id="50" parent="10" name="rromi">
+      <Position>39</Position>
+      <DataType>varchar(45)|0</DataType>
+    </column>
+    <column id="51" parent="10" name="pretutindeni">
+      <Position>40</Position>
+      <DataType>varchar(45)|0</DataType>
+    </column>
+    <column id="52" parent="10" name="olimpicAdmitere">
+      <Position>41</Position>
+      <DataType>varchar(45)|0</DataType>
+    </column>
+    <column id="53" parent="10" name="orfan">
+      <Position>42</Position>
+      <DataType>varchar(45)|0</DataType>
+    </column>
+    <column id="54" parent="10" name="parinteProfesor">
+      <Position>43</Position>
+      <DataType>varchar(45)|0</DataType>
+    </column>
+    <column id="55" parent="10" name="olimpicExamen">
+      <Position>44</Position>
+      <DataType>varchar(6)|0</DataType>
+    </column>
+    <column id="56" parent="10" name="denumireLiceu">
+      <Position>45</Position>
+      <DataType>varchar(45)|0</DataType>
+    </column>
+    <key id="57" parent="10" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>uniqueEmail</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="48" parent="11" name="uniqueEmail">
+    <column id="58" parent="11" name="uniqueEmail">
       <Position>1</Position>
       <DataType>varchar(62)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="49" parent="11" name="password">
+    <column id="59" parent="11" name="password">
       <Position>2</Position>
       <DataType>varchar(32)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="50" parent="11" name="PRIMARY">
+    <key id="60" parent="11" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>uniqueEmail</ColNames>
       <Primary>1</Primary>
