@@ -240,7 +240,7 @@ $pdf->Cell(65,4,'Matematica',1,0,'L');
 $pdf->Cell(10,4,'',1,1,'L');
 
 $pdf->Cell(65,4,'','LR',0,'L');
-$pdf->Cell(10,4,'','LR',0,'L');
+$pdf->Cell(10,4,$data['matematica'],'LR',0,'L');
 $pdf->Cell(65,4,'Matematica Aplicata',1,0,'L');
 $pdf->Cell(10,4,'',1,1,'L');
 
@@ -251,12 +251,12 @@ $pdf->Cell(10,4,'',1,1,'L');
 
 
 $pdf->Cell(65,4,'Informatica',1,0,'L');
-$pdf->Cell(10,4,'',1,0,'L');
+$pdf->Cell(10,4,$data['informatica'],1,0,'L');
 $pdf->Cell(65,4,'Informatica',1,0,'L');
 $pdf->Cell(10,4,'',1,1,'L');
 
 $pdf->Cell(65,4,'Calculatoare si tehnologia informatiei',1,0,'L');
-$pdf->Cell(10,4,'',1,0,'L');
+$pdf->Cell(10,4,$data['cti'],1,0,'L');
 $pdf->Cell(65,4,'Calculatoare si tehnologia informatiei',1,0,'L');
 $pdf->Cell(10,4,'',1,1,'L');
 
@@ -327,7 +327,7 @@ $pdf->Cell(63.2,4,$data['nameMother'],$border,1);
 
 $pdf->Cell($pdf->GetStringWidth('Actul de identitate')+10,4,'Actul de identitate',$border, 0);
 //$pdf->Cell(19,4,$data['IDtype'],$border,0);
-$pdf->Cell(19,4,$_SESSION['login_user'],$border,0);
+$pdf->Cell(19,4,$data['IDtype'],$border,0);
 $pdf->Cell($pdf->GetStringWidth('seria')+13.5,4,'seria',$border, 0);
 $pdf->Cell($pdf->GetStringWidth('si al/a')+3,4,$data['serialID'],$border,0);
 $pdf->Cell(19,4,'nr.',$border,0);
@@ -392,31 +392,31 @@ $pdf->SetFont('Times', '',10);
 $border = 1;
 
 $pdf->Cell(10,4,' Tara', $border, 0);
-$pdf->Cell(30,4,'', $border, 0);
+$pdf->Cell(30,4,$data['taraDomiciliu'], $border, 0);
 $pdf->Cell(20,4,' Localitate', $border, 0);
-$pdf->Cell(33,4,'',$border,0);
+$pdf->Cell(33,4,$data['localitateDomiciliu'],$border,0);
 $pdf->Cell(13,4,' Strada', $border, 0);
-$pdf->Cell(44,4,'',$border,1);
+$pdf->Cell(44,4,$data['stradaDomiciliu'],$border,1);
 
 $pdf->Cell(8,4,'Nr.',$border,0);
-$pdf->Cell(10,4,'', $border,0);
+$pdf->Cell(10,4,$data['numarDomiciliu'], $border,0);
 $pdf->Cell(8,4,'Bl.',$border,0);
-$pdf->Cell(9,4,'',$border,0);
+$pdf->Cell(9,4,$data['blocDomiciliu'],$border,0);
 $pdf->Cell(8,4,'Sc.',$border,0);
-$pdf->Cell(9,4,'',$border,0);
+$pdf->Cell(9,4,$data['scaraDomiciliu'],$border,0);
 $pdf->Cell(8,4,'Et.',$border,0);
-$pdf->Cell(8,4,'',$border,0);
+$pdf->Cell(8,4,$data['etajDomiciliu'],$border,0);
 $pdf->Cell(9,4,'Ap.',$border,0);
-$pdf->Cell(9,4,'',$border,0);
+$pdf->Cell(9,4,$data['apartamentDomiciliu'],$border,0);
 $pdf->Cell(20,4,'Judet/Sector',$border,0);
 $pdf->Cell(20,4,'',$border,0);
 $pdf->Cell(10,4,'Cod',$border,0);
-$pdf->Cell(14,4,'',$border,1);
+$pdf->Cell(14,4,$data['codPostalDomiciliu'],$border,1);
 
 $pdf->Cell(26,4,'Telefon fix', $border,0);
-$pdf->Cell(37,4,'',$border,0);
+$pdf->Cell(37,4,$data['fixDomiciliu'],$border,0);
 $pdf->Cell(43,4,'Telefon mobil', $border,0);
-$pdf->Cell(44,4,'',$border,1);
+$pdf->Cell(44,4,$data['mobilDomiciliu'],$border,1);
 
 $border = 0;
 
@@ -428,12 +428,12 @@ $pdf->Cell(40 ,7,'(ale unuia dintre parinti, tutore, etc.)', $border,1,'L');
 $border = 1;
 
 $pdf->Cell(26,4,'Telefon fix', $border,0);
-$pdf->Cell(37,4,'',$border,0);
+$pdf->Cell(37,4,$data['fixParinte'],$border,0);
 $pdf->Cell(43,4,'Telefon mobil', $border,0);
-$pdf->Cell(44,4,'',$border,1);
+$pdf->Cell(44,4,$data['mobilParinte'],$border,1);
 
 $pdf->Cell(26,4,'Email',$border,0);
-$pdf->Cell(124,4,'',$border,1);
+$pdf->Cell(124,4,$data['emailParinte'],$border,1);
 
 //PAGINA 2
 $pdf->AliasNbPages();

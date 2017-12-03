@@ -1,7 +1,10 @@
 <?php
 include("config.php");
 session_start();
-
+if(isset($_SESSION['login_user'])){
+    header("Location: home.php");
+}
+var_dump($_SESSION);
 if($_SERVER["REQUEST_METHOD"] == "POST") {
     // username and password sent from form
 

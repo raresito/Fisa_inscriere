@@ -13,6 +13,8 @@
         }
         echo "Connected succesfully";
 
+        echo $_POST['denumireLiceu'];
+
         $uniqueEmail = $_SESSION["login_user"];
 
         /*$SQL = "INSERT INTO candidat
@@ -56,10 +58,11 @@
 
 */
         $dateOfBirth = $_POST["dateOfBirth"] ;
+        $birthName = $_POST["birthName"];
         $SQL = "
         UPDATE candidat
           SET CNP = "."'".$_POST["CNP"]."'".",
-              birthName = "."'".$_POST["birthName"]."'".",
+              birthName = "."'".$birthName."'".",
               name = "."'".$_POST['name']."'".",
               surname = "."'".$_POST["surname"]."'".",
               dateOfBirth = "."'".$dateOfBirth."'".",
@@ -99,8 +102,17 @@
               olimpicAdmitere = "."'". isset($_POST["olimpicAdmitere"]) ."'". ",
               orfan = "."'". isset($_POST["orfan"]) ."'". ",
               parinteProfesor = "."'". isset($_POST["parinteProfesor"]) ."'". ",
-              olimpicExamen = "."'". isset($_POST["olimpicExamen"]) ."'". ",   
-              denumireLiceu = "."'". $_POST["denumireLiceu"] ."'". "
+              olimpicExamen = "."'".isset($_POST["olimpicExamen"]) ."'". ",   
+              denumireLiceu = "."'".$_POST["denumireLiceu"] ."'". ",
+              localitateLiceu = "."'".$_POST["localitateLiceu"] ."'". ",
+              universitateALTS = "."'".$_POST["universitateALTS"] ."'". ",
+              taraALTS = "."'".$_POST["taraALTS"] ."'". ",
+              localitateALTS = "."'".$_POST["localitateALTS"] ."'". ",
+              facultateALTS = "."'".$_POST["facultateALTS"] ."'". ",
+              aniALTS = "."'".$_POST["aniALTS"] ."'". ",
+              anulALTS = "."'".$_POST["anulALTS"] ."'". ",
+              absolventALTS = "."'".$_POST["absolventALTS"] ."'". "
+              
           WHERE uniqueEmail = 'raresito@gmail.com' ";
 
         if($conn->query($SQL) == TRUE){

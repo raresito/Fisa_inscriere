@@ -31,8 +31,11 @@ class getData{
 $personData = new getData();
 $data = $personData->getRow();
 
+
 if($data['informatica'] == 1){
     echo'avem informatica';
+
+
 }
 
 ?>
@@ -55,6 +58,8 @@ if($data['informatica'] == 1){
 
         Welcome <?php echo $_SESSION['login_user']; ?> <br>
 
+        <h2><a href = "logout.php">Sign Out</a></h2>
+
         <div class = "buttonGroup" id="accordion">
             <button type="button" onClick = "coll(this)" class="card redCard" data-toggle="collapse" data-target="#personal">Date personale</button>
             <button type="button" onClick = "coll(this)" class="card lightBlueCard" data-toggle = "collapse" data-target="#contact">Date de contact </button>
@@ -65,12 +70,13 @@ if($data['informatica'] == 1){
             <button type="button" onClick = "coll(this)" class="card lightBlueCard" data-toggle = "collapse" data-target="#alteStudii">Alte studii universitare </button>
         </div>
 
-        <form name = "registerForm" action = "infoValidation.php" method = "post" id="form">
+        <form name = "registerForm" action = "infoValidation.php" method = "post" id="form1">
 
             <div id = "personal" class = "collapse centrat">
+
                 <div class = "form-group">
                     <label> Numele de familie la nastere: </label>
-                    <input type = "text" class="form-control" name = "birthName" value="<?php echo $data['birthName']; ?>">
+                    <input type = "text" class="form-control" name = "birthName" value="<?php echo $data['birthName']; ?>" >
                 </div>
                 <div class = "form-group">
                     <label> Numele de familie actual: </label>
@@ -84,23 +90,19 @@ if($data['informatica'] == 1){
                     <label> Numele tatalui: </label>
                     <input type = "text" name = "nameFather" class = "form-control" value="<?php echo $data['nameFather']; ?>">
                 </div>
-
                 <div class = "form-group">
                     <label> Numele mamei:  </label>
                     <input type = "text" name = "nameMother" class = "form-control" value="<?php echo $data['nameMother']; ?>">
                 </div>
-
                 <div class = "form-group">
                     <label> Cu ce fel de act de identitate ai vrea sa te inregistrezi ? </label> <br>
                     <input type = "radio" name = "IDtype" value = "CI" checked="checked" > Carte de identitate <!-- Va fi marcat drept CI --> <br>
                     <input type = "radio" name = "IDtype" value = "Passport"> Pasaport
                 </div>
-
                 <div class = "form-group">
                     <label> Seria de buletin  </label>
                     <input type = "text" class = "form-control" name = "serialID" pattern = "[A-Za-z]{2}" value="<?php echo $data['serialID']; ?>">
                 </div>
-
                 <div class = "form-group">
                     <label> Numar de buletin:  </label>
                     <input type = "text" class = "form-control" name = "numberID" pattern = "[0-9]{6}" value="<?php echo $data['numberID']; ?>">
@@ -573,117 +575,109 @@ if($data['informatica'] == 1){
             </div>
 
             <div id = "domeniu" class="collapse centrat">
-                <form>
-                    <div class="form-group">
-                        <label for="domeniu">Domeniul:</label>
-                        <div class="checkbox">
-                            <label>
-                                <input
-                                        type="checkbox"
-                                        name="matematica"
-                                        onchange="afiseaza(this)"
-                                        value="matematica"
-                                        <?php if($data['matematica'] == 1) echo 'checked'; ?> >
-                                Matematica
-                            </label>
+                <div class="form-group">
+                    <label for="domeniu">Domeniul:</label>
+                    <div class="checkbox">
+                        <label>
+                            <input
+                                    type="checkbox"
+                                    name="matematica"
+                                    onchange="afiseaza(this)"
+                                    value="matematica"
+                                    <?php if($data['matematica'] == 1) echo 'checked'; ?> >
+                            Matematica
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label><input
+                                    type="checkbox"
+                                    name="informatica"
+                                    onchange="afiseaza(this)"
+                                    value="informatica"
+                                    <?php if($data['informatica'] == 1) echo 'checked'; ?>>
+                            Informatica</label>
+                    </div>
+                    <div class="checkbox">
+                        <label><input
+                                    type="checkbox"
+                                    name="cti"
+                                    onchange="afiseaza(this)"
+                                    value="cti"
+                                    <?php if($data['cti'] == 1) echo 'checked'; ?>>
+                            CTI</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="specializare">Specializare</label>
+                    <div class = "">
+                        <div class="matematica funkyradio" >
+                            <div class="funkyradio-primary">
+                                <input type="radio" name="radio" id="radio1" />
+                                <label for="radio1">Matematica pura</label>
+                            </div>
+                            <div class="funkyradio-primary">
+                                <input type="radio" name="radio" id="radio2" />
+                                <label for="radio2">Matematica aplicata</label>
+                            </div>
+                            <div class="funkyradio-primary">
+                                <input type="radio" name="radio" id="radio3" />
+                                <label for="radio3">Matematica informatica</label>
+                            </div>
+                            <a href="#" data-toggle="popover" title="Specializarea" data-content="Alegerea are doar rol statistic. Alegerea se face la inceputul anului II.">
+                                <button type = "button" class = "btn btn-info"> Info </button>
+                            </a><br>
                         </div>
-                        <div class="checkbox">
-                            <label><input
-                                        type="checkbox"
-                                        name="informatica"
-                                        onchange="afiseaza(this)"
-                                        value="informatica"
-                                        <?php if($data['informatica'] == 1) echo 'checked'; ?>>
-                                Informatica</label>
+                        <div class="checkbox informatica" >
+                            <label><input type="checkbox" value="" disabled>Informatica</label><br>
                         </div>
-                        <div class="checkbox">
-                            <label><input
-                                        type="checkbox"
-                                        name="cti"
-                                        onchange="afiseaza(this)"
-                                        value="cti"
-                                        <?php if($data['cti'] == 1) echo 'checked'; ?>>
-                                CTI</label>
+                        <div class="checkbox cti" >
+                            <label><input type="checkbox" value="" disabled>Calculatoare si Tehnologia Informatiei </label>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label for="specializare">Specializare</label>
-                        <div class = "">
-                            <div class="matematica funkyradio" >
-                                <div class="funkyradio-primary">
-                                    <input type="radio" name="radio" id="radio1" />
-                                    <label for="radio1">Matematica pura</label>
-                                </div>
-                                <div class="funkyradio-primary">
-                                    <input type="radio" name="radio" id="radio2" />
-                                    <label for="radio2">Matematica aplicata</label>
-                                </div>
-                                <div class="funkyradio-primary">
-                                    <input type="radio" name="radio" id="radio3" />
-                                    <label for="radio3">Matematica informatica</label>
-                                </div>
-                                <a href="#" data-toggle="popover" title="Specializarea" data-content="Alegerea are doar rol statistic. Alegerea se face la inceputul anului II.">
-                                    <button type = "button" class = "btn btn-info"> Info </button>
-                                </a><br>
-                            </div>
-                            <div class="checkbox informatica" >
-                                <label><input type="checkbox" value="" disabled>Informatica</label><br>
-                            </div>
-                            <div class="checkbox cti" >
-                                <label><input type="checkbox" value="" disabled>Calculatoare si Tehnologia Informatiei </label>
-                            </div>
-                        </div>
-                    </div>
-                </form>
+                </div>
             </div>
 
-            <div id = "liceu" class = "collapse centrat">
-                <form id = "liceuForm">
-                    <div class = "form-group">
-                        <label> Denumire: </label>
-                        <input type = "text" name = "denumireLiceu" class="form-control" id = "denumireLiceu" value = "<?php echo $data['denumireLiceu']; ?>">
-                    </div>
+            <div id = "liceu" class="collapse centrat">
 
-                    <div class = "form-group">
-                        <!--<label> Tara: </label>
-                        <input type = "text" class="form-control" id = "taraLiceu">-->
-                        <select class="input-medium bfh-countries" data-country="US"></select>
+                <div class = "form-group">
+                    <label> Denumire:
+                    <input type = "text" name = "denumireLiceu" class="form-control" value = "<?php echo $data['denumireLiceu']; ?>">
+                    </label>
+                </div>
+                <div class = "form-group">
+                    <!--<label> Tara: </label>
+                    <input type = "text" class="form-control" id = "taraLiceu">-->
+                    <select class="input-medium bfh-countries" data-country="US"></select>
+                </div>
+                <div class = "form-group">
+                    <label> Localitatea: </label>
+                    <input type = "text" name = "localitateLiceu" class="form-control" id = "localitateLiceu">
+                </div>
+                <div class = "">
+                    <div class = "form-row">
+                        <label> Am sustinut Bacul in sesiunea: </label>
+                        <input type = "text" class="form-control" id = "sesiuneBac">
                     </div>
-
-                    <div class = "form-group">
-                        <label> Localitatea: </label>
-                        <input type = "text" name = "localitateLiceu" class="form-control" id = "localitateLiceu">
+                    <div class="form-row">
+                        <label> anul </label>
+                        <input type = "number" class="form-control" id = "anBac">
                     </div>
+                </div>
+                <div class = "form-group">
+                    <label> Media la Bac: </label>
+                    <input type = "number" class="form-control" id = "medieBac">
+                </div>
+                <div class = "form-group">
+                    <label> Nota la bac la Matematica </label>
+                    <input type = "text" class="form-control" id = "notaMateBac">
+                </div>
+                <div class = "form-group">
+                    <label> Diploma de bac: Serie:</label>
+                    <input type = "text" class="form-control" id = "serieBac">
+                    <label> Numar: </label>
+                    <input type="number" class="form-control" id ="numarBac">
+                </div>
 
-
-                    <div class = "">
-                        <div class = "form-row">
-                            <label> Am sustinut Bacul in sesiunea: </label>
-                            <input type = "text" class="form-control" id = "sesiuneBac">
-                        </div>
-                        <div class="form-row">
-                            <label> anul </label>
-                            <input type = "number" class="form-control" id = "anBac">
-                        </div>
-                    </div>
-
-                    <div class = "form-group">
-                        <label> Media la Bac: </label>
-                        <input type = "number" class="form-control" id = "medieBac">
-                    </div>
-
-                    <div class = "form-group">
-                        <label> Nota la bac la Matematica </label>
-                        <input type = "text" class="form-control" id = "notaMateBac">
-                    </div>
-
-                    <div class = "form-group">
-                        <label> Diploma de bac: Serie:</label>
-                        <input type = "text" class="form-control" id = "serieBac">
-                        <label> Numar: </label>
-                        <input type="number" class="form-control" id ="numarBac">
-                    </div>
-                </form>
             </div>
 
             <div id = "specialAdmitere" class = "collapse centrat">
@@ -801,8 +795,10 @@ if($data['informatica'] == 1){
                 </form>
             </div>
 
-            <button type = "submit" form = "form" onclick="validare()" >Submit</button>
+            <button type = "submit" form = "form1" onclick="validare()" > Submit </button>
+
         </form>
     <?php var_dump($_SESSION); ?>
+
     </body>
 </html>
