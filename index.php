@@ -2,7 +2,13 @@
 include("config.php");
 session_start();
 if(isset($_SESSION['login_user'])){
-    header("Location: home.php");
+    $myusername = $_SESSION['login_user'];
+    if($myusername == 'admin'){
+        header("Location: adminPanel.php");
+    }
+    else {
+        header("Location: home.php");
+    }
 }
 var_dump($_SESSION);
 if($_SERVER["REQUEST_METHOD"] == "POST") {

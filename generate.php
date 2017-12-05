@@ -465,7 +465,7 @@ $pdf->Cell(72,4.5,'(se bifeaza de catre candiat)', $border, 0,'C');
 $pdf->Cell(78,4.5,'(se completeaza de catre Comisia de admitere)', $border, 1, 'C');
 
 $pdf->Cell(63,4.5,'Locuri pentru rromi','LTR', 0,'L');
-$pdf->Cell(9,4.5,'','LTR',0);
+$pdf->Cell(9,4.5,$data['rromi'],'LTR',0);
 $pdf->Cell(11,4.5,'DA',$border,0,'L');
 $pdf->Cell(9,4.5,'',$border,0);
 $pdf->Cell(32,4.5,'','LTR',0,'L');
@@ -479,7 +479,7 @@ $pdf->Cell(32,4.5,'','LBR',0,'L');
 $pdf->Cell(26,4.5,'','LBR',1,'L');
 
 $pdf->Cell(63,4.5,'Locuri pentru romanii de pretutindeni','LTR', 0,'L');
-$pdf->Cell(9,4.5,'','LTR',0);
+$pdf->Cell(9,4.5,$data['pretutindeni'],'LTR',0);
 $pdf->Cell(11,4.5,'DA',$border,0,'L');
 $pdf->Cell(9,4.5,'',$border,0);
 $pdf->Cell(32,4.5,'','LTR',0,'L');
@@ -493,7 +493,7 @@ $pdf->Cell(32,4.5,'','LBR',0,'L');
 $pdf->Cell(26,4.5,'','LBR',1,'L');
 
 $pdf->Cell(63,4.5,'Locuri pentru olimpici, admitere fara','LTR', 0,'L');
-$pdf->Cell(9,4.5,'','LTR',0);
+$pdf->Cell(9,4.5,$data['olimpicAdmitere'],'LTR',0);
 $pdf->Cell(11,4.5,'DA',$border,0,'L');
 $pdf->Cell(9,4.5,'',$border,0);
 $pdf->Cell(32,4.5,'','LTR',0,'L');
@@ -535,7 +535,7 @@ $pdf->Cell(72,4.5,'(se bifeaza de catre candiat)', $border, 0,'C');
 $pdf->Cell(78,4.5,'(se completeaza de catre Comisia de admitere)', $border, 1, 'C');
 
 $pdf->Cell(63,4.5,'Orfan de ambii parinti sau provenit din','LTR', 0,'L');
-$pdf->Cell(9,4.5,'','LTR',0);
+$pdf->Cell(9,4.5,$data['orfan'],'LTR',0);
 $pdf->Cell(11,4.5,'DA',$border,0,'L');
 $pdf->Cell(9,4.5,'',$border,0);
 $pdf->Cell(32,4.5,'','LTR',0,'L');
@@ -549,7 +549,7 @@ $pdf->Cell(32,4.5,'','LBR',0,'L');
 $pdf->Cell(26,4.5,'','LBR',1,'L');
 
 $pdf->Cell(63,4.5,'Parinte cadru didactic sau angajat la','LTR', 0,'L');
-$pdf->Cell(9,4.5,'','LTR',0);
+$pdf->Cell(9,4.5,$data['parinteProfesor'],'LTR',0);
 $pdf->Cell(11,4.5,'DA',$border,0,'L');
 $pdf->Cell(9,4.5,'',$border,0);
 $pdf->Cell(32,4.5,'','LTR',0,'L');
@@ -563,7 +563,7 @@ $pdf->Cell(32,4.5,'','LBR',0,'L');
 $pdf->Cell(26,4.5,'','LBR',1,'L');
 
 $pdf->Cell(63,4.5,'Olimpic, admis fara examen','LTR', 0,'L');
-$pdf->Cell(9,4.5,'','LTR',0);
+$pdf->Cell(9,4.5,$data['olimpicExamen'],'LTR',0);
 $pdf->Cell(11,4.5,'DA',$border,0,'L');
 $pdf->Cell(9,4.5,'',$border,0);
 $pdf->Cell(32,4.5,'','LTR',0,'L');
@@ -591,43 +591,43 @@ $pdf->MultiCell(160,4,$text, $border, 'FJ');
 $border = 1;
 
 $pdf->Cell(24,'4','Universitatea',$border,0,'L');
-$pdf->Cell(48,'4','',$border,0,'L');
+$pdf->Cell(48,'4',$data['universitateALTS'],$border,0,'L');
 $pdf->Cell(20,'4','Facultatea',$border,0,'L');
-$pdf->Cell(58,'4','',$border,1,'L');
+$pdf->Cell(58,'4',$data['facultateALTS'],$border,1,'L');
 
 $pdf->Cell(24,'4','Localitatea',$border,0,'L');
-$pdf->Cell(48,'4','',$border,0,'L');
+$pdf->Cell(48,'4',$data['localitateALTS'],$border,0,'L');
 $pdf->Cell(20,'4','Tara',$border,0,'L');
-$pdf->Cell(58,'4','',$border,1,'L');
+$pdf->Cell(58,'4',$data['taraALTS'],$border,1,'L');
 
 $pdf->Cell(24,'4','Domeniul',$border,0,'L');
-$pdf->Cell(48,'4','',$border,0,'L');
+$pdf->Cell(48,'4',$data['domeniulALTS'],$border,0,'L');
 $pdf->Cell(55,'4','Numarul de ani finantati de la buget  ',$border,0,'L');
-$pdf->Cell(23,'4','',$border,1,'L');
+$pdf->Cell(23,'4',$data['aniALTS'],$border,1,'L');
 
 $pdf->Cell(24,'4','Student anul',$border,0,'L');
-$pdf->Cell(8,'4','',$border,0,'L');
+$pdf->Cell(8,'4',$data['anulALTS'],$border,0,'L');
 $pdf->Cell(60,'4','Absolvent fara diploma de licenta in anul',$border,0,'L');
-$pdf->Cell(15,'4','',$border,0,'L');
+$pdf->Cell(15,'4',$data['absolventALTS'],$border,0,'L');
 $pdf->Cell(26,'4','Licentiat in anul',$border,0,'L');
-$pdf->Cell(17,'4','',$border,1,'L');
+$pdf->Cell(17,'4',$data['licentiatALTS'],$border,1,'L');
 
 $pdf->Cell(55,4,'Diploma de licenta in specializarea',$border,0,'L');
-$pdf->Cell(45,4,'',$border,0,'L');
+$pdf->Cell(45,4,$data['specializareALTS'],$border,0,'L');
 $pdf->Cell(12,4,'Seria',$border,0,'L');
-$pdf->Cell(13,4,'',$border,0,'L');
+$pdf->Cell(13,4,$data['serieALTS'],$border,0,'L');
 $pdf->Cell(8,4,'Nr.',$border,0,'L');
-$pdf->Cell(17,4,'',$border,1,'L');
+$pdf->Cell(17,4,$data['numarALTS'],$border,1,'L');
 
 $pdf->Cell(24,'4','Emisa de',$border,0,'L');
-$pdf->Cell(48,'4','',$border,0,'L');
+$pdf->Cell(48,'4',$data['emitentALTS'],$border,0,'L');
 $pdf->Cell(20,'4','La data de',$border,0,'L');
-$pdf->Cell(58,'4','',$border,1,'L');
+$pdf->Cell(58,'4',$data['dataemiteriiALTS'],$border,1,'L');
 
 $pdf->Cell(44,'4','Media generala de absolvire',$border,0,'L');
-$pdf->Cell(28,'4','',$border,0,'L');
+$pdf->Cell(28,'4',$data['absolvireALTS'],$border,0,'L');
 $pdf->Cell(44,'4','Media la examenul de licenta',$border,0,'L');
-$pdf->Cell(34,'4','',$border,1,'L');
+$pdf->Cell(34,'4',$data['licentaALTS'],$border,1,'L');
 
 
 $border = 0;
@@ -645,26 +645,26 @@ $pdf->MultiCell(160,4,$text, $border, '');
 $border = 1;
 
 $pdf->Cell(15,'4','Liceul',$border,0,'L');
-$pdf->Cell(135,'4','',$border,1,'L');
+$pdf->Cell(135,'4',$data['denumireLiceu'],$border,1,'L');
 $pdf->Cell(15,'4','Tara',$border,0,'L');
-$pdf->Cell(43,'4','',$border,0,'L');
+$pdf->Cell(43,'4','',$border,0,'L');//TODO Tara Liceu
 $pdf->Cell(20,'4','Localitatea',$border,0,'L');
-$pdf->Cell(72,'4','',$border,1,'L');
+$pdf->Cell(72,'4',$data['localitateLiceu'],$border,1,'L');
 $pdf->Cell(58,'4','Am sustinut bacalaureatul in sesiunea',$border,0,'L');
-$pdf->Cell(11,'4','',$border,0,'L');
+$pdf->Cell(11,'4',$data['sesiuneBac'],$border,0,'L');
 $pdf->Cell(9,'4','Anul',$border,0,'L');
-$pdf->Cell(18,'4','',$border,0,'L');
+$pdf->Cell(18,'4',$data['anBac'],$border,0,'L');
 $pdf->Cell(35,'4','Media generala BAC',$border,0,'L');
-$pdf->Cell(19,'4','',$border,1,'L');
+$pdf->Cell(19,'4',$data['medieBac'],$border,1,'L');
 
 $pdf->Cell(131,4,'Nota la BAC la disciplina Matematica (sau echivalent, cf. aprobarii Comisiei de admitere)', $border,0,'L');
-$pdf->Cell(19,4,'',$border,1);
+$pdf->Cell(19,4,$data['notaMateBac'],$border,1);
 
 $pdf->Cell(37,'4','Diploma de bacalaureat',$border,0,'L');
 $pdf->Cell(12,'4','Seria',$border,0,'L');
-$pdf->Cell(11,'4','',$border,0,'L');
+$pdf->Cell(11,'4',$data['serieBac'],$border,0,'L');
 $pdf->Cell(9,'4','Nr.',$border,0,'L');
-$pdf->Cell(27,'4','',$border,0,'L');
+$pdf->Cell(27,'4',$data['numarBac'],$border,0,'L');
 $pdf->Cell(27,'4','Emisa la data de',$border,0,'L');
 $pdf->Cell(27,4,'',$border,1);
 

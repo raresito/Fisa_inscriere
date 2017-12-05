@@ -97,6 +97,9 @@
               matematica = "."'".isset($_POST["matematica"]) ."'". ",
               informatica = "."'". isset($_POST["informatica"]) ."'". ",
               cti = "."'". isset($_POST["cti"]) ."'". ",
+              matematicaPura = "."'".isset($_POST["matematicaPura"]) ."'". ",
+              matematicaAplicata = "."'".isset($_POST["matematicaAplicata"]) ."'". ",
+              matematicaInformatica = "."'".isset($_POST["matematicaInformatica"]) ."'". ",
               rromi = "."'". isset($_POST["rromi"]) ."'". ",
               pretutindeni = "."'". isset($_POST["pretutindeni"]) ."'". ",
               olimpicAdmitere = "."'". isset($_POST["olimpicAdmitere"]) ."'". ",
@@ -105,26 +108,49 @@
               olimpicExamen = "."'".isset($_POST["olimpicExamen"]) ."'". ",   
               denumireLiceu = "."'".$_POST["denumireLiceu"] ."'". ",
               localitateLiceu = "."'".$_POST["localitateLiceu"] ."'". ",
+              sesiuneBac = "."'".$_POST["sesiuneBac"] ."'". ",
+              anBac = "."'".$_POST["anBac"] ."'". ",
+              medieBac = "."'".$_POST["medieBac"] ."'". ",
+              notaMateBac = "."'".$_POST["notaMateBac"] ."'". ",
+              serieBac = "."'".$_POST["serieBac"] ."'". ",
+              numarBac = "."'".$_POST["numarBac"] ."'". ",
               universitateALTS = "."'".$_POST["universitateALTS"] ."'". ",
               taraALTS = "."'".$_POST["taraALTS"] ."'". ",
               localitateALTS = "."'".$_POST["localitateALTS"] ."'". ",
               facultateALTS = "."'".$_POST["facultateALTS"] ."'". ",
+              domeniulALTS = "."'".$_POST["domeniulALTS"] ."'". ",
               aniALTS = "."'".$_POST["aniALTS"] ."'". ",
               anulALTS = "."'".$_POST["anulALTS"] ."'". ",
-              absolventALTS = "."'".$_POST["absolventALTS"] ."'". "
+              absolventALTS = "."'".$_POST["absolventALTS"] ."'". ",
+              licentiatALTS = "."'".$_POST["licentiatALTS"] ."'". ",
+              specializareALTS = "."'".$_POST["specializareaALTS"] ."'". ",
+              serieALTS = "."'".$_POST["serieALTS"] ."'". ",
+              numarALTS = "."'".$_POST["numarALTS"] ."'". ",
+              emitentALTS = "."'".$_POST["emitentALTS"] ."'". ",
+              dataEmiteriiALTS = "."'".$_POST["dataEmiteriiALTS"] ."'". ",
+              absolvireALTS = "."'".$_POST["absolvireALTS"] ."'". ",
+              licentaALTS = "."'".$_POST["licentaALTS"] ."'". "
               
           WHERE uniqueEmail = 'raresito@gmail.com' ";
 
         if($conn->query($SQL) == TRUE){
             echo "New record created successfully";
         } else {
+            echo "
+            <pre>
+                <?php 
+                    var_dmp($_POST);
+                ?>
+            </pre>";
             echo "Error: " . $SQL . "<br>" . $conn->error;
         }
+
         var_dump($_POST);
         ?>
 
         <div id = "sumbitArea">
             <a href="generate.php"> Print </a>
         </div>
+
     </body>
 </html>

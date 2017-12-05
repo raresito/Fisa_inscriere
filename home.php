@@ -31,13 +31,6 @@ class getData{
 $personData = new getData();
 $data = $personData->getRow();
 
-
-if($data['informatica'] == 1){
-    echo'avem informatica';
-
-
-}
-
 ?>
 
 <html>
@@ -58,7 +51,7 @@ if($data['informatica'] == 1){
 
         Welcome <?php echo $_SESSION['login_user']; ?> <br>
 
-        <h2><a href = "logout.php">Sign Out</a></h2>
+        <h2><a class = "negru" href = "logout.php">Sign Out</a></h2>
 
         <div class = "buttonGroup" id="accordion">
             <button type="button" onClick = "coll(this)" class="card redCard" data-toggle="collapse" data-target="#personal">Date personale</button>
@@ -76,7 +69,12 @@ if($data['informatica'] == 1){
 
                 <div class = "form-group">
                     <label> Numele de familie la nastere: </label>
-                    <input type = "text" class="form-control" name = "birthName" value="<?php echo $data['birthName']; ?>" >
+                    <input
+                            type = "text"
+                            class="form-control"
+                            name = "birthName"
+                            value="<?php echo $data['birthName']; ?>"
+                    >
                 </div>
                 <div class = "form-group">
                     <label> Numele de familie actual: </label>
@@ -130,6 +128,7 @@ if($data['informatica'] == 1){
                 <div class = "form-group">
                     <label>Locul nasterii:</label> <br>
                     <label> Tara:  </label>
+                    <!--  TODO tara nasterii -->
                     <select class = "form-control" name = "country" id = "tara">
                         <option value="AF">Afghanistan</option>
                         <option value="AX">Åland Islands</option>
@@ -612,15 +611,15 @@ if($data['informatica'] == 1){
                     <div class = "">
                         <div class="matematica funkyradio" >
                             <div class="funkyradio-primary">
-                                <input type="radio" name="radio" id="radio1" />
+                                <input type="radio" name="matematicaPura" id="radio1"  <?php if($data['matematicaPura'] == 1) echo 'checked'; ?> />
                                 <label for="radio1">Matematica pura</label>
                             </div>
                             <div class="funkyradio-primary">
-                                <input type="radio" name="radio" id="radio2" />
+                                <input type="radio" name="matematicaAplicata" id="radio2"  <?php if($data['matematicaAplicata'] == 1) echo 'checked'; ?> />
                                 <label for="radio2">Matematica aplicata</label>
                             </div>
                             <div class="funkyradio-primary">
-                                <input type="radio" name="radio" id="radio3" />
+                                <input type="radio" name="matematicaInformatica" id="radio3"  <?php if($data['matematicaInformatica'] == 1) echo 'checked'; ?> />
                                 <label for="radio3">Matematica informatica</label>
                             </div>
                             <a href="#" data-toggle="popover" title="Specializarea" data-content="Alegerea are doar rol statistic. Alegerea se face la inceputul anului II.">
@@ -651,31 +650,31 @@ if($data['informatica'] == 1){
                 </div>
                 <div class = "form-group">
                     <label> Localitatea: </label>
-                    <input type = "text" name = "localitateLiceu" class="form-control" id = "localitateLiceu">
+                    <input type = "text" name = "localitateLiceu" class="form-control" id = "localitateLiceu" value = "<?php echo $data['localitateLiceu']; ?>">
                 </div>
                 <div class = "">
                     <div class = "form-row">
                         <label> Am sustinut Bacul in sesiunea: </label>
-                        <input type = "text" class="form-control" id = "sesiuneBac">
+                        <input type = "text" class="form-control" name = "sesiuneBac" value = "<?php echo $data['sesiuneBac']; ?>">
                     </div>
                     <div class="form-row">
                         <label> anul </label>
-                        <input type = "number" class="form-control" id = "anBac">
+                        <input type = "number" class="form-control" name = "anBac" value = "<?php echo $data['anBac']; ?>">
                     </div>
                 </div>
                 <div class = "form-group">
                     <label> Media la Bac: </label>
-                    <input type = "number" class="form-control" id = "medieBac">
+                    <input type = "number" class="form-control" name = "medieBac" value = "<?php echo $data['medieBac']; ?>">
                 </div>
                 <div class = "form-group">
                     <label> Nota la bac la Matematica </label>
-                    <input type = "text" class="form-control" id = "notaMateBac">
+                    <input type = "text" class="form-control" name = "notaMateBac" value = "<?php echo $data['notaMateBac']; ?>">
                 </div>
                 <div class = "form-group">
                     <label> Diploma de bac: Serie:</label>
-                    <input type = "text" class="form-control" id = "serieBac">
+                    <input type = "text" class="form-control" name = "serieBac" value = "<?php echo $data['serieBac']; ?>">
                     <label> Numar: </label>
-                    <input type="number" class="form-control" id ="numarBac">
+                    <input type="number" class="form-control" name ="numarBac" value = "<?php echo $data['numarBac']; ?>">
                 </div>
 
             </div>
@@ -684,13 +683,13 @@ if($data['informatica'] == 1){
                 <div class = "form-group">
                     <label for="specialAdmitere">Statut special la admitere </label>
                     <div class = "checkbox">
-                        <label><input type = "checkbox" name = "rromi" value = "1"> Locuri pentru rromi </label>
+                        <label><input type = "checkbox" name = "rromi" <?php if($data['rromi'] == 1) echo 'checked'; ?>> Locuri pentru rromi </label>
                     </div>
                     <div class = "checkbox">
-                        <label><input type = "checkbox" name = "pretutindeni"> Locuri pentru romani de pretutindeni </label>
+                        <label><input type = "checkbox" name = "pretutindeni" <?php if($data['pretutindeni'] == 1) echo 'checked'; ?>> Locuri pentru romani de pretutindeni </label>
                     </div>
                     <div class = "checkbox">
-                        <label><input type = "checkbox" name = "olimpicAdmitere"> Locuri pentru olimpici, admitere fara examen </label>
+                        <label><input type = "checkbox" name = "olimpicAdmitere" <?php if($data['olimpicAdmitere'] == 1) echo 'checked'; ?>> Locuri pentru olimpici, admitere fara examen </label>
                     </div>
                 </div>
             </div>
@@ -699,13 +698,13 @@ if($data['informatica'] == 1){
                 <div class = "form-group">
                     <label for="specialTaxaAdmitere">Statut special pentru scutirea de plata a taxei de admitere </label>
                     <div class = "checkbox">
-                        <label><input type = "checkbox" name = "orfan"> Orfan de ambii părinți sau provenit din casă de copii sau plasament familial </label>
+                        <label><input type = "checkbox" name = "orfan" <?php if($data['orfan'] == 1) echo 'checked'; ?>> Orfan de ambii părinți sau provenit din casă de copii sau plasament familial </label>
                     </div>
                     <div class = "checkbox">
-                        <label><input type = "checkbox" name = "parinteProfesor"> Părinte cadru didactic sau angajat la Universitatea din București </label>
+                        <label><input type = "checkbox" name = "parinteProfesor" <?php if($data['parinteProfesor'] == 1) echo 'checked'; ?>> Părinte cadru didactic sau angajat la Universitatea din București </label>
                     </div>
                     <div class = "checkbox">
-                        <label><input type = "checkbox" name = "olimpicExamen"> Olimpic, admis fără examen </label>
+                        <label><input type = "checkbox" name = "olimpicExamen" <?php if($data['olimpicExamen'] == 1) echo 'checked'; ?>> Olimpic, admis fără examen </label>
                     </div>
                 </div>
             </div>
@@ -715,82 +714,82 @@ if($data['informatica'] == 1){
                     <label for="alteStudii"> Informatii despre alte studii universitre </label>
                     <div class = "form-group">
                         <label> Universitatea: </label>
-                        <input type = "text" class="form-control" name = "universitateALTS">
+                        <input type = "text" class="form-control" name = "universitateALTS" value="<?php echo $data['universitateALTS']; ?>" >
                     </div>
 
                     <div class = "form-group">
                         <label> Tara: </label>
-                        <input type = "text" class="form-control" name = "taraALTS">
+                        <input type = "text" class="form-control" name = "taraALTS" value="<?php echo $data['taraALTS']; ?>">
                     </div>
 
                     <div class = "form-group">
                         <label> Localitatea: </label>
-                        <input type = "text" class="form-control" name = "localitateALTS">
+                        <input type = "text" class="form-control" name = "localitateALTS" value="<?php echo $data['localitateALTS']; ?>">
                     </div>
 
                     <div class = "form-group">
                         <label> Facultatea:</label>
-                        <input type = "text" class="form-control" name = "facultateALTS">
+                        <input type = "text" class="form-control" name = "facultateALTS" value="<?php echo $data['facultateALTS']; ?>" >
                     </div>
 
                     <div class = "form-group">
                         <label> Domeniul: </label>
-                        <input type = "text" class="form-control" name = "denumireLiceu">
+                        <input type = "text" class="form-control" name = "domeniulALTS" value="<?php echo $data['domeniulALTS']; ?>">
                     </div>
 
                     <div class = "form-group">
                         <label> Numarul de ani finantati de la buget: </label>
-                        <input type = "text" class="form-control" name = "aniALTS">
+                        <input type = "text" class="form-control" name = "aniALTS" value="<?php echo $data['aniALTS']; ?>">
                     </div>
 
                     <div class = "form-group">
                         <label> Student anul: </label>
-                        <input type = "text" class="form-control" name = "anulALTS">
+                        <input type = "text" class="form-control" name = "anulALTS" value="<?php echo $data['anulALTS']; ?>">
                     </div>
 
                     <div class = "form-group">
                         <label> Absolvent fără diplomă de licență în anul: </label>
-                        <input type = "text" class="form-control" name = "absolventALTS">
+                        <input type = "text" class="form-control" name = "absolventALTS" value="<?php echo $data['absolventALTS']; ?>">
                     </div>
 
                     <div class = "form-group">
                         <label> Licențiat în anul:</label>
-                        <input type = "text" class="form-control" name = "licentiatALTS">
+                        <input type = "text" class="form-control" name = "licentiatALTS" value="<?php echo $data['licentiatALTS']; ?>">
                     </div>
 
                     <div class = "form-group">
                         <label>Diploma de licenta in specializarea:</label>
-                        <input type = "text" class="form-control" name = "specializareaALTS">
+                        <input type = "text" class="form-control" name = "specializareALTS" value="<?php echo $data['specializareaALTS']; ?>">
                     </div>
 
                     <div class = "form-group">
                         <label>Serie:</label>
-                        <input type = "text" class="form-control" name = "serieALTS">
+                        <input type = "text" class="form-control" name = "serieALTS" value="<?php echo $data['serieALTS']; ?>">
                     </div>
 
                     <div class = "form-group">
                         <label>Numar:</label>
-                        <input type = "text" class="form-control" name = "numarALTS">
+                        <input type = "text" class="form-control" name = "numarALTS" value="<?php echo $data['numarALTS']; ?>">
                     </div>
 
                     <div class = "form-group">
                         <label> Emisa de: </label>
-                        <input type = "text" class="form-control" name = "emitentALTS">
+                        <input type = "text" class="form-control" name = "emitentALTS" value="<?php echo $data['emitentALTS']; ?>">
                     </div>
 
                     <div class = "form-group">
                         <label>Data emiterii:</label>
-                        <input type = "text" class="form-control" name = "dataEmiteriiALTS">
+                        <input type = "text" class="form-control" name = "dataemiteriiALTS" value="<?php echo $data['dataEmiteriiALTS']; ?>">
                     </div>
 
                     <div class = "form-group">
                         <label>Media generala de absolvire:</label>
-                        <input type = "text" class="form-control" name = "absolvireALTS">
+                        <input type = "text" class="form-control" name = "absolvireALTS" value="<?php echo $data['absolvireALTS']; ?>">
                     </div>
 
                     <div class = "form-group">
                         <label>Media la examenul de licenta:</label>
-                        <input type = "text" class="form-control" name = "licentaALTS">
+                        <input type = "text" class="form-control" name = "licentaALTS" value="<?php echo $data['licentaALTS']; ?>">
                     </div>
                 </form>
             </div>
@@ -798,7 +797,5 @@ if($data['informatica'] == 1){
             <button type = "submit" form = "form1" onclick="validare()" > Submit </button>
 
         </form>
-    <?php var_dump($_SESSION); ?>
-
     </body>
 </html>
