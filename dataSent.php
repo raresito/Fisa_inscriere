@@ -1,25 +1,19 @@
-<html>
-    <title>
-        infoValidation
-    </title>
-    <body>
-        <?php
-        include 'config.php';
-        session_start();
-        $conn = new mysqli($servername, $username, $password, $dbname);
+<?php
 
-        if($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-        }
-        echo "Connected succesfully";
+include 'config.php';
+session_start();
+$conn = new mysqli($servername, $username, $password, $dbname);
 
-        echo $_POST['denumireLiceu'];
+if($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+echo "Connected succesfully";
 
-        $uniqueEmail = $_SESSION["login_user"];
+$uniqueEmail = $_SESSION["login_user"];
 
-        $dateOfBirth = $_POST["dateOfBirth"] ;
-        $birthName = $_POST["birthName"];
-        $SQL = "
+$dateOfBirth = $_POST["dateOfBirth"] ;
+$birthName = $_POST["birthName"];
+$SQL = "
         UPDATE candidat
           SET CNP = "."'".$_POST["CNP"]."'".",
               birthName = "."'".$birthName."'".",
@@ -94,24 +88,24 @@
               
           WHERE uniqueEmail = 'raresito@gmail.com' ";
 
-        if($conn->query($SQL) == TRUE){
-            echo "New record created successfully";
-        } else {
-            echo "
+$stmt = $conn->prepare("INSERT INTO MyGuests (firstname, lastname, email) VALUES (?, ?, ?)");
+$stmt->bind_param("sss", $firstname, $lastname, $email);
+
+if($conn->query($SQL) == TRUE){
+    echo "New record created successfully";
+} else {
+    echo "
             <pre>
                 <?php 
                     var_dmp($_POST);
                 ?>
             </pre>";
-            echo "Error: " . $SQL . "<br>" . $conn->error;
-        }
-
-        var_dump($_POST);
-        ?>
-
-        <div id = "sumbitArea">
+    echo "Error: " . $SQL . "<br>" . $conn->error;
+}
+echo '<div id = "sumbitArea">
             <a href="generate.php"> Print </a>
-        </div>
+            <a href="sendMail.php"> Send Mail </a>
+      </div>';
 
-    </body>
-</html>
+var_dump($_POST);
+?>
