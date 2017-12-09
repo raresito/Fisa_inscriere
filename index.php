@@ -10,7 +10,7 @@ if(isset($_SESSION['login_user'])){
         header("Location: home.php");
     }
 }
-var_dump($_SESSION);
+//var_dump($_SESSION);
 if($_SERVER["REQUEST_METHOD"] == "POST") {
     // username and password sent from form
 
@@ -79,6 +79,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                 <a href="newAccount.php"> Creaza cont nou</a>
             </form>
 
+        </div>
+
+        <div style = "margin:30px">
+            <p>
+                <a href = "ContactPage.php"> Contacteaza-ne! </a>
+            </p>
         </div>
 
     </div>

@@ -63,7 +63,7 @@ $data = $personData->getRow();
             <button type="button" onClick = "coll(this)" class="card lightBlueCard" data-toggle = "collapse" data-target="#alteStudii">Alte studii universitare </button>
         </div>
 
-        <form name = "registerForm" action = "infoValidation.php" method = "post" id="form1">
+        <form name = "registerForm" action = "dataSent.php" method = "post" id="form1">
 
             <div id = "personal" class = "collapse centrat">
 
