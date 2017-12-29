@@ -5,7 +5,7 @@ session_start();
 if($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $email = mysqli_real_escape_string($conn, $_POST['username']);
-    $password = mysqli_real_escape_string($conn, $_POST['password']);
+    $password = mysqli_real_escape_string($conn, md5($_POST['password']));
 
     $sql = "SELECT uniqueEmail from candidat where uniqueEmail = '$email'";
     $result = mysqli_query($conn, $sql);
@@ -22,27 +22,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                 $_SESSION['login_user'] = $email;
                 $SQL = "INSERT INTO candidat 
                 (uniqueEmail,
-                CNP, 
-                name, 
-                surname, 
-                dateOfBirth, 
-                nameFather, 
-                nameMother, 
-                IDtype, 
-                serialID, 
-                numberID, 
-                eliberatedBy, 
-                dateEliberated, 
-                valabilityDate, 
-                country, city, 
-                county, 
-                citizenship, 
-                ethnicity, 
-                maritalStatus,
-                password)
-        VALUES ('$email',null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,'$password')";
+                password,
+                mailValid)
+        VALUES ('$email','$password','0')";
                 if ($conn -> query($SQL) == TRUE) {
-                    header("location: home.php");
+                    $_SESSION['secret'] = $password . $email;
+                    header("location: validateMail.php");
                 } else {
                     echo "Error: " . $SQL . "<br>" . $conn -> error;
                 }

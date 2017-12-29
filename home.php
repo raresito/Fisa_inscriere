@@ -1,6 +1,12 @@
 <?php
 
+include("config.php");
 session_start();
+
+if(!isset($_SESSION['login_user'])) {
+    die("Nu sunteti autentificat");
+}
+
 
 class getData{
 
@@ -18,7 +24,6 @@ class getData{
         $dbname = "Admitere 2017";
         $conn = mysqli_connect($servername, $username, $password, $dbname);
         $user =  $_SESSION['login_user'];
-        //echo $emailField;
         $sqlData = "SELECT * FROM candidat WHERE uniqueEmail = '$user'";
         $this->result = mysqli_query($conn, $sqlData);
     }
@@ -31,6 +36,57 @@ class getData{
 $personData = new getData();
 $data = $personData->getRow();
 
+function get_client_ip_env() {
+    $ipaddress = '';
+    if (getenv('HTTP_CLIENT_IP'))
+        $ipaddress = getenv('HTTP_CLIENT_IP');
+    else if(getenv('HTTP_X_FORWARDED_FOR'))
+        $ipaddress = getenv('HTTP_X_FORWARDED_FOR');
+    else if(getenv('HTTP_X_FORWARDED'))
+        $ipaddress = getenv('HTTP_X_FORWARDED');
+    else if(getenv('HTTP_FORWARDED_FOR'))
+        $ipaddress = getenv('HTTP_FORWARDED_FOR');
+    else if(getenv('HTTP_FORWARDED'))
+        $ipaddress = getenv('HTTP_FORWARDED');
+    else if(getenv('REMOTE_ADDR'))
+        $ipaddress = getenv('REMOTE_ADDR');
+    else
+        $ipaddress = 'UNKNOWN';
+
+    return $ipaddress;
+}
+
+$clientIP = get_client_ip_env();
+//$clientIP = '78.96.97.246';
+echo get_client_ip_env();
+
+$sql = "SELECT IP FROM vizitatori WHERE IP = '$clientIP' ";
+$result = mysqli_query($conn,$sql);
+$row = mysqli_fetch_array($result,MYSQLI_ASSOC);
+$count = mysqli_num_rows($result);
+
+date_default_timezone_set("Europe/Bucharest");
+$acum = date("Y.m.d h:i:sa");
+
+if($count >= 1){
+    $SQL = "UPDATE vizitatori SET DATE = '$acum' WHERE IP = '$clientIP'";
+
+    if ($conn->query($SQL) === TRUE) {
+        echo "Record updated successfully";
+    } else {
+        echo "Error updating record: " . $conn->error;
+    }
+}
+else{
+    $SQL = "INSERT INTO vizitatori (IP, Date)
+        VALUES ('$clientIP', '$acum');";
+    if ($conn->query($SQL) === TRUE) {
+        echo "Record added successfully";
+    } else {
+        echo "Error adding record: " . $conn->error;
+    }
+}
+
 ?>
 
 <html>
@@ -39,7 +95,6 @@ $data = $personData->getRow();
             Admitere 2017 - Facultatea de Matematica si Informatica
         </title>
 
-        <link rel="stylesheet" href="css/radioCheckbox.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="css/custom.css">
 
@@ -49,18 +104,27 @@ $data = $personData->getRow();
     </head>
     <body>
 
-        Welcome <?php echo $_SESSION['login_user']; ?> <br>
-
-        <h2><a class = "negru" href = "logout.php">Sign Out</a></h2>
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">Welcome <?php if(isset($_SESSION['login_user'])){echo $_SESSION['login_user'];}  ?></a>
+                </div>
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="index.php">Home</a></li>
+                    <li><a href="logout.php">Sign Out</a></li>
+                    <li><a href = "ContactPage.php"> Contacteaza-ne! </a></li>
+                </ul>
+            </div>
+        </nav>
 
         <div class = "buttonGroup" id="accordion">
             <button type="button" onClick = "coll(this)" class="card redCard" data-toggle="collapse" data-target="#personal">Date personale</button>
-            <button type="button" onClick = "coll(this)" class="card lightBlueCard" data-toggle = "collapse" data-target="#contact">Date de contact </button>
-            <button type="button" onClick = "coll(this)" class="card blueCard" data-toggle="collapse" data-target="#domeniu"> Optiuni de facultate</button>
-            <button type="button" onClick = "coll(this)" class="card burgundyCard" data-toggle="collapse" data-target="#liceu"> Date despre Liceu </button>
-            <button type="button" onClick = "coll(this)" class="card azureCard" data-toggle = "collapse" data-target="#specialAdmitere"> Admitere Speciala </button>
-            <button type="button" onClick = "coll(this)" class="card greenCard" data-toggle = "collapse" data-target="#specialTaxaAdmitere"> Scutire de Taxa </button>
-            <button type="button" onClick = "coll(this)" class="card lightBlueCard" data-toggle = "collapse" data-target="#alteStudii">Alte studii universitare </button>
+            <button type="button" onClick = "coll(this)" class="card redCard" data-toggle = "collapse" data-target="#contact">Date de contact </button>
+            <button type="button" onClick = "coll(this)" class="card redCard" data-toggle="collapse" data-target="#domeniu"> Optiuni de facultate</button>
+            <button type="button" onClick = "coll(this)" class="card redCard" data-toggle="collapse" data-target="#liceu"> Date despre Liceu </button>
+            <button type="button" onClick = "coll(this)" class="card blueCard" data-toggle = "collapse" data-target="#specialAdmitere"> Admitere Speciala </button>
+            <button type="button" onClick = "coll(this)" class="card blueCard" data-toggle = "collapse" data-target="#specialTaxaAdmitere"> Scutire de Taxa </button>
+            <button type="button" onClick = "coll(this)" class="card blueCard" data-toggle = "collapse" data-target="#alteStudii">Alte studii</button>
         </div>
 
         <form name = "registerForm" action = "dataSent.php" method = "post" id="form1">
@@ -68,17 +132,19 @@ $data = $personData->getRow();
             <div id = "personal" class = "collapse centrat">
 
                 <div class = "form-group">
-                    <label> Numele de familie la nastere: </label>
+                    <label for="birthName"> Numele de familie la nastere: </label>
                     <input
                             type = "text"
                             class="form-control"
                             name = "birthName"
+                            id = "birthName"
                             value="<?php echo $data['birthName']; ?>"
+
                     >
                 </div>
                 <div class = "form-group">
-                    <label> Numele de familie actual: </label>
-                    <input type = "text" class="form-control" name = "name" value="<?php echo $data['name']; ?>" >
+                    <label for = "name" > Numele de familie actual: </label>
+                    <input type = "text" class="form-control" name = "name" id = "name" value="<?php echo $data['name']; ?>" >
                 </div>
                 <div class = "form-group">
                     <label> Prenumele tau: </label>
@@ -478,6 +544,12 @@ $data = $personData->getRow();
                     <label> Judet/Sector </label>
                     <select class = "form-control" name="judete">
                         <option value="0">Alege Judet</option>
+                        <option value="Sector 1">Sector 1</option>
+                        <option value="Sector 2">Sector 2</option>
+                        <option value="Sector 3">Sector 3</option>
+                        <option value="Sector 4">Sector 4</option>
+                        <option value="Sector 5">Sector 5</option>
+                        <option value="Sector 6">Sector 6</option>
                         <option value="Alba">Alba</option>
                         <option value="Arad">Arad</option>
                         <option value="Arges">Arges</option>
@@ -487,7 +559,6 @@ $data = $personData->getRow();
                         <option value="Botosani">Botosani</option>
                         <option value="Brasov">Brasov</option>
                         <option value="Braila">Braila</option>
-                        <option value="Bucuresti">Bucuresti</option>
                         <option value="Buzau">Buzau</option>
                         <option value="Caras Severin">Caras Severin</option>
                         <option value="Calarasi">Calarasi</option>
@@ -574,8 +645,8 @@ $data = $personData->getRow();
             </div>
 
             <div id = "domeniu" class="collapse centrat">
+                <label for="domeniu">Domeniul:</label>
                 <div class="form-group">
-                    <label for="domeniu">Domeniul:</label>
                     <div class="checkbox">
                         <label>
                             <input
@@ -583,7 +654,7 @@ $data = $personData->getRow();
                                     name="matematica"
                                     onchange="afiseaza(this)"
                                     value="matematica"
-                                    <?php if($data['matematica'] == 1) echo 'checked'; ?> >
+                                    <?php if($data['matematica'] == 'matematica') echo 'checked'; ?> >
                             Matematica
                         </label>
                     </div>
@@ -593,7 +664,7 @@ $data = $personData->getRow();
                                     name="informatica"
                                     onchange="afiseaza(this)"
                                     value="informatica"
-                                    <?php if($data['informatica'] == 1) echo 'checked'; ?>>
+                                    <?php if($data['informatica'] == 'informatica') echo 'checked'; ?>>
                             Informatica</label>
                     </div>
                     <div class="checkbox">
@@ -602,45 +673,79 @@ $data = $personData->getRow();
                                     name="cti"
                                     onchange="afiseaza(this)"
                                     value="cti"
-                                    <?php if($data['cti'] == 1) echo 'checked'; ?>>
+                                    <?php if($data['cti'] == 'cti') echo 'checked'; ?>>
                             CTI</label>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="specializare">Specializare</label>
-                    <div class = "">
-                        <div class="matematica funkyradio" >
-                            <div class="funkyradio-primary">
-                                <input type="radio" name="matematicaPura" id="radio1"  <?php if($data['matematicaPura'] == 1) echo 'checked'; ?> />
-                                <label for="radio1">Matematica pura</label>
-                            </div>
-                            <div class="funkyradio-primary">
-                                <input type="radio" name="matematicaAplicata" id="radio2"  <?php if($data['matematicaAplicata'] == 1) echo 'checked'; ?> />
-                                <label for="radio2">Matematica aplicata</label>
-                            </div>
-                            <div class="funkyradio-primary">
-                                <input type="radio" name="matematicaInformatica" id="radio3"  <?php if($data['matematicaInformatica'] == 1) echo 'checked'; ?> />
-                                <label for="radio3">Matematica informatica</label>
-                            </div>
-                            <a href="#" data-toggle="popover" title="Specializarea" data-content="Alegerea are doar rol statistic. Alegerea se face la inceputul anului II.">
-                                <button type = "button" class = "btn btn-info"> Info </button>
-                            </a><br>
+                    <label for="specializarea">Specializarea:</label>
+                    <div class = "matematica">
+                        <div>
+                            <label>
+                                <input
+                                        type="radio"
+                                        name="specializareMatematica"
+                                        value="matematicaAplicata"
+                                    <?php if($data['matematicaAplicata'] == 1) echo 'checked'; ?> >
+                                Matematica Aplicata
+                            </label>
                         </div>
-                        <div class="checkbox informatica" >
-                            <label><input type="checkbox" value="" disabled>Informatica</label><br>
+                        <div>
+                            <label><input
+                                        type="radio"
+                                        name="specializareMatematica"
+                                        value="matematicaPura"
+                                    <?php if($data['matematicaPura'] == 1) echo 'checked'; ?>>
+                                Matematica Pura</label>
                         </div>
-                        <div class="checkbox cti" >
-                            <label><input type="checkbox" value="" disabled>Calculatoare si Tehnologia Informatiei </label>
+                        <div>
+                            <label><input
+                                        type="radio"
+                                        name="specializareMatematica"
+                                        value="matematicaInformatica"
+                                    <?php if($data['matematicaInformatica'] == 1) echo 'checked'; ?>>
+                                Matematica-Informatica</label>
                         </div>
                     </div>
+                    <div class="informatica" >
+                        <label><input type="checkbox" value="" <?php if($data['informatica'] == 1) echo 'checked'; ?> disabled>Informatica</label><br>
+                    </div>
+                    <div class="cti" >
+                        <label><input type="checkbox" value="" <?php if($data['cti'] == 1) echo 'checked'; ?> disabled>Calculatoare si Tehnologia Informatiei </label>
+                    </div>
                 </div>
+                <!--<label>Specializare</label><br>
+                <div class="form-group">
+                    <div class="matematica">
+                        <label>
+                            <input
+                                    class = "form-control"
+                                    type="radio"
+                                    name="matematicaPura"
+                                    id="radio1"
+                                    <?php if($data['matematicaPura'] == 1) echo 'checked'; ?> />
+                            Matematica pura
+                        </label>
+                        <label for="radio2">Matematica aplicata</label>
+                        <input class = "form-control" type="radio" name="matematicaAplicata" id="radio2"  <?php if($data['matematicaAplicata'] == 1) echo 'checked'; ?> />
+                        <label for="radio3">Matematica informatica</label>
+                        <input class = "form-control" type="radio" name="matematicaInformatica" id="radio3"  <?php if($data['matematicaInformatica'] == 1) echo 'checked'; ?> />
+                    </div>
+                    <div class="informatica" >
+                        <label><input type="checkbox" value="" disabled>Informatica</label><br>
+                    </div>
+                    <div class="cti" >
+                        <label><input type="checkbox" value="" disabled>Calculatoare si Tehnologia Informatiei </label>
+                    </div>
+                </div> -->
             </div>
 
             <div id = "liceu" class="collapse centrat">
 
                 <div class = "form-group">
-                    <label> Denumire:
-                    <input type = "text" name = "denumireLiceu" class="form-control" value = "<?php echo $data['denumireLiceu']; ?>">
+                    <label>
+                        Denumire:
+                        <input type = "text" name = "denumireLiceu" class="form-control" value = "<?php echo $data['denumireLiceu']; ?>">
                     </label>
                 </div>
                 <div class = "form-group">
@@ -1114,8 +1219,24 @@ $data = $personData->getRow();
                 </form>
             </div>
 
-            <button type = "submit" form = "form1" onclick="validare()" > Submit </button>
+            <button type = "submit" form = "form1" > Submit </button>
 
         </form>
+
+        <?php
+        $html = file_get_contents("http://fmi.unibuc.ro/ro/admitere_licenta/examen_admitere_iulie_2017/");
+        $cod = explode ("Numarul de candidati inscrisi la examenul de admitere", $html);
+        $cod = explode("table", $cod[1]);
+        $primulTabel = "<table ".$cod[1];
+        $dom = new DOMDocument;
+        $dom->loadHTML($primulTabel);
+        $images = $dom->getElementsByTagName('tr');
+        $numer = 0;
+        foreach ($images as $image) {
+            if(!($image instanceof \DomText))
+                $numer++;
+        }
+        echo $numer;s
+        ?>
     </body>
 </html>

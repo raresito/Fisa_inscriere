@@ -125,7 +125,7 @@ class PDF extends FPDF{
         $this->SetFontSize($subFontSizeold);
     }
     function Header(){
-        $title = "Universitatea din București / Facultatea de Matematica si Informatica";
+        $title = "Universitatea din Bucuresti / Facultatea de Matematica si Informatica";
         $this->SetTitle($title);
 
         $this->SetFont('Times', 'B', 10);
@@ -192,481 +192,1501 @@ class getData{
 $pdf = new PDF();
 $pdf->SetLeftMargin(24);
 $pdf->SetFont('Times', 'B', 10);
-$pdf->AddPage();
 
-$border = 0;
 
 //GET SQL DATA
 $personData = new getData();
 $data = $personData->getRow();
 
+if($data['matematica'] == 'matematica') {
+    $pdf->AddPage();
+
+    $border = 0;
 //TITLU
 
-$pdf->Cell(160,3,'',$border,1,'C');
-$pdf->Cell(160, 4, 'FISA DE INSCRIERE', $border, 1, 'C');
-$pdf->Cell(160, 4, 'STUDII UNIVERSITARE DE LICENTA', $border, 1, 'C');
+    $pdf -> Cell(160, 3, '', $border, 1, 'C');
+    $pdf -> Cell(160, 4, 'FISA DE INSCRIERE', $border, 1, 'C');
+    $pdf -> Cell(160, 4, 'STUDII UNIVERSITARE DE LICENTA', $border, 1, 'C');
 
 //SUBTITLU
-$pdf->SetFont('Times', '',10);
-$pdf->Cell(160, 5, 'la concursul de admitere pentru anul universitar _________________, sesiunea __________________',$border,1,'C');
+    $pdf -> SetFont('Times', '', 10);
+    $pdf -> Cell(160, 5, 'la concursul de admitere pentru anul universitar        2017-2018      , sesiunea     iulie 2018          ', $border, 1, 'C');
 
 //ORGANIZATORICE
-$pdf->SetFont('Times', 'B',10);
-$pdf->Cell(160, 5, 'ATENȚIE:',$border,1,'L');
+    $pdf -> SetFont('Times', 'B', 10);
+    $pdf -> Cell(160, 5, 'ATENTIE:', $border, 1, 'L');
 
-$pdf->SetFont('Times', '',10);
-$organizatorice = '            Admiterea se organizează pe domenii de licență, pe locuri finanțate de la buget sau pe locuri cu taxă (inclusiv la a 2-a facultate), la formele de învățământ IF (învățământ cu frecvență) sau ID (învățământ la distanță). Candidații vor fi declarați admiși în ordinea descrescătoare a mediei de admitere, la domeniul de licență, forma de finanțare, forma de învățământ și tipul de facultate la care au candidat.';
+    $pdf -> SetFont('Times', '', 10);
+    $organizatorice = '            Admiterea se organizeaza pe domenii de licenta, pe locuri finantate de la buget sau pe locuri cu taxa (inclusiv la a 2-a facultate), la formele de invatamant IF (invatamânt cu frecventa) sau ID (invatamânt la distanta). Candidatii vor fi declarati admisi in ordinea descrescatoare a mediei de admitere, la domeniul de licenta, forma de finantare, forma de invatamânt si tipul de facultate la care au candidat.';
 //$organizatorice = iconv('utf-8','ASCII/translit',$organizatorice);
-$pdf->MultiCell(160,4,$organizatorice,$border,'FJ');
+    $pdf -> MultiCell(160, 4, $organizatorice, $border, 'FJ');
 
 //DOMENIUL DE LICENTA
 
-$pdf->SetFont('Times', 'B',10);
-$pdf->Cell(160, 7, 'DOMENIUL DE LICENTA SI SPECIALIZAREA',$border,1,'L');
-$pdf->SetFont('Times', '',10);
-$domeniuDeLicenta = '            Se bifează un singur domeniu și, în cadrul acestuia, o singură specializare. Alegerea specializării în cadrul domeniului Matematică este orientativă; opțiunea finală pentru specializare la domeniul Matematică se va face la sfărșitul anului I, repartizarea pe specializări la acest domeniu făcându-se în ordinea descrescătoare a rezultatelor la învățătură (punctajele de clasificare), obținute după anul I.';
-$pdf->MultiCell(160,4,$domeniuDeLicenta, $border, 'FJ');
+    $pdf -> SetFont('Times', 'B', 10);
+    $pdf -> Cell(160, 7, 'DOMENIUL DE LICENTA SI SPECIALIZAREA', $border, 1, 'L');
+    $pdf -> SetFont('Times', '', 10);
+    $domeniuDeLicenta = '            Se bifeaza un singur domeniu si, in cadrul acestuia, o singura specializare. Alegerea specializarii in cadrul domeniului Matematica este orientativa; optiunea finala pentru specializare la domeniul Matematica se va face la sfarsitul anului I, repartizarea pe specializari la acest domeniu facându-se in ordinea descrescatoare a rezultatelor la invatatura (punctajele de clasificare), obtinute dupa anul I.';
+    $pdf -> MultiCell(160, 4, $domeniuDeLicenta, $border, 'FJ');
 
-$border = 1;
+    $border = 1;
 
-$pdf->SetFont('Times', 'B',10);
-$pdf->Cell(75,4,'Domeniul','LTR',0,'C');
-$pdf->Cell(75,4,'Specializarea','LTR',1,'C');
-$pdf->SetFont('Times', '',10);
+    $pdf -> SetFont('Times', 'B', 10);
+    $pdf -> Cell(75, 4, 'Domeniul', 'LTR', 0, 'C');
+    $pdf -> Cell(75, 4, 'Specializarea', 'LTR', 1, 'C');
+    $pdf -> SetFont('Times', '', 10);
 
-$pdf->Cell(65,4,'Matematica','LTR',0,'L');
-$pdf->Cell(10,4,'','LTR',0,'L');
-$pdf->Cell(65,4,'Matematica',1,0,'L');
-$pdf->Cell(10,4,'',1,1,'L');
+    if($data['matematicaPura'] == 'matematicaPura'){
+        $matematicaPura = 'x';
+    } else {
+        $matematicaPura = '';
+    }
 
-$pdf->Cell(65,4,'','LR',0,'L');
-$pdf->Cell(10,4,$data['matematica'],'LR',0,'L');
-$pdf->Cell(65,4,'Matematica Aplicata',1,0,'L');
-$pdf->Cell(10,4,'',1,1,'L');
+    if($data['matematicaAplicata'] == 'matematicaAplicata'){
+        $matematicaAplicata = 'x';
+    } else {
+        $matematicaAplicata = '';
+    }
 
-$pdf->Cell(65,4,'','LRB',0,'L');
-$pdf->Cell(10,4,'','LRB',0,'L');
-$pdf->Cell(65,4,'Matematica-Informatica',1,0,'L');
-$pdf->Cell(10,4,'',1,1,'L');
+    if($data['matematicaInformatica'] == 'matematicaInformatica'){
+        $matematicaInformatica = 'x';
+    } else {
+        $matematicaInformatica = '';
+    }
+
+    $pdf -> Cell(65, 4, 'Matematica', 'LTR', 0, 'L');
+    $pdf -> Cell(10, 4, '', 'LTR', 0, 'L');
+    $pdf -> Cell(65, 4, 'Matematica', 1, 0, 'L');
+    $pdf -> Cell(10, 4, $matematicaPura, 1, 1, 'L');
+
+    if( $data['matematica'] == 'matematica'){
+        $matematica = 'x';
+    }
+    else{
+        $matematica = '';
+    }
+
+    $pdf -> Cell(65, 4, '', 'LR', 0, 'L');
+    $pdf -> Cell(10, 4, $matematica, 'LR', 0, 'L');
+    $pdf -> Cell(65, 4, 'Matematica Aplicata', 1, 0, 'L');
+    $pdf -> Cell(10, 4, $matematicaAplicata, 1, 1, 'L');
+
+    $pdf -> Cell(65, 4, '', 'LRB', 0, 'L');
+    $pdf -> Cell(10, 4, '', 'LRB', 0, 'L');
+    $pdf -> Cell(65, 4, 'Matematica-Informatica', 1, 0, 'L');
+    $pdf -> Cell(10, 4, $matematicaInformatica, 1, 1, 'L');
 
 
-$pdf->Cell(65,4,'Informatica',1,0,'L');
-$pdf->Cell(10,4,$data['informatica'],1,0,'L');
-$pdf->Cell(65,4,'Informatica',1,0,'L');
-$pdf->Cell(10,4,'',1,1,'L');
+    $pdf -> Cell(65, 4, 'Informatica', 1, 0, 'L');
+    $pdf -> Cell(10, 4, '', 1, 0, 'L');
+    $pdf -> Cell(65, 4, 'Informatica', 1, 0, 'L');
+    $pdf -> Cell(10, 4, '', 1, 1, 'L');
 
-$pdf->Cell(65,4,'Calculatoare si tehnologia informatiei',1,0,'L');
-$pdf->Cell(10,4,$data['cti'],1,0,'L');
-$pdf->Cell(65,4,'Calculatoare si tehnologia informatiei',1,0,'L');
-$pdf->Cell(10,4,'',1,1,'L');
+    $pdf -> Cell(65, 4, 'Calculatoare si tehnologia informatiei', 1, 0, 'L');
+    $pdf -> Cell(10, 4, '', 1, 0, 'L');
+    $pdf -> Cell(65, 4, 'Calculatoare si tehnologia informatiei', 1, 0, 'L');
+    $pdf -> Cell(10, 4, '', 1, 1, 'L');
 
 //FORMA DE INVATAMANT SI FINANTARE
 
-$border = 0;
+    $border = 0;
 
-$pdf->SetFont('Times', 'B',10);
-$pdf->Cell(160, 7, 'FORMA DE INVATAMANT SI FINANTARE',$border,1,'L');
-$pdf->SetFont('Times', '',10);
-$domeniuDeLicenta = '            Se bifează o singură formă de învățământ și, în cadrul acesteia, o singură formă de finanțare. Candidații care se înscriu pe locuri finanțate de la buget pot opta pentru un loc cu taxă în perioada de confirmare a locurilor cu taxă, cf. calendarului admiterii.';
-$pdf->MultiCell(160,5,$domeniuDeLicenta, $border, 'FJ');
+    $pdf -> SetFont('Times', 'B', 10);
+    $pdf -> Cell(160, 7, 'FORMA DE INVATAMANT SI FINANTARE', $border, 1, 'L');
+    $pdf -> SetFont('Times', '', 10);
+    $domeniuDeLicenta = '            Se bifeaza o singura forma de invatamânt si, in cadrul acesteia, o singura forma de finantare. Candidatii care se inscriu pe locuri finantate de la buget pot opta pentru un loc cu taxa in perioada de confirmare a locurilor cu taxa, cf. calendarului admiterii.';
+    $pdf -> MultiCell(160, 5, $domeniuDeLicenta, $border, 'FJ');
 
-$border = 1;
+    $border = 1;
 
-$pdf->SetFont('Times', 'B',10);
-$pdf->Cell(75,4,'Forma de invatamant','LTR',0,'C');
-$pdf->Cell(75,4,'Forma de fiantare','LTR',1,'C');
-$pdf->SetFont('Times', '',10);
+    $pdf -> SetFont('Times', 'B', 10);
+    $pdf -> Cell(75, 4, 'Forma de invatamant', 'LTR', 0, 'C');
+    $pdf -> Cell(75, 4, 'Forma de fiantare', 'LTR', 1, 'C');
+    $pdf -> SetFont('Times', '', 10);
 
-$pdf->Cell(65,4,'IF (invatamant cu frecventa)','LTR',0,'L');
-$pdf->Cell(10,4,'','LTR',0,'L');
-$pdf->Cell(65,4,'Buget',1,0,'L');
-$pdf->Cell(10,4,'',1,1,'L');
+    $pdf -> Cell(65, 4, 'IF (invatamant cu frecventa)', 'LTR', 0, 'L');
+    $pdf -> Cell(10, 4, '', 'LTR', 0, 'L');
+    $pdf -> Cell(65, 4, 'Buget', 1, 0, 'L');
+    $pdf -> Cell(10, 4, '', 1, 1, 'L');
 
-$pdf->Cell(65,4,'','LR',0,'L');
-$pdf->Cell(10,4,'','LR',0,'L');
-$pdf->Cell(65,4,'Taxa',1,0,'L');
-$pdf->Cell(10,4,'',1,1,'L');
+    $pdf -> Cell(65, 4, '', 'LR', 0, 'L');
+    $pdf -> Cell(10, 4, '', 'LR', 0, 'L');
+    $pdf -> Cell(65, 4, 'Taxa', 1, 0, 'L');
+    $pdf -> Cell(10, 4, '', 1, 1, 'L');
 
-$pdf->Cell(65,4,'','LRB',0,'L');
-$pdf->Cell(10,4,'','LRB',0,'L');
-$pdf->Cell(65,4,'Taxa, a 2-a facultate',1,0,'L');
-$pdf->Cell(10,4,'',1,1,'L');
+    $pdf -> Cell(65, 4, '', 'LRB', 0, 'L');
+    $pdf -> Cell(10, 4, '', 'LRB', 0, 'L');
+    $pdf -> Cell(65, 4, 'Taxa, a 2-a facultate', 1, 0, 'L');
+    $pdf -> Cell(10, 4, '', 1, 1, 'L');
 
 
-$pdf->Cell(65,4,'ID (invatamant la distanta)','LTR',0,'L');
-$pdf->Cell(10,4,'','LTR',0,'L');
-$pdf->Cell(65,4,'Taxa',1,0,'L');
-$pdf->Cell(10,4,'',1,1,'L');
+    $pdf -> Cell(65, 4, 'ID (invatamant la distanta)', 'LTR', 0, 'L');
+    $pdf -> Cell(10, 4, '', 'LTR', 0, 'L');
+    $pdf -> Cell(65, 4, 'Taxa', 1, 0, 'L');
+    $pdf -> Cell(10, 4, '', 1, 1, 'L');
 
-$pdf->Cell(65,4,'','LRB',0,'L');
-$pdf->Cell(10,4,'','LBR',0,'L');
-$pdf->Cell(65,4,'Taxa, a 2-a facultate',1,0,'L');
-$pdf->Cell(10,4,'',1,1,'L');
+    $pdf -> Cell(65, 4, '', 'LRB', 0, 'L');
+    $pdf -> Cell(10, 4, '', 'LBR', 0, 'L');
+    $pdf -> Cell(65, 4, 'Taxa, a 2-a facultate', 1, 0, 'L');
+    $pdf -> Cell(10, 4, '', 1, 1, 'L');
 
 //DATE PERSONALE
 
-$border = 0;
+    $border = 0;
 
-$pdf->SetFont('Times', 'B',10);
-$pdf->Cell(160, 7, 'DATE PERSONALE',$border,1,'L');
-$pdf->SetFont('Times', '',10);
+    $pdf -> SetFont('Times', 'B', 10);
+    $pdf -> Cell(160, 7, 'DATE PERSONALE', $border, 1, 'L');
+    $pdf -> SetFont('Times', '', 10);
 
-$border = 1;
+    $border = 1;
 
-$pdf->MultiCell(27,4,' Nume de familie  la nastere', $border, 'L');
-$pdf->Cell(100,4,'',$border,1);
-$pdf->Cell($pdf->GetStringWidth('Initiala tatalui/mamei')+3,4,'Initiala tatalui/mamei',$border, 0);
-$pdf->Cell(12,4,substr($data['nameFather'],0,1),$border,0);
-$pdf->Cell($pdf->GetStringWidth('Prenume')+3,4,'Prenume',$border, 0);
-$pdf->Cell(89,4,$data['surname'],$border,1);
+    $x = $pdf -> GetX();
+    $y = $pdf -> GetY();
 
-$pdf->Cell($pdf->GetStringWidth('Initiala tatalui/mamei')+3,4,'Fiul/fiica lui',$border, 0);
-$pdf->Cell(42,4,$data['nameFather'],$border,0);
-$pdf->Cell($pdf->GetStringWidth('si al/a')+3,4,'si al/a',$border, 0);
-$pdf->Cell(63.2,4,$data['nameMother'],$border,1);
+    $pdf -> Cell(27, 4, ' Nume de familie ', 'LTR', 0);
+    $pdf -> Cell(48, 4, $data['birthName'], 'LTR', 0);
+    $pdf -> Cell(27, 4, ' Nume de familie ', 'LTR', 0);
+    $pdf -> Cell(48, 4, $data['name'], 'LTR', 1);
 
-$pdf->Cell($pdf->GetStringWidth('Actul de identitate')+10,4,'Actul de identitate',$border, 0);
+    $pdf -> Cell(27, 4, ' la nastere ', 'LBR', 0);
+    $pdf -> Cell(48, 4, '', 'LBR', 0);
+    $pdf -> Cell(27, 4, ' actual ', 'LBR', 0);
+    $pdf -> Cell(48, 4, '', 'LBR', 1);
+
+
+    $pdf -> Cell($pdf -> GetStringWidth('Initiala tatalui/mamei') + 3, 4, 'Initiala tatalui/mamei', $border, 0);
+    $pdf -> Cell(12, 4, substr($data['nameFather'], 0, 1), $border, 0);
+    $pdf -> Cell($pdf -> GetStringWidth('Prenume') + 3, 4, 'Prenume', $border, 0);
+    $pdf -> Cell(89, 4, $data['surname'], $border, 1);
+
+    $pdf -> Cell($pdf -> GetStringWidth('Initiala tatalui/mamei') + 3, 4, 'Fiul/fiica lui', $border, 0);
+    $pdf -> Cell(42, 4, $data['nameFather'], $border, 0);
+    $pdf -> Cell($pdf -> GetStringWidth('si al/a') + 3, 4, 'si al/a', $border, 0);
+    $pdf -> Cell(63.2, 4, $data['nameMother'], $border, 1);
+
+    $pdf -> Cell($pdf -> GetStringWidth('Actul de identitate') + 10, 4, 'Actul de identitate', $border, 0);
 //$pdf->Cell(19,4,$data['IDtype'],$border,0);
-$pdf->Cell(19,4,$data['IDtype'],$border,0);
-$pdf->Cell($pdf->GetStringWidth('seria')+13.5,4,'seria',$border, 0);
-$pdf->Cell($pdf->GetStringWidth('si al/a')+3,4,$data['serialID'],$border,0);
-$pdf->Cell(19,4,'nr.',$border,0);
-$pdf->Cell(44.3,4,$data['numberID'],$border,1);
+    $pdf -> Cell(19, 4, $data['IDtype'], $border, 0);
+    $pdf -> Cell($pdf -> GetStringWidth('seria') + 13.5, 4, 'seria', $border, 0);
+    $pdf -> Cell($pdf -> GetStringWidth('si al/a') + 3, 4, $data['serialID'], $border, 0);
+    $pdf -> Cell(19, 4, 'nr.', $border, 0);
+    $pdf -> Cell(44.3, 4, $data['numberID'], $border, 1);
 
-$pdf->Cell($pdf->GetStringWidth('Eliberat de ')+2,4,'Eliberat de',$border, 0);
-$pdf->Cell(44,4,$data['eliberatedBy'],$border,0);
-$pdf->Cell($pdf->GetStringWidth('la data')+3.7,4,'  la data',$border, 0);
-$pdf->Cell($pdf->GetStringWidth('si al/a')+22,4,$data['dateEliberated'],$border,0);
-$pdf->Cell($pdf->GetStringWidth('valabil pana la ')+4,4,' valabil pana la',$border,0);
-$pdf->Cell(18.8,4,$data['valabilityDate'],$border,1);
+    $pdf -> Cell($pdf -> GetStringWidth('Eliberat de ') + 2, 4, 'Eliberat de', $border, 0);
+    $pdf -> Cell(44, 4, $data['eliberatedBy'], $border, 0);
+    $pdf -> Cell($pdf -> GetStringWidth('la data') + 3.7, 4, '  la data', $border, 0);
+    $pdf -> Cell($pdf -> GetStringWidth('si al/a') + 22, 4, $data['dateEliberated'], $border, 0);
+    $pdf -> Cell($pdf -> GetStringWidth('valabil pana la ') + 4, 4, ' valabil pana la', $border, 0);
+    $pdf -> Cell(18.8, 4, $data['valabilityDate'], $border, 1);
 
-$pdf->Cell(39, 4,'CNP (cod numeric pers.)',$border,0);
-$pdf->Cell(4,4,substr($data['CNP'],0,1),$border, 0);
-$pdf->Cell(4,4,substr($data['CNP'],1,1),$border, 0);
-$pdf->Cell(4,4,substr($data['CNP'],2,1),$border, 0);
-$pdf->Cell(4,4,substr($data['CNP'],3,1),$border, 0);
-$pdf->Cell(4,4,substr($data['CNP'],4,1),$border, 0);
-$pdf->Cell(4,4,substr($data['CNP'],5,1),$border, 0);
-$pdf->Cell(4,4,substr($data['CNP'],6,1),$border, 0);
-$pdf->Cell(4,4,substr($data['CNP'],7,1),$border, 0);
-$pdf->Cell(4,4,substr($data['CNP'],8,1),$border, 0);
-$pdf->Cell(4,4,substr($data['CNP'],9,1),$border, 0);
-$pdf->Cell(4,4,substr($data['CNP'],10,1),$border, 0);
-$pdf->Cell(4,4,substr($data['CNP'],11,1),$border, 0);
-$pdf->Cell(4,4,substr($data['CNP'],12,1),$border, 0);
+    $pdf -> Cell(39, 4, 'CNP (cod numeric pers.)', $border, 0);
+    $pdf -> Cell(4, 4, substr($data['CNP'], 0, 1), $border, 0);
+    $pdf -> Cell(4, 4, substr($data['CNP'], 1, 1), $border, 0);
+    $pdf -> Cell(4, 4, substr($data['CNP'], 2, 1), $border, 0);
+    $pdf -> Cell(4, 4, substr($data['CNP'], 3, 1), $border, 0);
+    $pdf -> Cell(4, 4, substr($data['CNP'], 4, 1), $border, 0);
+    $pdf -> Cell(4, 4, substr($data['CNP'], 5, 1), $border, 0);
+    $pdf -> Cell(4, 4, substr($data['CNP'], 6, 1), $border, 0);
+    $pdf -> Cell(4, 4, substr($data['CNP'], 7, 1), $border, 0);
+    $pdf -> Cell(4, 4, substr($data['CNP'], 8, 1), $border, 0);
+    $pdf -> Cell(4, 4, substr($data['CNP'], 9, 1), $border, 0);
+    $pdf -> Cell(4, 4, substr($data['CNP'], 10, 1), $border, 0);
+    $pdf -> Cell(4, 4, substr($data['CNP'], 11, 1), $border, 0);
+    $pdf -> Cell(4, 4, substr($data['CNP'], 12, 1), $border, 0);
 
-$pdf->Cell($pdf->GetStringWidth(" Data nasterii") + 3,4," Data nasterii", $border, 0);
+    $pdf -> Cell($pdf -> GetStringWidth(" Data nasterii") + 3, 4, " Data nasterii", $border, 0);
 
-$pdf->Cell(4,4,'',$border, 0);
-$pdf->Cell(4,4,'',$border, 0);
-$pdf->Cell(4,4,'',$border, 0);
-$pdf->Cell(4,4,'',$border, 0);
-$pdf->Cell(4,4,'',$border, 0);
-$pdf->Cell(4,4,'',$border, 0);
-$pdf->Cell(4,4,'',$border, 0);
-$pdf->Cell(4,4,'',$border, 1);
+    $pdf -> Cell(4, 4, '', $border, 0);
+    $pdf -> Cell(4, 4, '', $border, 0);
+    $pdf -> Cell(4, 4, '', $border, 0);
+    $pdf -> Cell(4, 4, '', $border, 0);
+    $pdf -> Cell(4, 4, '', $border, 0);
+    $pdf -> Cell(4, 4, '', $border, 0);
+    $pdf -> Cell(4, 4, '', $border, 0);
+    $pdf -> Cell(4, 4, '', $border, 1);
 
-$pdf->Cell(23,4,'Locul nasterii', $border, 0);
-$pdf->Cell(12,4,'Tara', $border, 0);
-$pdf->Cell(28,4,$data['country'], $border, 0);
-$pdf->Cell(19,4,'Localitatea', $border, 0);
-$pdf->Cell(24,4,$data['city'],$border,0);
-$pdf->Cell(20,4,'Judet/Sector',$border, 0);
-$pdf->Cell(24,4,$data['county'],$border,1);
+    $pdf -> Cell(23, 4, 'Locul nasterii', $border, 0);
+    $pdf -> Cell(12, 4, 'Tara', $border, 0);
+    $pdf -> Cell(28, 4, $data['country'], $border, 0);
+    $pdf -> Cell(19, 4, 'Localitatea', $border, 0);
+    $pdf -> Cell(24, 4, $data['city'], $border, 0);
+    $pdf -> Cell(20, 4, 'Judet/Sector', $border, 0);
+    $pdf -> Cell(24, 4, $data['county'], $border, 1);
 
-$pdf->Cell(23,4,'Cetatenia', $border, 0);
-$pdf->Cell(40,4,$data['citizenship'], $border, 0);
-$pdf->Cell(19,4,'Etnia', $border, 0);
-$pdf->Cell(24,4,$data['ethnicity'],$border,0);
-$pdf->Cell(20,4,'Starea civila',$border, 0);
-$pdf->Cell(24,4,$data['maritalStatus'],$border,1);
+    $pdf -> Cell(23, 4, 'Cetatenia', $border, 0);
+    $pdf -> Cell(40, 4, $data['citizenship'], $border, 0);
+    $pdf -> Cell(19, 4, 'Etnia', $border, 0);
+    $pdf -> Cell(24, 4, $data['ethnicity'], $border, 0);
+    $pdf -> Cell(20, 4, 'Starea civila', $border, 0);
+    $pdf -> Cell(24, 4, $data['maritalStatus'], $border, 1);
 
 //DOMICILIUL STABIL
 
-$border = 0;
+    $border = 0;
 
-$pdf->SetFont('Times', 'B',10);
-$pdf->Cell(160, 7, 'Domiciliul stabil (conform BI/CI)',$border,1,'L');
-$pdf->SetFont('Times', '',10);
+    $pdf -> SetFont('Times', 'B', 10);
+    $pdf -> Cell(160, 7, 'Domiciliul stabil (conform BI/CI)', $border, 1, 'L');
+    $pdf -> SetFont('Times', '', 10);
 
-$border = 1;
+    $border = 1;
 
-$pdf->Cell(10,4,' Tara', $border, 0);
-$pdf->Cell(30,4,$data['taraDomiciliu'], $border, 0);
-$pdf->Cell(20,4,' Localitate', $border, 0);
-$pdf->Cell(33,4,$data['localitateDomiciliu'],$border,0);
-$pdf->Cell(13,4,' Strada', $border, 0);
-$pdf->Cell(44,4,$data['stradaDomiciliu'],$border,1);
+    $pdf -> Cell(10, 4, ' Tara', $border, 0);
+    $pdf -> Cell(30, 4, $data['taraDomiciliu'], $border, 0);
+    $pdf -> Cell(20, 4, ' Localitate', $border, 0);
+    $pdf -> Cell(33, 4, $data['localitateDomiciliu'], $border, 0);
+    $pdf -> Cell(13, 4, ' Strada', $border, 0);
+    $pdf -> Cell(44, 4, $data['stradaDomiciliu'], $border, 1);
 
-$pdf->Cell(8,4,'Nr.',$border,0);
-$pdf->Cell(10,4,$data['numarDomiciliu'], $border,0);
-$pdf->Cell(8,4,'Bl.',$border,0);
-$pdf->Cell(9,4,$data['blocDomiciliu'],$border,0);
-$pdf->Cell(8,4,'Sc.',$border,0);
-$pdf->Cell(9,4,$data['scaraDomiciliu'],$border,0);
-$pdf->Cell(8,4,'Et.',$border,0);
-$pdf->Cell(8,4,$data['etajDomiciliu'],$border,0);
-$pdf->Cell(9,4,'Ap.',$border,0);
-$pdf->Cell(9,4,$data['apartamentDomiciliu'],$border,0);
-$pdf->Cell(20,4,'Judet/Sector',$border,0);
-$pdf->Cell(20,4,'',$border,0);
-$pdf->Cell(10,4,'Cod',$border,0);
-$pdf->Cell(14,4,$data['codPostalDomiciliu'],$border,1);
+    $pdf -> Cell(8, 4, 'Nr.', $border, 0);
+    $pdf -> Cell(10, 4, $data['numarDomiciliu'], $border, 0);
+    $pdf -> Cell(8, 4, 'Bl.', $border, 0);
+    $pdf -> Cell(9, 4, $data['blocDomiciliu'], $border, 0);
+    $pdf -> Cell(8, 4, 'Sc.', $border, 0);
+    $pdf -> Cell(9, 4, $data['scaraDomiciliu'], $border, 0);
+    $pdf -> Cell(8, 4, 'Et.', $border, 0);
+    $pdf -> Cell(8, 4, $data['etajDomiciliu'], $border, 0);
+    $pdf -> Cell(9, 4, 'Ap.', $border, 0);
+    $pdf -> Cell(9, 4, $data['apartamentDomiciliu'], $border, 0);
+    $pdf -> Cell(20, 4, 'Judet/Sector', $border, 0);
+    $pdf -> Cell(20, 4, '', $border, 0);
+    $pdf -> Cell(10, 4, 'Cod', $border, 0);
+    $pdf -> Cell(14, 4, $data['codPostalDomiciliu'], $border, 1);
 
-$pdf->Cell(26,4,'Telefon fix', $border,0);
-$pdf->Cell(37,4,$data['fixDomiciliu'],$border,0);
-$pdf->Cell(43,4,'Telefon mobil', $border,0);
-$pdf->Cell(44,4,$data['mobilDomiciliu'],$border,1);
+    $pdf -> Cell(26, 4, 'Telefon fix', $border, 0);
+    $pdf -> Cell(37, 4, $data['fixDomiciliu'], $border, 0);
+    $pdf -> Cell(43, 4, 'Telefon mobil', $border, 0);
+    $pdf -> Cell(44, 4, $data['mobilDomiciliu'], $border, 1);
 
-$border = 0;
+    $border = 0;
 
-$pdf->SetFont('Times', 'B',10);
-$pdf->Cell($pdf->GetStringWidth('Date de contact alternative '), 7, 'Date de contact alternative ',$border,0,'L');
-$pdf->SetFont('Times', '',10);
-$pdf->Cell(40 ,7,'(ale unuia dintre parinti, tutore, etc.)', $border,1,'L');
+    $pdf -> SetFont('Times', 'B', 10);
+    $pdf -> Cell($pdf -> GetStringWidth('Date de contact alternative '), 7, 'Date de contact alternative ', $border, 0, 'L');
+    $pdf -> SetFont('Times', '', 10);
+    $pdf -> Cell(40, 7, '(ale unuia dintre parinti, tutore, etc.)', $border, 1, 'L');
 
-$border = 1;
+    $border = 1;
 
-$pdf->Cell(26,4,'Telefon fix', $border,0);
-$pdf->Cell(37,4,$data['fixParinte'],$border,0);
-$pdf->Cell(43,4,'Telefon mobil', $border,0);
-$pdf->Cell(44,4,$data['mobilParinte'],$border,1);
+    $pdf -> Cell(26, 4, 'Telefon fix', $border, 0);
+    $pdf -> Cell(37, 4, $data['fixParinte'], $border, 0);
+    $pdf -> Cell(43, 4, 'Telefon mobil', $border, 0);
+    $pdf -> Cell(44, 4, $data['mobilParinte'], $border, 1);
 
-$pdf->Cell(26,4,'Email',$border,0);
-$pdf->Cell(124,4,$data['emailParinte'],$border,1);
+    $pdf -> Cell(26, 4, 'Email', $border, 0);
+    $pdf -> Cell(124, 4, $data['emailParinte'], $border, 1);
 
 //PAGINA 2
-$pdf->AliasNbPages();
-$pdf->AddPage();
-$pdf->SetFont('Times','B',10);
+    $pdf -> AliasNbPages();
+    $pdf -> AddPage();
+    $pdf -> SetFont('Times', 'B', 10);
 
 //STATUT SPECIAL LA ADMITERE
 
-$border = 0;
+    $border = 0;
 
-$pdf->Cell(160,3,'',$border,1,'L');
-$pdf->Cell(160, 8, 'STATUT SPECIAL LA ADMITERE ',$border,1,'L');
+    $pdf -> Cell(160, 3, '', $border, 1, 'L');
+    $pdf -> Cell(160, 8, 'STATUT SPECIAL LA ADMITERE ', $border, 1, 'L');
 
-$pdf->SetFont('Times','',10);
-$text = "            Se completeaza doar de catre candidatii care dau admitere pe un loc cu statut special, cf. categoriilor enumerate mai jos si se aproba de Comisia de admitere.";
-$pdf->MultiCell(160,5,$text, $border, 'FJ');
+    $pdf -> SetFont('Times', '', 10);
+    $text = "            Se completeaza doar de catre candidatii care dau admitere pe un loc cu statut special, cf. categoriilor enumerate mai jos si se aproba de Comisia de admitere.";
+    $pdf -> MultiCell(160, 5, $text, $border, 'FJ');
 
-$border = 1;
-$pdf->SetFont('Times','B',10);
+    $border = 1;
+    $pdf -> SetFont('Times', 'B', 10);
 
-$pdf->Cell(72,'4','Categoria',$border,0,'C');
-$pdf->Cell(20,'4','Aprobare',$border,0,'C');
-$pdf->Cell(32,'4','Observatii',$border,0,'C');
-$pdf->Cell(26,'4','Semnatura',$border,1,'C');
+    $pdf -> Cell(72, '4', 'Categoria', $border, 0, 'C');
+    $pdf -> Cell(20, '4', 'Aprobare', $border, 0, 'C');
+    $pdf -> Cell(32, '4', 'Observatii', $border, 0, 'C');
+    $pdf -> Cell(26, '4', 'Semnatura', $border, 1, 'C');
 
-$pdf->SetFont('Times','',10);
+    $pdf -> SetFont('Times', '', 10);
 
-$pdf->Cell(72,4.5,'(se bifeaza de catre candiat)', $border, 0,'C');
-$pdf->Cell(78,4.5,'(se completeaza de catre Comisia de admitere)', $border, 1, 'C');
+    $pdf -> Cell(72, 4.5, '(se bifeaza de catre candiat)', $border, 0, 'C');
+    $pdf -> Cell(78, 4.5, '(se completeaza de catre Comisia de admitere)', $border, 1, 'C');
 
-$pdf->Cell(63,4.5,'Locuri pentru rromi','LTR', 0,'L');
-$pdf->Cell(9,4.5,$data['rromi'],'LTR',0);
-$pdf->Cell(11,4.5,'DA',$border,0,'L');
-$pdf->Cell(9,4.5,'',$border,0);
-$pdf->Cell(32,4.5,'','LTR',0,'L');
-$pdf->Cell(26,4.5,'','LTR',1,'L');
+    $pdf -> Cell(63, 4.5, 'Locuri pentru rromi', 'LTR', 0, 'L');
+    $pdf -> Cell(9, 4.5, $data['rromi'], 'LTR', 0);
+    $pdf -> Cell(11, 4.5, 'DA', $border, 0, 'L');
+    $pdf -> Cell(9, 4.5, '', $border, 0);
+    $pdf -> Cell(32, 4.5, '', 'LTR', 0, 'L');
+    $pdf -> Cell(26, 4.5, '', 'LTR', 1, 'L');
 
-$pdf->Cell(63,4.5,'','LBR', 0,'L');
-$pdf->Cell(9,4.5,'','LBR',0);
-$pdf->Cell(11,4.5,'NU',$border,0,'L');
-$pdf->Cell(9,4.5,'',$border,0);
-$pdf->Cell(32,4.5,'','LBR',0,'L');
-$pdf->Cell(26,4.5,'','LBR',1,'L');
+    $pdf -> Cell(63, 4.5, '', 'LBR', 0, 'L');
+    $pdf -> Cell(9, 4.5, '', 'LBR', 0);
+    $pdf -> Cell(11, 4.5, 'NU', $border, 0, 'L');
+    $pdf -> Cell(9, 4.5, '', $border, 0);
+    $pdf -> Cell(32, 4.5, '', 'LBR', 0, 'L');
+    $pdf -> Cell(26, 4.5, '', 'LBR', 1, 'L');
 
-$pdf->Cell(63,4.5,'Locuri pentru romanii de pretutindeni','LTR', 0,'L');
-$pdf->Cell(9,4.5,$data['pretutindeni'],'LTR',0);
-$pdf->Cell(11,4.5,'DA',$border,0,'L');
-$pdf->Cell(9,4.5,'',$border,0);
-$pdf->Cell(32,4.5,'','LTR',0,'L');
-$pdf->Cell(26,4.5,'','LTR',1,'L');
+    $pdf -> Cell(63, 4.5, 'Locuri pentru romanii de pretutindeni', 'LTR', 0, 'L');
+    $pdf -> Cell(9, 4.5, $data['pretutindeni'], 'LTR', 0);
+    $pdf -> Cell(11, 4.5, 'DA', $border, 0, 'L');
+    $pdf -> Cell(9, 4.5, '', $border, 0);
+    $pdf -> Cell(32, 4.5, '', 'LTR', 0, 'L');
+    $pdf -> Cell(26, 4.5, '', 'LTR', 1, 'L');
 
-$pdf->Cell(63,4.5,'','LBR', 0,'L');
-$pdf->Cell(9,4.5,'','LBR',0);
-$pdf->Cell(11,4.5,'NU',$border,0,'L');
-$pdf->Cell(9,4.5,'',$border,0);
-$pdf->Cell(32,4.5,'','LBR',0,'L');
-$pdf->Cell(26,4.5,'','LBR',1,'L');
+    $pdf -> Cell(63, 4.5, '', 'LBR', 0, 'L');
+    $pdf -> Cell(9, 4.5, '', 'LBR', 0);
+    $pdf -> Cell(11, 4.5, 'NU', $border, 0, 'L');
+    $pdf -> Cell(9, 4.5, '', $border, 0);
+    $pdf -> Cell(32, 4.5, '', 'LBR', 0, 'L');
+    $pdf -> Cell(26, 4.5, '', 'LBR', 1, 'L');
 
-$pdf->Cell(63,4.5,'Locuri pentru olimpici, admitere fara','LTR', 0,'L');
-$pdf->Cell(9,4.5,$data['olimpicAdmitere'],'LTR',0);
-$pdf->Cell(11,4.5,'DA',$border,0,'L');
-$pdf->Cell(9,4.5,'',$border,0);
-$pdf->Cell(32,4.5,'','LTR',0,'L');
-$pdf->Cell(26,4.5,'','LTR',1,'L');
+    $pdf -> Cell(63, 4.5, 'Locuri pentru olimpici, admitere fara', 'LTR', 0, 'L');
+    $pdf -> Cell(9, 4.5, $data['olimpicAdmitere'], 'LTR', 0);
+    $pdf -> Cell(11, 4.5, 'DA', $border, 0, 'L');
+    $pdf -> Cell(9, 4.5, '', $border, 0);
+    $pdf -> Cell(32, 4.5, '', 'LTR', 0, 'L');
+    $pdf -> Cell(26, 4.5, '', 'LTR', 1, 'L');
 
-$pdf->Cell(63,4.5,'examen','LBR', 0,'L');
-$pdf->Cell(9,4.5,'','LBR',0);
-$pdf->Cell(11,4.5,'NU',$border,0,'L');
-$pdf->Cell(9,4.5,'',$border,0);
-$pdf->Cell(32,4.5,'','LBR',0,'L');
-$pdf->Cell(26,4.5,'','LBR',1,'L');
-
+    $pdf -> Cell(63, 4.5, 'examen', 'LBR', 0, 'L');
+    $pdf -> Cell(9, 4.5, '', 'LBR', 0);
+    $pdf -> Cell(11, 4.5, 'NU', $border, 0, 'L');
+    $pdf -> Cell(9, 4.5, '', $border, 0);
+    $pdf -> Cell(32, 4.5, '', 'LBR', 0, 'L');
+    $pdf -> Cell(26, 4.5, '', 'LBR', 1, 'L');
 
 
 //STATUT SPECIAL PENTRU SCUTIREA DE PLATA TAXEI DE ADMITERE
 
-$border = 0;
-$pdf->SetFont('Times','B',10);
+    $border = 0;
+    $pdf -> SetFont('Times', 'B', 10);
 
 
-$pdf->Cell(160,2,'',$border,1,'L');
-$pdf->Cell(160, 7, 'STATUT SPECIAL PENTRU SCUTIREA DE PLATA TAXEI DE ADMITERE ',$border,1,'L');
+    $pdf -> Cell(160, 2, '', $border, 1, 'L');
+    $pdf -> Cell(160, 7, 'STATUT SPECIAL PENTRU SCUTIREA DE PLATA TAXEI DE ADMITERE ', $border, 1, 'L');
 
-$pdf->SetFont('Times','',10);
-$text = "            Se completeaza doar de catre candidatii care solicita scutirea de plata a taxei de admitere pentru un singur domeniu de licenta in cadrul Universitatii din Bucuresti si se aporba de Comisia de admitere.";
-$pdf->MultiCell(160,5,$text, $border, 'FJ');
+    $pdf -> SetFont('Times', '', 10);
+    $text = "            Se completeaza doar de catre candidatii care solicita scutirea de plata a taxei de admitere pentru un singur domeniu de licenta in cadrul Universitatii din Bucuresti si se aporba de Comisia de admitere.";
+    $pdf -> MultiCell(160, 5, $text, $border, 'FJ');
 
-$border = 1;
-$pdf->SetFont('Times','B',10);
+    $border = 1;
+    $pdf -> SetFont('Times', 'B', 10);
 
-$pdf->Cell(72,'4','Categoria',$border,0,'C');
-$pdf->Cell(20,'4','Aprobare',$border,0,'C');
-$pdf->Cell(32,'4','Observatii',$border,0,'C');
-$pdf->Cell(26,'4','Semnatura',$border,1,'C');
+    $pdf -> Cell(72, '4', 'Categoria', $border, 0, 'C');
+    $pdf -> Cell(20, '4', 'Aprobare', $border, 0, 'C');
+    $pdf -> Cell(32, '4', 'Observatii', $border, 0, 'C');
+    $pdf -> Cell(26, '4', 'Semnatura', $border, 1, 'C');
 
-$pdf->SetFont('Times','',10);
+    $pdf -> SetFont('Times', '', 10);
 
-$pdf->Cell(72,4.5,'(se bifeaza de catre candiat)', $border, 0,'C');
-$pdf->Cell(78,4.5,'(se completeaza de catre Comisia de admitere)', $border, 1, 'C');
+    $pdf -> Cell(72, 4.5, '(se bifeaza de catre candiat)', $border, 0, 'C');
+    $pdf -> Cell(78, 4.5, '(se completeaza de catre Comisia de admitere)', $border, 1, 'C');
 
-$pdf->Cell(63,4.5,'Orfan de ambii parinti sau provenit din','LTR', 0,'L');
-$pdf->Cell(9,4.5,$data['orfan'],'LTR',0);
-$pdf->Cell(11,4.5,'DA',$border,0,'L');
-$pdf->Cell(9,4.5,'',$border,0);
-$pdf->Cell(32,4.5,'','LTR',0,'L');
-$pdf->Cell(26,4.5,'','LTR',1,'L');
+    $pdf -> Cell(63, 4.5, 'Orfan de ambii parinti sau provenit din', 'LTR', 0, 'L');
+    $pdf -> Cell(9, 4.5, $data['orfan'], 'LTR', 0);
+    $pdf -> Cell(11, 4.5, 'DA', $border, 0, 'L');
+    $pdf -> Cell(9, 4.5, '', $border, 0);
+    $pdf -> Cell(32, 4.5, '', 'LTR', 0, 'L');
+    $pdf -> Cell(26, 4.5, '', 'LTR', 1, 'L');
 
-$pdf->Cell(63,4.5,'casa de copii sau plasament familial','LBR', 0,'L');
-$pdf->Cell(9,4.5,'','LBR',0);
-$pdf->Cell(11,4.5,'NU',$border,0,'L');
-$pdf->Cell(9,4.5,'',$border,0);
-$pdf->Cell(32,4.5,'','LBR',0,'L');
-$pdf->Cell(26,4.5,'','LBR',1,'L');
+    $pdf -> Cell(63, 4.5, 'casa de copii sau plasament familial', 'LBR', 0, 'L');
+    $pdf -> Cell(9, 4.5, '', 'LBR', 0);
+    $pdf -> Cell(11, 4.5, 'NU', $border, 0, 'L');
+    $pdf -> Cell(9, 4.5, '', $border, 0);
+    $pdf -> Cell(32, 4.5, '', 'LBR', 0, 'L');
+    $pdf -> Cell(26, 4.5, '', 'LBR', 1, 'L');
 
-$pdf->Cell(63,4.5,'Parinte cadru didactic sau angajat la','LTR', 0,'L');
-$pdf->Cell(9,4.5,$data['parinteProfesor'],'LTR',0);
-$pdf->Cell(11,4.5,'DA',$border,0,'L');
-$pdf->Cell(9,4.5,'',$border,0);
-$pdf->Cell(32,4.5,'','LTR',0,'L');
-$pdf->Cell(26,4.5,'','LTR',1,'L');
+    $pdf -> Cell(63, 4.5, 'Parinte cadru didactic sau angajat la', 'LTR', 0, 'L');
+    $pdf -> Cell(9, 4.5, $data['parinteProfesor'], 'LTR', 0);
+    $pdf -> Cell(11, 4.5, 'DA', $border, 0, 'L');
+    $pdf -> Cell(9, 4.5, '', $border, 0);
+    $pdf -> Cell(32, 4.5, '', 'LTR', 0, 'L');
+    $pdf -> Cell(26, 4.5, '', 'LTR', 1, 'L');
 
-$pdf->Cell(63,4.5,'Universitatea din Bucuresti','LBR', 0,'L');
-$pdf->Cell(9,4.5,'','LBR',0);
-$pdf->Cell(11,4.5,'NU',$border,0,'L');
-$pdf->Cell(9,4.5,'',$border,0);
-$pdf->Cell(32,4.5,'','LBR',0,'L');
-$pdf->Cell(26,4.5,'','LBR',1,'L');
+    $pdf -> Cell(63, 4.5, 'Universitatea din Bucuresti', 'LBR', 0, 'L');
+    $pdf -> Cell(9, 4.5, '', 'LBR', 0);
+    $pdf -> Cell(11, 4.5, 'NU', $border, 0, 'L');
+    $pdf -> Cell(9, 4.5, '', $border, 0);
+    $pdf -> Cell(32, 4.5, '', 'LBR', 0, 'L');
+    $pdf -> Cell(26, 4.5, '', 'LBR', 1, 'L');
 
-$pdf->Cell(63,4.5,'Olimpic, admis fara examen','LTR', 0,'L');
-$pdf->Cell(9,4.5,$data['olimpicExamen'],'LTR',0);
-$pdf->Cell(11,4.5,'DA',$border,0,'L');
-$pdf->Cell(9,4.5,'',$border,0);
-$pdf->Cell(32,4.5,'','LTR',0,'L');
-$pdf->Cell(26,4.5,'','LTR',1,'L');
+    $pdf -> Cell(63, 4.5, 'Olimpic, admis fara examen', 'LTR', 0, 'L');
+    $pdf -> Cell(9, 4.5, $data['olimpicExamen'], 'LTR', 0);
+    $pdf -> Cell(11, 4.5, 'DA', $border, 0, 'L');
+    $pdf -> Cell(9, 4.5, '', $border, 0);
+    $pdf -> Cell(32, 4.5, '', 'LTR', 0, 'L');
+    $pdf -> Cell(26, 4.5, '', 'LTR', 1, 'L');
 
-$pdf->Cell(63,4.5,'examen','LBR', 0,'L');
-$pdf->Cell(9,4.5,'','LBR',0);
-$pdf->Cell(11,4.5,'NU',$border,0,'L');
-$pdf->Cell(9,4.5,'',$border,0);
-$pdf->Cell(32,4.5,'','LBR',0,'L');
-$pdf->Cell(26,4.5,'','LBR',0,'L');
+    $pdf -> Cell(63, 4.5, 'examen', 'LBR', 0, 'L');
+    $pdf -> Cell(9, 4.5, '', 'LBR', 0);
+    $pdf -> Cell(11, 4.5, 'NU', $border, 0, 'L');
+    $pdf -> Cell(9, 4.5, '', $border, 0);
+    $pdf -> Cell(32, 4.5, '', 'LBR', 0, 'L');
+    $pdf -> Cell(26, 4.5, '', 'LBR', 0, 'L');
 
-$border = 0;
-$pdf->SetFont('Times','B',10);
-
-
-$pdf->Cell(160,8,'',$border,1,'L');
-$pdf->Cell(160, 7, 'INFORMATII DESPRE ALTE STUDEII UNIVERSTIARE ',$border,1,'L');
+    $border = 0;
+    $pdf -> SetFont('Times', 'B', 10);
 
 
-$pdf->SetFont('Times','',10);
-$text = "            Se completeaza obligatoriu de catre candidatii care sunt studenti sau care au absolvit o facultate, in situtatia in care vor sa candideze pe un loc finantat de la buget sau pe un loc la a 2-a facultate.";
-$pdf->MultiCell(160,4,$text, $border, 'FJ');
-
-$border = 1;
-
-$pdf->Cell(24,'4','Universitatea',$border,0,'L');
-$pdf->Cell(48,'4',$data['universitateALTS'],$border,0,'L');
-$pdf->Cell(20,'4','Facultatea',$border,0,'L');
-$pdf->Cell(58,'4',$data['facultateALTS'],$border,1,'L');
-
-$pdf->Cell(24,'4','Localitatea',$border,0,'L');
-$pdf->Cell(48,'4',$data['localitateALTS'],$border,0,'L');
-$pdf->Cell(20,'4','Tara',$border,0,'L');
-$pdf->Cell(58,'4',$data['taraALTS'],$border,1,'L');
-
-$pdf->Cell(24,'4','Domeniul',$border,0,'L');
-$pdf->Cell(48,'4',$data['domeniulALTS'],$border,0,'L');
-$pdf->Cell(55,'4','Numarul de ani finantati de la buget  ',$border,0,'L');
-$pdf->Cell(23,'4',$data['aniALTS'],$border,1,'L');
-
-$pdf->Cell(24,'4','Student anul',$border,0,'L');
-$pdf->Cell(8,'4',$data['anulALTS'],$border,0,'L');
-$pdf->Cell(60,'4','Absolvent fara diploma de licenta in anul',$border,0,'L');
-$pdf->Cell(15,'4',$data['absolventALTS'],$border,0,'L');
-$pdf->Cell(26,'4','Licentiat in anul',$border,0,'L');
-$pdf->Cell(17,'4',$data['licentiatALTS'],$border,1,'L');
-
-$pdf->Cell(55,4,'Diploma de licenta in specializarea',$border,0,'L');
-$pdf->Cell(45,4,$data['specializareALTS'],$border,0,'L');
-$pdf->Cell(12,4,'Seria',$border,0,'L');
-$pdf->Cell(13,4,$data['serieALTS'],$border,0,'L');
-$pdf->Cell(8,4,'Nr.',$border,0,'L');
-$pdf->Cell(17,4,$data['numarALTS'],$border,1,'L');
-
-$pdf->Cell(24,'4','Emisa de',$border,0,'L');
-$pdf->Cell(48,'4',$data['emitentALTS'],$border,0,'L');
-$pdf->Cell(20,'4','La data de',$border,0,'L');
-$pdf->Cell(58,'4',$data['dataemiteriiALTS'],$border,1,'L');
-
-$pdf->Cell(44,'4','Media generala de absolvire',$border,0,'L');
-$pdf->Cell(28,'4',$data['absolvireALTS'],$border,0,'L');
-$pdf->Cell(44,'4','Media la examenul de licenta',$border,0,'L');
-$pdf->Cell(34,'4',$data['licentaALTS'],$border,1,'L');
+    $pdf -> Cell(160, 8, '', $border, 1, 'L');
+    $pdf -> Cell(160, 7, 'INFORMATII DESPRE ALTE STUDEII UNIVERSTIARE ', $border, 1, 'L');
 
 
-$border = 0;
-$pdf->SetFont('Times','B',10);
+    $pdf -> SetFont('Times', '', 10);
+    $text = "            Se completeaza obligatoriu de catre candidatii care sunt studenti sau care au absolvit o facultate, in situtatia in care vor sa candideze pe un loc finantat de la buget sau pe un loc la a 2-a facultate.";
+    $pdf -> MultiCell(160, 4, $text, $border, 'FJ');
+
+    $border = 1;
+
+    $pdf -> Cell(24, '4', 'Universitatea', $border, 0, 'L');
+    $pdf -> Cell(48, '4', $data['universitateALTS'], $border, 0, 'L');
+    $pdf -> Cell(20, '4', 'Facultatea', $border, 0, 'L');
+    $pdf -> Cell(58, '4', $data['facultateALTS'], $border, 1, 'L');
+
+    $pdf -> Cell(24, '4', 'Localitatea', $border, 0, 'L');
+    $pdf -> Cell(48, '4', $data['localitateALTS'], $border, 0, 'L');
+    $pdf -> Cell(20, '4', 'Tara', $border, 0, 'L');
+    $pdf -> Cell(58, '4', $data['taraALTS'], $border, 1, 'L');
+
+    $pdf -> Cell(24, '4', 'Domeniul', $border, 0, 'L');
+    $pdf -> Cell(48, '4', $data['domeniulALTS'], $border, 0, 'L');
+    $pdf -> Cell(55, '4', 'Numarul de ani finantati de la buget  ', $border, 0, 'L');
+    $pdf -> Cell(23, '4', $data['aniALTS'], $border, 1, 'L');
+
+    $pdf -> Cell(24, '4', 'Student anul', $border, 0, 'L');
+    $pdf -> Cell(8, '4', $data['anulALTS'], $border, 0, 'L');
+    $pdf -> Cell(60, '4', 'Absolvent fara diploma de licenta in anul', $border, 0, 'L');
+    $pdf -> Cell(15, '4', $data['absolventALTS'], $border, 0, 'L');
+    $pdf -> Cell(26, '4', 'Licentiat in anul', $border, 0, 'L');
+    $pdf -> Cell(17, '4', $data['licentiatALTS'], $border, 1, 'L');
+
+    $pdf -> Cell(55, 4, 'Diploma de licenta in specializarea', $border, 0, 'L');
+    $pdf -> Cell(45, 4, $data['specializareALTS'], $border, 0, 'L');
+    $pdf -> Cell(12, 4, 'Seria', $border, 0, 'L');
+    $pdf -> Cell(13, 4, $data['serieALTS'], $border, 0, 'L');
+    $pdf -> Cell(8, 4, 'Nr.', $border, 0, 'L');
+    $pdf -> Cell(17, 4, $data['numarALTS'], $border, 1, 'L');
+
+    $pdf -> Cell(24, '4', 'Emisa de', $border, 0, 'L');
+    $pdf -> Cell(48, '4', $data['emitentALTS'], $border, 0, 'L');
+    $pdf -> Cell(20, '4', 'La data de', $border, 0, 'L');
+    $pdf -> Cell(58, '4', $data['dataemiteriiALTS'], $border, 1, 'L');
+
+    $pdf -> Cell(44, '4', 'Media generala de absolvire', $border, 0, 'L');
+    $pdf -> Cell(28, '4', $data['absolvireALTS'], $border, 0, 'L');
+    $pdf -> Cell(44, '4', 'Media la examenul de licenta', $border, 0, 'L');
+    $pdf -> Cell(34, '4', $data['licentaALTS'], $border, 1, 'L');
 
 
-$pdf->Cell(160,8,'',$border,1,'L');
-$pdf->Cell(160, 7, 'INFORMATII DESPRE LICEUL ABSOLVIT ',$border,1,'L');
+    $border = 0;
+    $pdf -> SetFont('Times', 'B', 10);
 
 
-$pdf->SetFont('Times','',10);
-$text = "            Se completeaza de catre toti candidatii";
-$pdf->MultiCell(160,4,$text, $border, '');
+    $pdf -> Cell(160, 8, '', $border, 1, 'L');
+    $pdf -> Cell(160, 7, 'INFORMATII DESPRE LICEUL ABSOLVIT ', $border, 1, 'L');
 
-$border = 1;
 
-$pdf->Cell(15,'4','Liceul',$border,0,'L');
-$pdf->Cell(135,'4',$data['denumireLiceu'],$border,1,'L');
-$pdf->Cell(15,'4','Tara',$border,0,'L');
-$pdf->Cell(43,'4','',$border,0,'L');//TODO Tara Liceu
-$pdf->Cell(20,'4','Localitatea',$border,0,'L');
-$pdf->Cell(72,'4',$data['localitateLiceu'],$border,1,'L');
-$pdf->Cell(58,'4','Am sustinut bacalaureatul in sesiunea',$border,0,'L');
-$pdf->Cell(11,'4',$data['sesiuneBac'],$border,0,'L');
-$pdf->Cell(9,'4','Anul',$border,0,'L');
-$pdf->Cell(18,'4',$data['anBac'],$border,0,'L');
-$pdf->Cell(35,'4','Media generala BAC',$border,0,'L');
-$pdf->Cell(19,'4',$data['medieBac'],$border,1,'L');
+    $pdf -> SetFont('Times', '', 10);
+    $text = "            Se completeaza de catre toti candidatii";
+    $pdf -> MultiCell(160, 4, $text, $border, '');
 
-$pdf->Cell(131,4,'Nota la BAC la disciplina Matematica (sau echivalent, cf. aprobarii Comisiei de admitere)', $border,0,'L');
-$pdf->Cell(19,4,$data['notaMateBac'],$border,1);
+    $border = 1;
 
-$pdf->Cell(37,'4','Diploma de bacalaureat',$border,0,'L');
-$pdf->Cell(12,'4','Seria',$border,0,'L');
-$pdf->Cell(11,'4',$data['serieBac'],$border,0,'L');
-$pdf->Cell(9,'4','Nr.',$border,0,'L');
-$pdf->Cell(27,'4',$data['numarBac'],$border,0,'L');
-$pdf->Cell(27,'4','Emisa la data de',$border,0,'L');
-$pdf->Cell(27,4,'',$border,1);
+    $pdf -> Cell(15, '4', 'Liceul', $border, 0, 'L');
+    $pdf -> Cell(135, '4', $data['denumireLiceu'], $border, 1, 'L');
+    $pdf -> Cell(15, '4', 'Tara', $border, 0, 'L');
+    $pdf -> Cell(43, '4', $data['taraLiceu'], $border, 0, 'L');
+    $pdf -> Cell(20, '4', 'Localitatea', $border, 0, 'L');
+    $pdf -> Cell(72, '4', $data['localitateLiceu'], $border, 1, 'L');
+    $pdf -> Cell(58, '4', 'Am sustinut bacalaureatul in sesiunea', $border, 0, 'L');
+    $pdf -> Cell(11, '4', $data['sesiuneBac'], $border, 0, 'L');
+    $pdf -> Cell(9, '4', 'Anul', $border, 0, 'L');
+    $pdf -> Cell(18, '4', $data['anBac'], $border, 0, 'L');
+    $pdf -> Cell(35, '4', 'Media generala BAC', $border, 0, 'L');
+    $pdf -> Cell(19, '4', $data['medieBac'], $border, 1, 'L');
+
+    $pdf -> Cell(131, 4, 'Nota la BAC la disciplina Matematica (sau echivalent, cf. aprobarii Comisiei de admitere)', $border, 0, 'L');
+    $pdf -> Cell(19, 4, $data['notaMateBac'], $border, 1);
+
+    $pdf -> Cell(37, '4', 'Diploma de bacalaureat', $border, 0, 'L');
+    $pdf -> Cell(12, '4', 'Seria', $border, 0, 'L');
+    $pdf -> Cell(11, '4', $data['serieBac'], $border, 0, 'L');
+    $pdf -> Cell(9, '4', 'Nr.', $border, 0, 'L');
+    $pdf -> Cell(27, '4', $data['numarBac'], $border, 0, 'L');
+    $pdf -> Cell(27, '4', 'Emisa la data de', $border, 0, 'L');
+    $pdf -> Cell(27, 4, '', $border, 1);
+}
+
+if($data['informatica'] == 'informatica') {
+
+    $pdf->AddPage();
+    $border = 0;
+//TITLU
+
+    $pdf -> Cell(160, 3, '', $border, 1, 'C');
+    $pdf -> Cell(160, 4, 'FISA DE INSCRIERE', $border, 1, 'C');
+    $pdf -> Cell(160, 4, 'STUDII UNIVERSITARE DE LICENTA', $border, 1, 'C');
+
+//SUBTITLU
+    $pdf -> SetFont('Times', '', 10);
+    $pdf -> Cell(160, 5, 'la concursul de admitere pentru anul universitar        2017-2018      , sesiunea     iulie 2018          ', $border, 1, 'C');
+
+//ORGANIZATORICE
+    $pdf -> SetFont('Times', 'B', 10);
+    $pdf -> Cell(160, 5, 'ATENTIE:', $border, 1, 'L');
+
+    $pdf -> SetFont('Times', '', 10);
+    $organizatorice = '            Admiterea se organizeaza pe domenii de licenta, pe locuri finantate de la buget sau pe locuri cu taxa (inclusiv la a 2-a facultate), la formele de invatamant IF (invatamânt cu frecventa) sau ID (invatamânt la distanta). Candidatii vor fi declarati admisi in ordinea descrescatoare a mediei de admitere, la domeniul de licenta, forma de finantare, forma de invatamânt si tipul de facultate la care au candidat.';
+//$organizatorice = iconv('utf-8','ASCII/translit',$organizatorice);
+    $pdf -> MultiCell(160, 4, $organizatorice, $border, 'FJ');
+
+//DOMENIUL DE LICENTA
+
+    $pdf -> SetFont('Times', 'B', 10);
+    $pdf -> Cell(160, 7, 'DOMENIUL DE LICENTA SI SPECIALIZAREA', $border, 1, 'L');
+    $pdf -> SetFont('Times', '', 10);
+    $domeniuDeLicenta = '            Se bifeaza un singur domeniu si, in cadrul acestuia, o singura specializare. Alegerea specializarii in cadrul domeniului Matematica este orientativa; optiunea finala pentru specializare la domeniul Matematica se va face la sfarsitul anului I, repartizarea pe specializari la acest domeniu facându-se in ordinea descrescatoare a rezultatelor la invatatura (punctajele de clasificare), obtinute dupa anul I.';
+    $pdf -> MultiCell(160, 4, $domeniuDeLicenta, $border, 'FJ');
+
+    $border = 1;
+
+    $pdf -> SetFont('Times', 'B', 10);
+    $pdf -> Cell(75, 4, 'Domeniul', 'LTR', 0, 'C');
+    $pdf -> Cell(75, 4, 'Specializarea', 'LTR', 1, 'C');
+    $pdf -> SetFont('Times', '', 10);
+
+    $pdf -> Cell(65, 4, 'Matematica', 'LTR', 0, 'L');
+    $pdf -> Cell(10, 4, '', 'LTR', 0, 'L');
+    $pdf -> Cell(65, 4, 'Matematica', 1, 0, 'L');
+    $pdf -> Cell(10, 4, '', 1, 1, 'L');
+
+    $pdf -> Cell(65, 4, '', 'LR', 0, 'L');
+    $pdf -> Cell(10, 4, '', 'LR', 0, 'L');
+    $pdf -> Cell(65, 4, 'Matematica Aplicata', 1, 0, 'L');
+    $pdf -> Cell(10, 4, '', 1, 1, 'L');
+
+    $pdf -> Cell(65, 4, '', 'LRB', 0, 'L');
+    $pdf -> Cell(10, 4, '', 'LRB', 0, 'L');
+    $pdf -> Cell(65, 4, 'Matematica-Informatica', 1, 0, 'L');
+    $pdf -> Cell(10, 4, '', 1, 1, 'L');
+
+    if( $data['informatica'] == 'informatica'){
+        $informatica = 'x';
+    }
+    else{
+        $informatica = '';
+    }
+
+    $pdf -> Cell(65, 4, 'Informatica', 1, 0, 'L');
+    $pdf -> Cell(10, 4, $informatica, 1, 0, 'L');
+    $pdf -> Cell(65, 4, 'Informatica', 1, 0, 'L');
+    $pdf -> Cell(10, 4, $informatica, 1, 1, 'L');
+
+    $pdf -> Cell(65, 4, 'Calculatoare si tehnologia informatiei', 1, 0, 'L');
+    $pdf -> Cell(10, 4, '', 1, 0, 'L');
+    $pdf -> Cell(65, 4, 'Calculatoare si tehnologia informatiei', 1, 0, 'L');
+    $pdf -> Cell(10, 4, '', 1, 1, 'L');
+
+//FORMA DE INVATAMANT SI FINANTARE
+
+    $border = 0;
+
+    $pdf -> SetFont('Times', 'B', 10);
+    $pdf -> Cell(160, 7, 'FORMA DE INVATAMANT SI FINANTARE', $border, 1, 'L');
+    $pdf -> SetFont('Times', '', 10);
+    $domeniuDeLicenta = '            Se bifeaza o singura forma de invatamânt si, in cadrul acesteia, o singura forma de finantare. Candidatii care se inscriu pe locuri finantate de la buget pot opta pentru un loc cu taxa in perioada de confirmare a locurilor cu taxa, cf. calendarului admiterii.';
+    $pdf -> MultiCell(160, 5, $domeniuDeLicenta, $border, 'FJ');
+
+    $border = 1;
+
+    $pdf -> SetFont('Times', 'B', 10);
+    $pdf -> Cell(75, 4, 'Forma de invatamant', 'LTR', 0, 'C');
+    $pdf -> Cell(75, 4, 'Forma de fiantare', 'LTR', 1, 'C');
+    $pdf -> SetFont('Times', '', 10);
+
+    $pdf -> Cell(65, 4, 'IF (invatamant cu frecventa)', 'LTR', 0, 'L');
+    $pdf -> Cell(10, 4, '', 'LTR', 0, 'L');
+    $pdf -> Cell(65, 4, 'Buget', 1, 0, 'L');
+    $pdf -> Cell(10, 4, '', 1, 1, 'L');
+
+    $pdf -> Cell(65, 4, '', 'LR', 0, 'L');
+    $pdf -> Cell(10, 4, '', 'LR', 0, 'L');
+    $pdf -> Cell(65, 4, 'Taxa', 1, 0, 'L');
+    $pdf -> Cell(10, 4, '', 1, 1, 'L');
+
+    $pdf -> Cell(65, 4, '', 'LRB', 0, 'L');
+    $pdf -> Cell(10, 4, '', 'LRB', 0, 'L');
+    $pdf -> Cell(65, 4, 'Taxa, a 2-a facultate', 1, 0, 'L');
+    $pdf -> Cell(10, 4, '', 1, 1, 'L');
+
+
+    $pdf -> Cell(65, 4, 'ID (invatamant la distanta)', 'LTR', 0, 'L');
+    $pdf -> Cell(10, 4, '', 'LTR', 0, 'L');
+    $pdf -> Cell(65, 4, 'Taxa', 1, 0, 'L');
+    $pdf -> Cell(10, 4, '', 1, 1, 'L');
+
+    $pdf -> Cell(65, 4, '', 'LRB', 0, 'L');
+    $pdf -> Cell(10, 4, '', 'LBR', 0, 'L');
+    $pdf -> Cell(65, 4, 'Taxa, a 2-a facultate', 1, 0, 'L');
+    $pdf -> Cell(10, 4, '', 1, 1, 'L');
+
+//DATE PERSONALE
+
+    $border = 0;
+
+    $pdf -> SetFont('Times', 'B', 10);
+    $pdf -> Cell(160, 7, 'DATE PERSONALE', $border, 1, 'L');
+    $pdf -> SetFont('Times', '', 10);
+
+    $border = 1;
+
+    $x = $pdf -> GetX();
+    $y = $pdf -> GetY();
+
+    $pdf -> Cell(27, 4, ' Nume de familie ', 'LTR', 0);
+    $pdf -> Cell(48, 4, $data['birthName'], 'LTR', 0);
+    $pdf -> Cell(27, 4, ' Nume de familie ', 'LTR', 0);
+    $pdf -> Cell(48, 4, $data['name'], 'LTR', 1);
+
+    $pdf -> Cell(27, 4, ' la nastere ', 'LBR', 0);
+    $pdf -> Cell(48, 4, '', 'LBR', 0);
+    $pdf -> Cell(27, 4, ' actual ', 'LBR', 0);
+    $pdf -> Cell(48, 4, '', 'LBR', 1);
+
+
+    $pdf -> Cell($pdf -> GetStringWidth('Initiala tatalui/mamei') + 3, 4, 'Initiala tatalui/mamei', $border, 0);
+    $pdf -> Cell(12, 4, substr($data['nameFather'], 0, 1), $border, 0);
+    $pdf -> Cell($pdf -> GetStringWidth('Prenume') + 3, 4, 'Prenume', $border, 0);
+    $pdf -> Cell(89, 4, $data['surname'], $border, 1);
+
+    $pdf -> Cell($pdf -> GetStringWidth('Initiala tatalui/mamei') + 3, 4, 'Fiul/fiica lui', $border, 0);
+    $pdf -> Cell(42, 4, $data['nameFather'], $border, 0);
+    $pdf -> Cell($pdf -> GetStringWidth('si al/a') + 3, 4, 'si al/a', $border, 0);
+    $pdf -> Cell(63.2, 4, $data['nameMother'], $border, 1);
+
+    $pdf -> Cell($pdf -> GetStringWidth('Actul de identitate') + 10, 4, 'Actul de identitate', $border, 0);
+//$pdf->Cell(19,4,$data['IDtype'],$border,0);
+    $pdf -> Cell(19, 4, $data['IDtype'], $border, 0);
+    $pdf -> Cell($pdf -> GetStringWidth('seria') + 13.5, 4, 'seria', $border, 0);
+    $pdf -> Cell($pdf -> GetStringWidth('si al/a') + 3, 4, $data['serialID'], $border, 0);
+    $pdf -> Cell(19, 4, 'nr.', $border, 0);
+    $pdf -> Cell(44.3, 4, $data['numberID'], $border, 1);
+
+    $pdf -> Cell($pdf -> GetStringWidth('Eliberat de ') + 2, 4, 'Eliberat de', $border, 0);
+    $pdf -> Cell(44, 4, $data['eliberatedBy'], $border, 0);
+    $pdf -> Cell($pdf -> GetStringWidth('la data') + 3.7, 4, '  la data', $border, 0);
+    $pdf -> Cell($pdf -> GetStringWidth('si al/a') + 22, 4, $data['dateEliberated'], $border, 0);
+    $pdf -> Cell($pdf -> GetStringWidth('valabil pana la ') + 4, 4, ' valabil pana la', $border, 0);
+    $pdf -> Cell(18.8, 4, $data['valabilityDate'], $border, 1);
+
+    $pdf -> Cell(39, 4, 'CNP (cod numeric pers.)', $border, 0);
+    $pdf -> Cell(4, 4, substr($data['CNP'], 0, 1), $border, 0);
+    $pdf -> Cell(4, 4, substr($data['CNP'], 1, 1), $border, 0);
+    $pdf -> Cell(4, 4, substr($data['CNP'], 2, 1), $border, 0);
+    $pdf -> Cell(4, 4, substr($data['CNP'], 3, 1), $border, 0);
+    $pdf -> Cell(4, 4, substr($data['CNP'], 4, 1), $border, 0);
+    $pdf -> Cell(4, 4, substr($data['CNP'], 5, 1), $border, 0);
+    $pdf -> Cell(4, 4, substr($data['CNP'], 6, 1), $border, 0);
+    $pdf -> Cell(4, 4, substr($data['CNP'], 7, 1), $border, 0);
+    $pdf -> Cell(4, 4, substr($data['CNP'], 8, 1), $border, 0);
+    $pdf -> Cell(4, 4, substr($data['CNP'], 9, 1), $border, 0);
+    $pdf -> Cell(4, 4, substr($data['CNP'], 10, 1), $border, 0);
+    $pdf -> Cell(4, 4, substr($data['CNP'], 11, 1), $border, 0);
+    $pdf -> Cell(4, 4, substr($data['CNP'], 12, 1), $border, 0);
+
+    $pdf -> Cell($pdf -> GetStringWidth(" Data nasterii") + 3, 4, " Data nasterii", $border, 0);
+
+    $pdf -> Cell(4, 4, '', $border, 0);
+    $pdf -> Cell(4, 4, '', $border, 0);
+    $pdf -> Cell(4, 4, '', $border, 0);
+    $pdf -> Cell(4, 4, '', $border, 0);
+    $pdf -> Cell(4, 4, '', $border, 0);
+    $pdf -> Cell(4, 4, '', $border, 0);
+    $pdf -> Cell(4, 4, '', $border, 0);
+    $pdf -> Cell(4, 4, '', $border, 1);
+
+    $pdf -> Cell(23, 4, 'Locul nasterii', $border, 0);
+    $pdf -> Cell(12, 4, 'Tara', $border, 0);
+    $pdf -> Cell(28, 4, $data['country'], $border, 0);
+    $pdf -> Cell(19, 4, 'Localitatea', $border, 0);
+    $pdf -> Cell(24, 4, $data['city'], $border, 0);
+    $pdf -> Cell(20, 4, 'Judet/Sector', $border, 0);
+    $pdf -> Cell(24, 4, $data['county'], $border, 1);
+
+    $pdf -> Cell(23, 4, 'Cetatenia', $border, 0);
+    $pdf -> Cell(40, 4, $data['citizenship'], $border, 0);
+    $pdf -> Cell(19, 4, 'Etnia', $border, 0);
+    $pdf -> Cell(24, 4, $data['ethnicity'], $border, 0);
+    $pdf -> Cell(20, 4, 'Starea civila', $border, 0);
+    $pdf -> Cell(24, 4, $data['maritalStatus'], $border, 1);
+
+//DOMICILIUL STABIL
+
+    $border = 0;
+
+    $pdf -> SetFont('Times', 'B', 10);
+    $pdf -> Cell(160, 7, 'Domiciliul stabil (conform BI/CI)', $border, 1, 'L');
+    $pdf -> SetFont('Times', '', 10);
+
+    $border = 1;
+
+    $pdf -> Cell(10, 4, ' Tara', $border, 0);
+    $pdf -> Cell(30, 4, $data['taraDomiciliu'], $border, 0);
+    $pdf -> Cell(20, 4, ' Localitate', $border, 0);
+    $pdf -> Cell(33, 4, $data['localitateDomiciliu'], $border, 0);
+    $pdf -> Cell(13, 4, ' Strada', $border, 0);
+    $pdf -> Cell(44, 4, $data['stradaDomiciliu'], $border, 1);
+
+    $pdf -> Cell(8, 4, 'Nr.', $border, 0);
+    $pdf -> Cell(10, 4, $data['numarDomiciliu'], $border, 0);
+    $pdf -> Cell(8, 4, 'Bl.', $border, 0);
+    $pdf -> Cell(9, 4, $data['blocDomiciliu'], $border, 0);
+    $pdf -> Cell(8, 4, 'Sc.', $border, 0);
+    $pdf -> Cell(9, 4, $data['scaraDomiciliu'], $border, 0);
+    $pdf -> Cell(8, 4, 'Et.', $border, 0);
+    $pdf -> Cell(8, 4, $data['etajDomiciliu'], $border, 0);
+    $pdf -> Cell(9, 4, 'Ap.', $border, 0);
+    $pdf -> Cell(9, 4, $data['apartamentDomiciliu'], $border, 0);
+    $pdf -> Cell(20, 4, 'Judet/Sector', $border, 0);
+    $pdf -> Cell(20, 4, '', $border, 0);
+    $pdf -> Cell(10, 4, 'Cod', $border, 0);
+    $pdf -> Cell(14, 4, $data['codPostalDomiciliu'], $border, 1);
+
+    $pdf -> Cell(26, 4, 'Telefon fix', $border, 0);
+    $pdf -> Cell(37, 4, $data['fixDomiciliu'], $border, 0);
+    $pdf -> Cell(43, 4, 'Telefon mobil', $border, 0);
+    $pdf -> Cell(44, 4, $data['mobilDomiciliu'], $border, 1);
+
+    $border = 0;
+
+    $pdf -> SetFont('Times', 'B', 10);
+    $pdf -> Cell($pdf -> GetStringWidth('Date de contact alternative '), 7, 'Date de contact alternative ', $border, 0, 'L');
+    $pdf -> SetFont('Times', '', 10);
+    $pdf -> Cell(40, 7, '(ale unuia dintre parinti, tutore, etc.)', $border, 1, 'L');
+
+    $border = 1;
+
+    $pdf -> Cell(26, 4, 'Telefon fix', $border, 0);
+    $pdf -> Cell(37, 4, $data['fixParinte'], $border, 0);
+    $pdf -> Cell(43, 4, 'Telefon mobil', $border, 0);
+    $pdf -> Cell(44, 4, $data['mobilParinte'], $border, 1);
+
+    $pdf -> Cell(26, 4, 'Email', $border, 0);
+    $pdf -> Cell(124, 4, $data['emailParinte'], $border, 1);
+
+//PAGINA 2
+    $pdf -> AliasNbPages();
+    $pdf -> AddPage();
+    $pdf -> SetFont('Times', 'B', 10);
+
+//STATUT SPECIAL LA ADMITERE
+
+    $border = 0;
+
+    $pdf -> Cell(160, 3, '', $border, 1, 'L');
+    $pdf -> Cell(160, 8, 'STATUT SPECIAL LA ADMITERE ', $border, 1, 'L');
+
+    $pdf -> SetFont('Times', '', 10);
+    $text = "            Se completeaza doar de catre candidatii care dau admitere pe un loc cu statut special, cf. categoriilor enumerate mai jos si se aproba de Comisia de admitere.";
+    $pdf -> MultiCell(160, 5, $text, $border, 'FJ');
+
+    $border = 1;
+    $pdf -> SetFont('Times', 'B', 10);
+
+    $pdf -> Cell(72, '4', 'Categoria', $border, 0, 'C');
+    $pdf -> Cell(20, '4', 'Aprobare', $border, 0, 'C');
+    $pdf -> Cell(32, '4', 'Observatii', $border, 0, 'C');
+    $pdf -> Cell(26, '4', 'Semnatura', $border, 1, 'C');
+
+    $pdf -> SetFont('Times', '', 10);
+
+    $pdf -> Cell(72, 4.5, '(se bifeaza de catre candiat)', $border, 0, 'C');
+    $pdf -> Cell(78, 4.5, '(se completeaza de catre Comisia de admitere)', $border, 1, 'C');
+
+    $pdf -> Cell(63, 4.5, 'Locuri pentru rromi', 'LTR', 0, 'L');
+    $pdf -> Cell(9, 4.5, $data['rromi'], 'LTR', 0);
+    $pdf -> Cell(11, 4.5, 'DA', $border, 0, 'L');
+    $pdf -> Cell(9, 4.5, '', $border, 0);
+    $pdf -> Cell(32, 4.5, '', 'LTR', 0, 'L');
+    $pdf -> Cell(26, 4.5, '', 'LTR', 1, 'L');
+
+    $pdf -> Cell(63, 4.5, '', 'LBR', 0, 'L');
+    $pdf -> Cell(9, 4.5, '', 'LBR', 0);
+    $pdf -> Cell(11, 4.5, 'NU', $border, 0, 'L');
+    $pdf -> Cell(9, 4.5, '', $border, 0);
+    $pdf -> Cell(32, 4.5, '', 'LBR', 0, 'L');
+    $pdf -> Cell(26, 4.5, '', 'LBR', 1, 'L');
+
+    $pdf -> Cell(63, 4.5, 'Locuri pentru romanii de pretutindeni', 'LTR', 0, 'L');
+    $pdf -> Cell(9, 4.5, $data['pretutindeni'], 'LTR', 0);
+    $pdf -> Cell(11, 4.5, 'DA', $border, 0, 'L');
+    $pdf -> Cell(9, 4.5, '', $border, 0);
+    $pdf -> Cell(32, 4.5, '', 'LTR', 0, 'L');
+    $pdf -> Cell(26, 4.5, '', 'LTR', 1, 'L');
+
+    $pdf -> Cell(63, 4.5, '', 'LBR', 0, 'L');
+    $pdf -> Cell(9, 4.5, '', 'LBR', 0);
+    $pdf -> Cell(11, 4.5, 'NU', $border, 0, 'L');
+    $pdf -> Cell(9, 4.5, '', $border, 0);
+    $pdf -> Cell(32, 4.5, '', 'LBR', 0, 'L');
+    $pdf -> Cell(26, 4.5, '', 'LBR', 1, 'L');
+
+    $pdf -> Cell(63, 4.5, 'Locuri pentru olimpici, admitere fara', 'LTR', 0, 'L');
+    $pdf -> Cell(9, 4.5, $data['olimpicAdmitere'], 'LTR', 0);
+    $pdf -> Cell(11, 4.5, 'DA', $border, 0, 'L');
+    $pdf -> Cell(9, 4.5, '', $border, 0);
+    $pdf -> Cell(32, 4.5, '', 'LTR', 0, 'L');
+    $pdf -> Cell(26, 4.5, '', 'LTR', 1, 'L');
+
+    $pdf -> Cell(63, 4.5, 'examen', 'LBR', 0, 'L');
+    $pdf -> Cell(9, 4.5, '', 'LBR', 0);
+    $pdf -> Cell(11, 4.5, 'NU', $border, 0, 'L');
+    $pdf -> Cell(9, 4.5, '', $border, 0);
+    $pdf -> Cell(32, 4.5, '', 'LBR', 0, 'L');
+    $pdf -> Cell(26, 4.5, '', 'LBR', 1, 'L');
+
+
+//STATUT SPECIAL PENTRU SCUTIREA DE PLATA TAXEI DE ADMITERE
+
+    $border = 0;
+    $pdf -> SetFont('Times', 'B', 10);
+
+
+    $pdf -> Cell(160, 2, '', $border, 1, 'L');
+    $pdf -> Cell(160, 7, 'STATUT SPECIAL PENTRU SCUTIREA DE PLATA TAXEI DE ADMITERE ', $border, 1, 'L');
+
+    $pdf -> SetFont('Times', '', 10);
+    $text = "            Se completeaza doar de catre candidatii care solicita scutirea de plata a taxei de admitere pentru un singur domeniu de licenta in cadrul Universitatii din Bucuresti si se aporba de Comisia de admitere.";
+    $pdf -> MultiCell(160, 5, $text, $border, 'FJ');
+
+    $border = 1;
+    $pdf -> SetFont('Times', 'B', 10);
+
+    $pdf -> Cell(72, '4', 'Categoria', $border, 0, 'C');
+    $pdf -> Cell(20, '4', 'Aprobare', $border, 0, 'C');
+    $pdf -> Cell(32, '4', 'Observatii', $border, 0, 'C');
+    $pdf -> Cell(26, '4', 'Semnatura', $border, 1, 'C');
+
+    $pdf -> SetFont('Times', '', 10);
+
+    $pdf -> Cell(72, 4.5, '(se bifeaza de catre candiat)', $border, 0, 'C');
+    $pdf -> Cell(78, 4.5, '(se completeaza de catre Comisia de admitere)', $border, 1, 'C');
+
+    $pdf -> Cell(63, 4.5, 'Orfan de ambii parinti sau provenit din', 'LTR', 0, 'L');
+    $pdf -> Cell(9, 4.5, $data['orfan'], 'LTR', 0);
+    $pdf -> Cell(11, 4.5, 'DA', $border, 0, 'L');
+    $pdf -> Cell(9, 4.5, '', $border, 0);
+    $pdf -> Cell(32, 4.5, '', 'LTR', 0, 'L');
+    $pdf -> Cell(26, 4.5, '', 'LTR', 1, 'L');
+
+    $pdf -> Cell(63, 4.5, 'casa de copii sau plasament familial', 'LBR', 0, 'L');
+    $pdf -> Cell(9, 4.5, '', 'LBR', 0);
+    $pdf -> Cell(11, 4.5, 'NU', $border, 0, 'L');
+    $pdf -> Cell(9, 4.5, '', $border, 0);
+    $pdf -> Cell(32, 4.5, '', 'LBR', 0, 'L');
+    $pdf -> Cell(26, 4.5, '', 'LBR', 1, 'L');
+
+    $pdf -> Cell(63, 4.5, 'Parinte cadru didactic sau angajat la', 'LTR', 0, 'L');
+    $pdf -> Cell(9, 4.5, $data['parinteProfesor'], 'LTR', 0);
+    $pdf -> Cell(11, 4.5, 'DA', $border, 0, 'L');
+    $pdf -> Cell(9, 4.5, '', $border, 0);
+    $pdf -> Cell(32, 4.5, '', 'LTR', 0, 'L');
+    $pdf -> Cell(26, 4.5, '', 'LTR', 1, 'L');
+
+    $pdf -> Cell(63, 4.5, 'Universitatea din Bucuresti', 'LBR', 0, 'L');
+    $pdf -> Cell(9, 4.5, '', 'LBR', 0);
+    $pdf -> Cell(11, 4.5, 'NU', $border, 0, 'L');
+    $pdf -> Cell(9, 4.5, '', $border, 0);
+    $pdf -> Cell(32, 4.5, '', 'LBR', 0, 'L');
+    $pdf -> Cell(26, 4.5, '', 'LBR', 1, 'L');
+
+    $pdf -> Cell(63, 4.5, 'Olimpic, admis fara examen', 'LTR', 0, 'L');
+    $pdf -> Cell(9, 4.5, $data['olimpicExamen'], 'LTR', 0);
+    $pdf -> Cell(11, 4.5, 'DA', $border, 0, 'L');
+    $pdf -> Cell(9, 4.5, '', $border, 0);
+    $pdf -> Cell(32, 4.5, '', 'LTR', 0, 'L');
+    $pdf -> Cell(26, 4.5, '', 'LTR', 1, 'L');
+
+    $pdf -> Cell(63, 4.5, 'examen', 'LBR', 0, 'L');
+    $pdf -> Cell(9, 4.5, '', 'LBR', 0);
+    $pdf -> Cell(11, 4.5, 'NU', $border, 0, 'L');
+    $pdf -> Cell(9, 4.5, '', $border, 0);
+    $pdf -> Cell(32, 4.5, '', 'LBR', 0, 'L');
+    $pdf -> Cell(26, 4.5, '', 'LBR', 0, 'L');
+
+    $border = 0;
+    $pdf -> SetFont('Times', 'B', 10);
+
+
+    $pdf -> Cell(160, 8, '', $border, 1, 'L');
+    $pdf -> Cell(160, 7, 'INFORMATII DESPRE ALTE STUDEII UNIVERSTIARE ', $border, 1, 'L');
+
+
+    $pdf -> SetFont('Times', '', 10);
+    $text = "            Se completeaza obligatoriu de catre candidatii care sunt studenti sau care au absolvit o facultate, in situtatia in care vor sa candideze pe un loc finantat de la buget sau pe un loc la a 2-a facultate.";
+    $pdf -> MultiCell(160, 4, $text, $border, 'FJ');
+
+    $border = 1;
+
+    $pdf -> Cell(24, '4', 'Universitatea', $border, 0, 'L');
+    $pdf -> Cell(48, '4', $data['universitateALTS'], $border, 0, 'L');
+    $pdf -> Cell(20, '4', 'Facultatea', $border, 0, 'L');
+    $pdf -> Cell(58, '4', $data['facultateALTS'], $border, 1, 'L');
+
+    $pdf -> Cell(24, '4', 'Localitatea', $border, 0, 'L');
+    $pdf -> Cell(48, '4', $data['localitateALTS'], $border, 0, 'L');
+    $pdf -> Cell(20, '4', 'Tara', $border, 0, 'L');
+    $pdf -> Cell(58, '4', $data['taraALTS'], $border, 1, 'L');
+
+    $pdf -> Cell(24, '4', 'Domeniul', $border, 0, 'L');
+    $pdf -> Cell(48, '4', $data['domeniulALTS'], $border, 0, 'L');
+    $pdf -> Cell(55, '4', 'Numarul de ani finantati de la buget  ', $border, 0, 'L');
+    $pdf -> Cell(23, '4', $data['aniALTS'], $border, 1, 'L');
+
+    $pdf -> Cell(24, '4', 'Student anul', $border, 0, 'L');
+    $pdf -> Cell(8, '4', $data['anulALTS'], $border, 0, 'L');
+    $pdf -> Cell(60, '4', 'Absolvent fara diploma de licenta in anul', $border, 0, 'L');
+    $pdf -> Cell(15, '4', $data['absolventALTS'], $border, 0, 'L');
+    $pdf -> Cell(26, '4', 'Licentiat in anul', $border, 0, 'L');
+    $pdf -> Cell(17, '4', $data['licentiatALTS'], $border, 1, 'L');
+
+    $pdf -> Cell(55, 4, 'Diploma de licenta in specializarea', $border, 0, 'L');
+    $pdf -> Cell(45, 4, $data['specializareALTS'], $border, 0, 'L');
+    $pdf -> Cell(12, 4, 'Seria', $border, 0, 'L');
+    $pdf -> Cell(13, 4, $data['serieALTS'], $border, 0, 'L');
+    $pdf -> Cell(8, 4, 'Nr.', $border, 0, 'L');
+    $pdf -> Cell(17, 4, $data['numarALTS'], $border, 1, 'L');
+
+    $pdf -> Cell(24, '4', 'Emisa de', $border, 0, 'L');
+    $pdf -> Cell(48, '4', $data['emitentALTS'], $border, 0, 'L');
+    $pdf -> Cell(20, '4', 'La data de', $border, 0, 'L');
+    $pdf -> Cell(58, '4', $data['dataemiteriiALTS'], $border, 1, 'L');
+
+    $pdf -> Cell(44, '4', 'Media generala de absolvire', $border, 0, 'L');
+    $pdf -> Cell(28, '4', $data['absolvireALTS'], $border, 0, 'L');
+    $pdf -> Cell(44, '4', 'Media la examenul de licenta', $border, 0, 'L');
+    $pdf -> Cell(34, '4', $data['licentaALTS'], $border, 1, 'L');
+
+
+    $border = 0;
+    $pdf -> SetFont('Times', 'B', 10);
+
+
+    $pdf -> Cell(160, 8, '', $border, 1, 'L');
+    $pdf -> Cell(160, 7, 'INFORMATII DESPRE LICEUL ABSOLVIT ', $border, 1, 'L');
+
+
+    $pdf -> SetFont('Times', '', 10);
+    $text = "            Se completeaza de catre toti candidatii";
+    $pdf -> MultiCell(160, 4, $text, $border, '');
+
+    $border = 1;
+
+    $pdf -> Cell(15, '4', 'Liceul', $border, 0, 'L');
+    $pdf -> Cell(135, '4', $data['denumireLiceu'], $border, 1, 'L');
+    $pdf -> Cell(15, '4', 'Tara', $border, 0, 'L');
+    $pdf -> Cell(43, '4', $data['taraLiceu'], $border, 0, 'L');//TODO Tara Liceu
+    $pdf -> Cell(20, '4', 'Localitatea', $border, 0, 'L');
+    $pdf -> Cell(72, '4', $data['localitateLiceu'], $border, 1, 'L');
+    $pdf -> Cell(58, '4', 'Am sustinut bacalaureatul in sesiunea', $border, 0, 'L');
+    $pdf -> Cell(11, '4', $data['sesiuneBac'], $border, 0, 'L');
+    $pdf -> Cell(9, '4', 'Anul', $border, 0, 'L');
+    $pdf -> Cell(18, '4', $data['anBac'], $border, 0, 'L');
+    $pdf -> Cell(35, '4', 'Media generala BAC', $border, 0, 'L');
+    $pdf -> Cell(19, '4', $data['medieBac'], $border, 1, 'L');
+
+    $pdf -> Cell(131, 4, 'Nota la BAC la disciplina Matematica (sau echivalent, cf. aprobarii Comisiei de admitere)', $border, 0, 'L');
+    $pdf -> Cell(19, 4, $data['notaMateBac'], $border, 1);
+
+    $pdf -> Cell(37, '4', 'Diploma de bacalaureat', $border, 0, 'L');
+    $pdf -> Cell(12, '4', 'Seria', $border, 0, 'L');
+    $pdf -> Cell(11, '4', $data['serieBac'], $border, 0, 'L');
+    $pdf -> Cell(9, '4', 'Nr.', $border, 0, 'L');
+    $pdf -> Cell(27, '4', $data['numarBac'], $border, 0, 'L');
+    $pdf -> Cell(27, '4', 'Emisa la data de', $border, 0, 'L');
+    $pdf -> Cell(27, 4, '', $border, 1);
+}
+
+if($data['cti'] == 'cti') {
+
+    $pdf->AddPage();
+    $border = 0;
+//TITLU
+
+    $pdf -> Cell(160, 3, '', $border, 1, 'C');
+    $pdf -> Cell(160, 4, 'FISA DE INSCRIERE', $border, 1, 'C');
+    $pdf -> Cell(160, 4, 'STUDII UNIVERSITARE DE LICENTA', $border, 1, 'C');
+
+//SUBTITLU
+    $pdf -> SetFont('Times', '', 10);
+    $pdf -> Cell(160, 5, 'la concursul de admitere pentru anul universitar        2017-2018      , sesiunea     iulie 2018          ', $border, 1, 'C');
+
+//ORGANIZATORICE
+    $pdf -> SetFont('Times', 'B', 10);
+    $pdf -> Cell(160, 5, 'ATENTIE:', $border, 1, 'L');
+
+    $pdf -> SetFont('Times', '', 10);
+    $organizatorice = '            Admiterea se organizeaza pe domenii de licenta, pe locuri finantate de la buget sau pe locuri cu taxa (inclusiv la a 2-a facultate), la formele de invatamant IF (invatamânt cu frecventa) sau ID (invatamânt la distanta). Candidatii vor fi declarati admisi in ordinea descrescatoare a mediei de admitere, la domeniul de licenta, forma de finantare, forma de invatamânt si tipul de facultate la care au candidat.';
+//$organizatorice = iconv('utf-8','ASCII/translit',$organizatorice);
+    $pdf -> MultiCell(160, 4, $organizatorice, $border, 'FJ');
+
+//DOMENIUL DE LICENTA
+
+    $pdf -> SetFont('Times', 'B', 10);
+    $pdf -> Cell(160, 7, 'DOMENIUL DE LICENTA SI SPECIALIZAREA', $border, 1, 'L');
+    $pdf -> SetFont('Times', '', 10);
+    $domeniuDeLicenta = '            Se bifeaza un singur domeniu si, in cadrul acestuia, o singura specializare. Alegerea specializarii in cadrul domeniului Matematica este orientativa; optiunea finala pentru specializare la domeniul Matematica se va face la sfarsitul anului I, repartizarea pe specializari la acest domeniu facându-se in ordinea descrescatoare a rezultatelor la invatatura (punctajele de clasificare), obtinute dupa anul I.';
+    $pdf -> MultiCell(160, 4, $domeniuDeLicenta, $border, 'FJ');
+
+    $border = 1;
+
+    $pdf -> SetFont('Times', 'B', 10);
+    $pdf -> Cell(75, 4, 'Domeniul', 'LTR', 0, 'C');
+    $pdf -> Cell(75, 4, 'Specializarea', 'LTR', 1, 'C');
+    $pdf -> SetFont('Times', '', 10);
+
+    $pdf -> Cell(65, 4, 'Matematica', 'LTR', 0, 'L');
+    $pdf -> Cell(10, 4, '', 'LTR', 0, 'L');
+    $pdf -> Cell(65, 4, 'Matematica', 1, 0, 'L');
+    $pdf -> Cell(10, 4, '', 1, 1, 'L');
+
+    $pdf -> Cell(65, 4, '', 'LR', 0, 'L');
+    $pdf -> Cell(10, 4, '', 'LR', 0, 'L');
+    $pdf -> Cell(65, 4, 'Matematica Aplicata', 1, 0, 'L');
+    $pdf -> Cell(10, 4, '', 1, 1, 'L');
+
+    $pdf -> Cell(65, 4, '', 'LRB', 0, 'L');
+    $pdf -> Cell(10, 4, '', 'LRB', 0, 'L');
+    $pdf -> Cell(65, 4, 'Matematica-Informatica', 1, 0, 'L');
+    $pdf -> Cell(10, 4, '', 1, 1, 'L');
+
+
+    $pdf -> Cell(65, 4, 'Informatica', 1, 0, 'L');
+    $pdf -> Cell(10, 4, '', 1, 0, 'L');
+    $pdf -> Cell(65, 4, 'Informatica', 1, 0, 'L');
+    $pdf -> Cell(10, 4, '', 1, 1, 'L');
+
+    if( $data['cti'] == 'cti'){
+        $cti = 'x';
+    }
+    else{
+        $cti = '';
+    }
+
+    $pdf -> Cell(65, 4, 'Calculatoare si tehnologia informatiei', 1, 0, 'L');
+    $pdf -> Cell(10, 4, $cti, 1, 0, 'L');
+    $pdf -> Cell(65, 4, 'Calculatoare si tehnologia informatiei', 1, 0, 'L');
+    $pdf -> Cell(10, 4, $cti, 1, 1, 'L');
+
+//FORMA DE INVATAMANT SI FINANTARE
+
+    $border = 0;
+
+    $pdf -> SetFont('Times', 'B', 10);
+    $pdf -> Cell(160, 7, 'FORMA DE INVATAMANT SI FINANTARE', $border, 1, 'L');
+    $pdf -> SetFont('Times', '', 10);
+    $domeniuDeLicenta = '            Se bifeaza o singura forma de invatamânt si, in cadrul acesteia, o singura forma de finantare. Candidatii care se inscriu pe locuri finantate de la buget pot opta pentru un loc cu taxa in perioada de confirmare a locurilor cu taxa, cf. calendarului admiterii.';
+    $pdf -> MultiCell(160, 5, $domeniuDeLicenta, $border, 'FJ');
+
+    $border = 1;
+
+    $pdf -> SetFont('Times', 'B', 10);
+    $pdf -> Cell(75, 4, 'Forma de invatamant', 'LTR', 0, 'C');
+    $pdf -> Cell(75, 4, 'Forma de fiantare', 'LTR', 1, 'C');
+    $pdf -> SetFont('Times', '', 10);
+
+    $pdf -> Cell(65, 4, 'IF (invatamant cu frecventa)', 'LTR', 0, 'L');
+    $pdf -> Cell(10, 4, '', 'LTR', 0, 'L');
+    $pdf -> Cell(65, 4, 'Buget', 1, 0, 'L');
+    $pdf -> Cell(10, 4, '', 1, 1, 'L');
+
+    $pdf -> Cell(65, 4, '', 'LR', 0, 'L');
+    $pdf -> Cell(10, 4, '', 'LR', 0, 'L');
+    $pdf -> Cell(65, 4, 'Taxa', 1, 0, 'L');
+    $pdf -> Cell(10, 4, '', 1, 1, 'L');
+
+    $pdf -> Cell(65, 4, '', 'LRB', 0, 'L');
+    $pdf -> Cell(10, 4, '', 'LRB', 0, 'L');
+    $pdf -> Cell(65, 4, 'Taxa, a 2-a facultate', 1, 0, 'L');
+    $pdf -> Cell(10, 4, '', 1, 1, 'L');
+
+
+    $pdf -> Cell(65, 4, 'ID (invatamant la distanta)', 'LTR', 0, 'L');
+    $pdf -> Cell(10, 4, '', 'LTR', 0, 'L');
+    $pdf -> Cell(65, 4, 'Taxa', 1, 0, 'L');
+    $pdf -> Cell(10, 4, '', 1, 1, 'L');
+
+    $pdf -> Cell(65, 4, '', 'LRB', 0, 'L');
+    $pdf -> Cell(10, 4, '', 'LBR', 0, 'L');
+    $pdf -> Cell(65, 4, 'Taxa, a 2-a facultate', 1, 0, 'L');
+    $pdf -> Cell(10, 4, '', 1, 1, 'L');
+
+//DATE PERSONALE
+
+    $border = 0;
+
+    $pdf -> SetFont('Times', 'B', 10);
+    $pdf -> Cell(160, 7, 'DATE PERSONALE', $border, 1, 'L');
+    $pdf -> SetFont('Times', '', 10);
+
+    $border = 1;
+
+    $x = $pdf -> GetX();
+    $y = $pdf -> GetY();
+
+    $pdf -> Cell(27, 4, ' Nume de familie ', 'LTR', 0);
+    $pdf -> Cell(48, 4, $data['birthName'], 'LTR', 0);
+    $pdf -> Cell(27, 4, ' Nume de familie ', 'LTR', 0);
+    $pdf -> Cell(48, 4, $data['name'], 'LTR', 1);
+
+    $pdf -> Cell(27, 4, ' la nastere ', 'LBR', 0);
+    $pdf -> Cell(48, 4, '', 'LBR', 0);
+    $pdf -> Cell(27, 4, ' actual ', 'LBR', 0);
+    $pdf -> Cell(48, 4, '', 'LBR', 1);
+
+
+    $pdf -> Cell($pdf -> GetStringWidth('Initiala tatalui/mamei') + 3, 4, 'Initiala tatalui/mamei', $border, 0);
+    $pdf -> Cell(12, 4, substr($data['nameFather'], 0, 1), $border, 0);
+    $pdf -> Cell($pdf -> GetStringWidth('Prenume') + 3, 4, 'Prenume', $border, 0);
+    $pdf -> Cell(89, 4, $data['surname'], $border, 1);
+
+    $pdf -> Cell($pdf -> GetStringWidth('Initiala tatalui/mamei') + 3, 4, 'Fiul/fiica lui', $border, 0);
+    $pdf -> Cell(42, 4, $data['nameFather'], $border, 0);
+    $pdf -> Cell($pdf -> GetStringWidth('si al/a') + 3, 4, 'si al/a', $border, 0);
+    $pdf -> Cell(63.2, 4, $data['nameMother'], $border, 1);
+
+    $pdf -> Cell($pdf -> GetStringWidth('Actul de identitate') + 10, 4, 'Actul de identitate', $border, 0);
+//$pdf->Cell(19,4,$data['IDtype'],$border,0);
+    $pdf -> Cell(19, 4, $data['IDtype'], $border, 0);
+    $pdf -> Cell($pdf -> GetStringWidth('seria') + 13.5, 4, 'seria', $border, 0);
+    $pdf -> Cell($pdf -> GetStringWidth('si al/a') + 3, 4, $data['serialID'], $border, 0);
+    $pdf -> Cell(19, 4, 'nr.', $border, 0);
+    $pdf -> Cell(44.3, 4, $data['numberID'], $border, 1);
+
+    $pdf -> Cell($pdf -> GetStringWidth('Eliberat de ') + 2, 4, 'Eliberat de', $border, 0);
+    $pdf -> Cell(44, 4, $data['eliberatedBy'], $border, 0);
+    $pdf -> Cell($pdf -> GetStringWidth('la data') + 3.7, 4, '  la data', $border, 0);
+    $pdf -> Cell($pdf -> GetStringWidth('si al/a') + 22, 4, $data['dateEliberated'], $border, 0);
+    $pdf -> Cell($pdf -> GetStringWidth('valabil pana la ') + 4, 4, ' valabil pana la', $border, 0);
+    $pdf -> Cell(18.8, 4, $data['valabilityDate'], $border, 1);
+
+    $pdf -> Cell(39, 4, 'CNP (cod numeric pers.)', $border, 0);
+    $pdf -> Cell(4, 4, substr($data['CNP'], 0, 1), $border, 0);
+    $pdf -> Cell(4, 4, substr($data['CNP'], 1, 1), $border, 0);
+    $pdf -> Cell(4, 4, substr($data['CNP'], 2, 1), $border, 0);
+    $pdf -> Cell(4, 4, substr($data['CNP'], 3, 1), $border, 0);
+    $pdf -> Cell(4, 4, substr($data['CNP'], 4, 1), $border, 0);
+    $pdf -> Cell(4, 4, substr($data['CNP'], 5, 1), $border, 0);
+    $pdf -> Cell(4, 4, substr($data['CNP'], 6, 1), $border, 0);
+    $pdf -> Cell(4, 4, substr($data['CNP'], 7, 1), $border, 0);
+    $pdf -> Cell(4, 4, substr($data['CNP'], 8, 1), $border, 0);
+    $pdf -> Cell(4, 4, substr($data['CNP'], 9, 1), $border, 0);
+    $pdf -> Cell(4, 4, substr($data['CNP'], 10, 1), $border, 0);
+    $pdf -> Cell(4, 4, substr($data['CNP'], 11, 1), $border, 0);
+    $pdf -> Cell(4, 4, substr($data['CNP'], 12, 1), $border, 0);
+
+    $pdf -> Cell($pdf -> GetStringWidth(" Data nasterii") + 3, 4, " Data nasterii", $border, 0);
+
+    $pdf -> Cell(4, 4, '', $border, 0);
+    $pdf -> Cell(4, 4, '', $border, 0);
+    $pdf -> Cell(4, 4, '', $border, 0);
+    $pdf -> Cell(4, 4, '', $border, 0);
+    $pdf -> Cell(4, 4, '', $border, 0);
+    $pdf -> Cell(4, 4, '', $border, 0);
+    $pdf -> Cell(4, 4, '', $border, 0);
+    $pdf -> Cell(4, 4, '', $border, 1);
+
+    $pdf -> Cell(23, 4, 'Locul nasterii', $border, 0);
+    $pdf -> Cell(12, 4, 'Tara', $border, 0);
+    $pdf -> Cell(28, 4, $data['country'], $border, 0);
+    $pdf -> Cell(19, 4, 'Localitatea', $border, 0);
+    $pdf -> Cell(24, 4, $data['city'], $border, 0);
+    $pdf -> Cell(20, 4, 'Judet/Sector', $border, 0);
+    $pdf -> Cell(24, 4, $data['county'], $border, 1);
+
+    $pdf -> Cell(23, 4, 'Cetatenia', $border, 0);
+    $pdf -> Cell(40, 4, $data['citizenship'], $border, 0);
+    $pdf -> Cell(19, 4, 'Etnia', $border, 0);
+    $pdf -> Cell(24, 4, $data['ethnicity'], $border, 0);
+    $pdf -> Cell(20, 4, 'Starea civila', $border, 0);
+    $pdf -> Cell(24, 4, $data['maritalStatus'], $border, 1);
+
+//DOMICILIUL STABIL
+
+    $border = 0;
+
+    $pdf -> SetFont('Times', 'B', 10);
+    $pdf -> Cell(160, 7, 'Domiciliul stabil (conform BI/CI)', $border, 1, 'L');
+    $pdf -> SetFont('Times', '', 10);
+
+    $border = 1;
+
+    $pdf -> Cell(10, 4, ' Tara', $border, 0);
+    $pdf -> Cell(30, 4, $data['taraDomiciliu'], $border, 0);
+    $pdf -> Cell(20, 4, ' Localitate', $border, 0);
+    $pdf -> Cell(33, 4, $data['localitateDomiciliu'], $border, 0);
+    $pdf -> Cell(13, 4, ' Strada', $border, 0);
+    $pdf -> Cell(44, 4, $data['stradaDomiciliu'], $border, 1);
+
+    $pdf -> Cell(8, 4, 'Nr.', $border, 0);
+    $pdf -> Cell(10, 4, $data['numarDomiciliu'], $border, 0);
+    $pdf -> Cell(8, 4, 'Bl.', $border, 0);
+    $pdf -> Cell(9, 4, $data['blocDomiciliu'], $border, 0);
+    $pdf -> Cell(8, 4, 'Sc.', $border, 0);
+    $pdf -> Cell(9, 4, $data['scaraDomiciliu'], $border, 0);
+    $pdf -> Cell(8, 4, 'Et.', $border, 0);
+    $pdf -> Cell(8, 4, $data['etajDomiciliu'], $border, 0);
+    $pdf -> Cell(9, 4, 'Ap.', $border, 0);
+    $pdf -> Cell(9, 4, $data['apartamentDomiciliu'], $border, 0);
+    $pdf -> Cell(20, 4, 'Judet/Sector', $border, 0);
+    $pdf -> Cell(20, 4, '', $border, 0);
+    $pdf -> Cell(10, 4, 'Cod', $border, 0);
+    $pdf -> Cell(14, 4, $data['codPostalDomiciliu'], $border, 1);
+
+    $pdf -> Cell(26, 4, 'Telefon fix', $border, 0);
+    $pdf -> Cell(37, 4, $data['fixDomiciliu'], $border, 0);
+    $pdf -> Cell(43, 4, 'Telefon mobil', $border, 0);
+    $pdf -> Cell(44, 4, $data['mobilDomiciliu'], $border, 1);
+
+    $border = 0;
+
+    $pdf -> SetFont('Times', 'B', 10);
+    $pdf -> Cell($pdf -> GetStringWidth('Date de contact alternative '), 7, 'Date de contact alternative ', $border, 0, 'L');
+    $pdf -> SetFont('Times', '', 10);
+    $pdf -> Cell(40, 7, '(ale unuia dintre parinti, tutore, etc.)', $border, 1, 'L');
+
+    $border = 1;
+
+    $pdf -> Cell(26, 4, 'Telefon fix', $border, 0);
+    $pdf -> Cell(37, 4, $data['fixParinte'], $border, 0);
+    $pdf -> Cell(43, 4, 'Telefon mobil', $border, 0);
+    $pdf -> Cell(44, 4, $data['mobilParinte'], $border, 1);
+
+    $pdf -> Cell(26, 4, 'Email', $border, 0);
+    $pdf -> Cell(124, 4, $data['emailParinte'], $border, 1);
+
+//PAGINA 2
+    $pdf -> AliasNbPages();
+    $pdf -> AddPage();
+    $pdf -> SetFont('Times', 'B', 10);
+
+//STATUT SPECIAL LA ADMITERE
+
+    $border = 0;
+
+    $pdf -> Cell(160, 3, '', $border, 1, 'L');
+    $pdf -> Cell(160, 8, 'STATUT SPECIAL LA ADMITERE ', $border, 1, 'L');
+
+    $pdf -> SetFont('Times', '', 10);
+    $text = "            Se completeaza doar de catre candidatii care dau admitere pe un loc cu statut special, cf. categoriilor enumerate mai jos si se aproba de Comisia de admitere.";
+    $pdf -> MultiCell(160, 5, $text, $border, 'FJ');
+
+    $border = 1;
+    $pdf -> SetFont('Times', 'B', 10);
+
+    $pdf -> Cell(72, '4', 'Categoria', $border, 0, 'C');
+    $pdf -> Cell(20, '4', 'Aprobare', $border, 0, 'C');
+    $pdf -> Cell(32, '4', 'Observatii', $border, 0, 'C');
+    $pdf -> Cell(26, '4', 'Semnatura', $border, 1, 'C');
+
+    $pdf -> SetFont('Times', '', 10);
+
+    $pdf -> Cell(72, 4.5, '(se bifeaza de catre candiat)', $border, 0, 'C');
+    $pdf -> Cell(78, 4.5, '(se completeaza de catre Comisia de admitere)', $border, 1, 'C');
+
+    $pdf -> Cell(63, 4.5, 'Locuri pentru rromi', 'LTR', 0, 'L');
+    $pdf -> Cell(9, 4.5, $data['rromi'], 'LTR', 0);
+    $pdf -> Cell(11, 4.5, 'DA', $border, 0, 'L');
+    $pdf -> Cell(9, 4.5, '', $border, 0);
+    $pdf -> Cell(32, 4.5, '', 'LTR', 0, 'L');
+    $pdf -> Cell(26, 4.5, '', 'LTR', 1, 'L');
+
+    $pdf -> Cell(63, 4.5, '', 'LBR', 0, 'L');
+    $pdf -> Cell(9, 4.5, '', 'LBR', 0);
+    $pdf -> Cell(11, 4.5, 'NU', $border, 0, 'L');
+    $pdf -> Cell(9, 4.5, '', $border, 0);
+    $pdf -> Cell(32, 4.5, '', 'LBR', 0, 'L');
+    $pdf -> Cell(26, 4.5, '', 'LBR', 1, 'L');
+
+    $pdf -> Cell(63, 4.5, 'Locuri pentru romanii de pretutindeni', 'LTR', 0, 'L');
+    $pdf -> Cell(9, 4.5, $data['pretutindeni'], 'LTR', 0);
+    $pdf -> Cell(11, 4.5, 'DA', $border, 0, 'L');
+    $pdf -> Cell(9, 4.5, '', $border, 0);
+    $pdf -> Cell(32, 4.5, '', 'LTR', 0, 'L');
+    $pdf -> Cell(26, 4.5, '', 'LTR', 1, 'L');
+
+    $pdf -> Cell(63, 4.5, '', 'LBR', 0, 'L');
+    $pdf -> Cell(9, 4.5, '', 'LBR', 0);
+    $pdf -> Cell(11, 4.5, 'NU', $border, 0, 'L');
+    $pdf -> Cell(9, 4.5, '', $border, 0);
+    $pdf -> Cell(32, 4.5, '', 'LBR', 0, 'L');
+    $pdf -> Cell(26, 4.5, '', 'LBR', 1, 'L');
+
+    $pdf -> Cell(63, 4.5, 'Locuri pentru olimpici, admitere fara', 'LTR', 0, 'L');
+    $pdf -> Cell(9, 4.5, $data['olimpicAdmitere'], 'LTR', 0);
+    $pdf -> Cell(11, 4.5, 'DA', $border, 0, 'L');
+    $pdf -> Cell(9, 4.5, '', $border, 0);
+    $pdf -> Cell(32, 4.5, '', 'LTR', 0, 'L');
+    $pdf -> Cell(26, 4.5, '', 'LTR', 1, 'L');
+
+    $pdf -> Cell(63, 4.5, 'examen', 'LBR', 0, 'L');
+    $pdf -> Cell(9, 4.5, '', 'LBR', 0);
+    $pdf -> Cell(11, 4.5, 'NU', $border, 0, 'L');
+    $pdf -> Cell(9, 4.5, '', $border, 0);
+    $pdf -> Cell(32, 4.5, '', 'LBR', 0, 'L');
+    $pdf -> Cell(26, 4.5, '', 'LBR', 1, 'L');
+
+
+//STATUT SPECIAL PENTRU SCUTIREA DE PLATA TAXEI DE ADMITERE
+
+    $border = 0;
+    $pdf -> SetFont('Times', 'B', 10);
+
+
+    $pdf -> Cell(160, 2, '', $border, 1, 'L');
+    $pdf -> Cell(160, 7, 'STATUT SPECIAL PENTRU SCUTIREA DE PLATA TAXEI DE ADMITERE ', $border, 1, 'L');
+
+    $pdf -> SetFont('Times', '', 10);
+    $text = "            Se completeaza doar de catre candidatii care solicita scutirea de plata a taxei de admitere pentru un singur domeniu de licenta in cadrul Universitatii din Bucuresti si se aporba de Comisia de admitere.";
+    $pdf -> MultiCell(160, 5, $text, $border, 'FJ');
+
+    $border = 1;
+    $pdf -> SetFont('Times', 'B', 10);
+
+    $pdf -> Cell(72, '4', 'Categoria', $border, 0, 'C');
+    $pdf -> Cell(20, '4', 'Aprobare', $border, 0, 'C');
+    $pdf -> Cell(32, '4', 'Observatii', $border, 0, 'C');
+    $pdf -> Cell(26, '4', 'Semnatura', $border, 1, 'C');
+
+    $pdf -> SetFont('Times', '', 10);
+
+    $pdf -> Cell(72, 4.5, '(se bifeaza de catre candiat)', $border, 0, 'C');
+    $pdf -> Cell(78, 4.5, '(se completeaza de catre Comisia de admitere)', $border, 1, 'C');
+
+    $pdf -> Cell(63, 4.5, 'Orfan de ambii parinti sau provenit din', 'LTR', 0, 'L');
+    $pdf -> Cell(9, 4.5, $data['orfan'], 'LTR', 0);
+    $pdf -> Cell(11, 4.5, 'DA', $border, 0, 'L');
+    $pdf -> Cell(9, 4.5, '', $border, 0);
+    $pdf -> Cell(32, 4.5, '', 'LTR', 0, 'L');
+    $pdf -> Cell(26, 4.5, '', 'LTR', 1, 'L');
+
+    $pdf -> Cell(63, 4.5, 'casa de copii sau plasament familial', 'LBR', 0, 'L');
+    $pdf -> Cell(9, 4.5, '', 'LBR', 0);
+    $pdf -> Cell(11, 4.5, 'NU', $border, 0, 'L');
+    $pdf -> Cell(9, 4.5, '', $border, 0);
+    $pdf -> Cell(32, 4.5, '', 'LBR', 0, 'L');
+    $pdf -> Cell(26, 4.5, '', 'LBR', 1, 'L');
+
+    $pdf -> Cell(63, 4.5, 'Parinte cadru didactic sau angajat la', 'LTR', 0, 'L');
+    $pdf -> Cell(9, 4.5, $data['parinteProfesor'], 'LTR', 0);
+    $pdf -> Cell(11, 4.5, 'DA', $border, 0, 'L');
+    $pdf -> Cell(9, 4.5, '', $border, 0);
+    $pdf -> Cell(32, 4.5, '', 'LTR', 0, 'L');
+    $pdf -> Cell(26, 4.5, '', 'LTR', 1, 'L');
+
+    $pdf -> Cell(63, 4.5, 'Universitatea din Bucuresti', 'LBR', 0, 'L');
+    $pdf -> Cell(9, 4.5, '', 'LBR', 0);
+    $pdf -> Cell(11, 4.5, 'NU', $border, 0, 'L');
+    $pdf -> Cell(9, 4.5, '', $border, 0);
+    $pdf -> Cell(32, 4.5, '', 'LBR', 0, 'L');
+    $pdf -> Cell(26, 4.5, '', 'LBR', 1, 'L');
+
+    $pdf -> Cell(63, 4.5, 'Olimpic, admis fara examen', 'LTR', 0, 'L');
+    $pdf -> Cell(9, 4.5, $data['olimpicExamen'], 'LTR', 0);
+    $pdf -> Cell(11, 4.5, 'DA', $border, 0, 'L');
+    $pdf -> Cell(9, 4.5, '', $border, 0);
+    $pdf -> Cell(32, 4.5, '', 'LTR', 0, 'L');
+    $pdf -> Cell(26, 4.5, '', 'LTR', 1, 'L');
+
+    $pdf -> Cell(63, 4.5, 'examen', 'LBR', 0, 'L');
+    $pdf -> Cell(9, 4.5, '', 'LBR', 0);
+    $pdf -> Cell(11, 4.5, 'NU', $border, 0, 'L');
+    $pdf -> Cell(9, 4.5, '', $border, 0);
+    $pdf -> Cell(32, 4.5, '', 'LBR', 0, 'L');
+    $pdf -> Cell(26, 4.5, '', 'LBR', 0, 'L');
+
+    $border = 0;
+    $pdf -> SetFont('Times', 'B', 10);
+
+
+    $pdf -> Cell(160, 8, '', $border, 1, 'L');
+    $pdf -> Cell(160, 7, 'INFORMATII DESPRE ALTE STUDEII UNIVERSTIARE ', $border, 1, 'L');
+
+
+    $pdf -> SetFont('Times', '', 10);
+    $text = "            Se completeaza obligatoriu de catre candidatii care sunt studenti sau care au absolvit o facultate, in situtatia in care vor sa candideze pe un loc finantat de la buget sau pe un loc la a 2-a facultate.";
+    $pdf -> MultiCell(160, 4, $text, $border, 'FJ');
+
+    $border = 1;
+
+    $pdf -> Cell(24, '4', 'Universitatea', $border, 0, 'L');
+    $pdf -> Cell(48, '4', $data['universitateALTS'], $border, 0, 'L');
+    $pdf -> Cell(20, '4', 'Facultatea', $border, 0, 'L');
+    $pdf -> Cell(58, '4', $data['facultateALTS'], $border, 1, 'L');
+
+    $pdf -> Cell(24, '4', 'Localitatea', $border, 0, 'L');
+    $pdf -> Cell(48, '4', $data['localitateALTS'], $border, 0, 'L');
+    $pdf -> Cell(20, '4', 'Tara', $border, 0, 'L');
+    $pdf -> Cell(58, '4', $data['taraALTS'], $border, 1, 'L');
+
+    $pdf -> Cell(24, '4', 'Domeniul', $border, 0, 'L');
+    $pdf -> Cell(48, '4', $data['domeniulALTS'], $border, 0, 'L');
+    $pdf -> Cell(55, '4', 'Numarul de ani finantati de la buget  ', $border, 0, 'L');
+    $pdf -> Cell(23, '4', $data['aniALTS'], $border, 1, 'L');
+
+    $pdf -> Cell(24, '4', 'Student anul', $border, 0, 'L');
+    $pdf -> Cell(8, '4', $data['anulALTS'], $border, 0, 'L');
+    $pdf -> Cell(60, '4', 'Absolvent fara diploma de licenta in anul', $border, 0, 'L');
+    $pdf -> Cell(15, '4', $data['absolventALTS'], $border, 0, 'L');
+    $pdf -> Cell(26, '4', 'Licentiat in anul', $border, 0, 'L');
+    $pdf -> Cell(17, '4', $data['licentiatALTS'], $border, 1, 'L');
+
+    $pdf -> Cell(55, 4, 'Diploma de licenta in specializarea', $border, 0, 'L');
+    $pdf -> Cell(45, 4, $data['specializareALTS'], $border, 0, 'L');
+    $pdf -> Cell(12, 4, 'Seria', $border, 0, 'L');
+    $pdf -> Cell(13, 4, $data['serieALTS'], $border, 0, 'L');
+    $pdf -> Cell(8, 4, 'Nr.', $border, 0, 'L');
+    $pdf -> Cell(17, 4, $data['numarALTS'], $border, 1, 'L');
+
+    $pdf -> Cell(24, '4', 'Emisa de', $border, 0, 'L');
+    $pdf -> Cell(48, '4', $data['emitentALTS'], $border, 0, 'L');
+    $pdf -> Cell(20, '4', 'La data de', $border, 0, 'L');
+    $pdf -> Cell(58, '4', $data['dataemiteriiALTS'], $border, 1, 'L');
+
+    $pdf -> Cell(44, '4', 'Media generala de absolvire', $border, 0, 'L');
+    $pdf -> Cell(28, '4', $data['absolvireALTS'], $border, 0, 'L');
+    $pdf -> Cell(44, '4', 'Media la examenul de licenta', $border, 0, 'L');
+    $pdf -> Cell(34, '4', $data['licentaALTS'], $border, 1, 'L');
+
+
+    $border = 0;
+    $pdf -> SetFont('Times', 'B', 10);
+
+
+    $pdf -> Cell(160, 8, '', $border, 1, 'L');
+    $pdf -> Cell(160, 7, 'INFORMATII DESPRE LICEUL ABSOLVIT ', $border, 1, 'L');
+
+
+    $pdf -> SetFont('Times', '', 10);
+    $text = "            Se completeaza de catre toti candidatii";
+    $pdf -> MultiCell(160, 4, $text, $border, '');
+
+    $border = 1;
+
+    $pdf -> Cell(15, '4', 'Liceul', $border, 0, 'L');
+    $pdf -> Cell(135, '4', $data['denumireLiceu'], $border, 1, 'L');
+    $pdf -> Cell(15, '4', 'Tara', $border, 0, 'L');
+    $pdf -> Cell(43, '4', $data['taraLiceu'], $border, 0, 'L');
+    $pdf -> Cell(20, '4', 'Localitatea', $border, 0, 'L');
+    $pdf -> Cell(72, '4', $data['localitateLiceu'], $border, 1, 'L');
+    $pdf -> Cell(58, '4', 'Am sustinut bacalaureatul in sesiunea', $border, 0, 'L');
+    $pdf -> Cell(11, '4', $data['sesiuneBac'], $border, 0, 'L');
+    $pdf -> Cell(9, '4', 'Anul', $border, 0, 'L');
+    $pdf -> Cell(18, '4', $data['anBac'], $border, 0, 'L');
+    $pdf -> Cell(35, '4', 'Media generala BAC', $border, 0, 'L');
+    $pdf -> Cell(19, '4', $data['medieBac'], $border, 1, 'L');
+
+    $pdf -> Cell(131, 4, 'Nota la BAC la disciplina Matematica (sau echivalent, cf. aprobarii Comisiei de admitere)', $border, 0, 'L');
+    $pdf -> Cell(19, 4, $data['notaMateBac'], $border, 1);
+
+    $pdf -> Cell(37, '4', 'Diploma de bacalaureat', $border, 0, 'L');
+    $pdf -> Cell(12, '4', 'Seria', $border, 0, 'L');
+    $pdf -> Cell(11, '4', $data['serieBac'], $border, 0, 'L');
+    $pdf -> Cell(9, '4', 'Nr.', $border, 0, 'L');
+    $pdf -> Cell(27, '4', $data['numarBac'], $border, 0, 'L');
+    $pdf -> Cell(27, '4', 'Emisa la data de', $border, 0, 'L');
+    $pdf -> Cell(27, 4, '', $border, 1);
+}
 
 $pdf->Output();
 ?>

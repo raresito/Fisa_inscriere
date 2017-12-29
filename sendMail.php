@@ -37,7 +37,7 @@ $mail->setFrom('raresphpcristea@gmail.com', 'First Last');
 //Set an alternative reply-to address
 $mail->addReplyTo('raresphpcristea@gmail.com', 'First Last');
 //Set who the message is to be sent to
-$mail->addAddress('raresphpcristea@gmail.com', 'John Doe');
+$mail->addAddress($_SESSION['login_user'], 'John Doe');
 //Set the subject line
 $mail->Subject = 'PHPMailer GMail SMTP test';
 //Read an HTML message body from an external file, convert referenced images to embedded,
