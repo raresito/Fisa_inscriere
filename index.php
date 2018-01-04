@@ -28,7 +28,7 @@ function get_client_ip_env() {
     else
         $ipaddress = 'UNKNOWN';
 
-    return $ipaddress;
+    //return $ipaddress;
 }
 
 $clientIP = get_client_ip_env();
@@ -45,21 +45,23 @@ $acum = date("Y.m.d h:i:sa");
 
 if($count >= 1){
     $SQL = "UPDATE vizitatori SET DATE = '$acum' WHERE IP = '$clientIP'";
-
-    if ($conn->query($SQL) === TRUE) {
+    $conn->query($SQL);
+    /*if ($conn->query($SQL) === TRUE) {
         echo "Record updated successfully";
     } else {
         echo "Error updating record: " . $conn->error;
-    }
+    }*/
 }
 else{
     $SQL = "INSERT INTO vizitatori (IP, Date)
             VALUES ('$clientIP', '$acum');";
+    $conn->query($SQL);
+    /*
     if ($conn->query($SQL) === TRUE) {
         echo "Record added successfully";
     } else {
         echo "Error adding record: " . $conn->error;
-    }
+    } */
 }
 //var_dump($_SESSION);
 if($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -84,7 +86,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
     }else {
-        $error = "Your Login Name or Password is invalid";
+        $error = "Numele de utilizator sau parola sunt invalide!";
         echo $error;
     }
 
@@ -119,7 +121,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <div align = "center">
     <div style = "width:300px; border: solid 1px #333333; " align = "left">
-        <div style = "background-color:#333333; color:#FFFFFF; padding:3px;"><b>Login</b></div>
+        <div style = "background-color:#333333; color:#FFFFFF; padding:3px;"><b>Login - Admitere FMI 2018</b></div>
 
         <div style = "margin:30px">
 

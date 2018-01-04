@@ -68,6 +68,8 @@ $count = mysqli_num_rows($result);
 date_default_timezone_set("Europe/Bucharest");
 $acum = date("Y.m.d h:i:sa");
 
+
+
 if($count >= 1){
     $SQL = "UPDATE vizitatori SET DATE = '$acum' WHERE IP = '$clientIP'";
 
@@ -88,7 +90,6 @@ else{
 }
 
 ?>
-
 <html>
     <head>
         <title>
@@ -1228,7 +1229,7 @@ else{
         $cod = explode ("Numarul de candidati inscrisi la examenul de admitere", $html);
         $cod = explode("table", $cod[1]);
         $primulTabel = "<table ".$cod[1];
-        $dom = new DOMDocument;
+        /*$dom = new DOMDocument;
         $dom->loadHTML($primulTabel);
         $images = $dom->getElementsByTagName('tr');
         $numer = 0;
@@ -1236,7 +1237,8 @@ else{
             if(!($image instanceof \DomText))
                 $numer++;
         }
-        echo $numer;s
+        */
+        echo $primulTabel;
         ?>
     </body>
 </html>

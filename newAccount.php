@@ -12,12 +12,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
     $count = mysqli_num_rows($result);
     if($count == 1 ){
-        echo "This username is already taken";
+        echo "Email-ul este deja folosit! <br> În caz că te-ai înregistrat și nu ai primit mail de confirmare, contactează-ne!";
     }
     else {
         if ($_POST["password"] === $_POST["confirm_password"]) {
             if ($_POST['username'] === '') {
-                echo "Email cannot be empty";
+                echo "Introdu o adresă de mail!";
             } else {
                 $_SESSION['login_user'] = $email;
                 $SQL = "INSERT INTO candidat 

@@ -31,9 +31,10 @@ if($_SESSION['login_user'] == 'admin') {
     $mateCount = 1;
     $ctiCount = 1;
     for ($i = 1; $i <= $row_count; $i++) {
-        if($row['informatica'] == 1) {
+        if($row['informatica'] == 'informatica') {
             $objPHPExcel -> getActiveSheet() -> setCellValueByColumnAndRow(0, $infoCount + 1, $i);
             $objPHPExcel -> getActiveSheet() -> setCellValueByColumnAndRow(1, $infoCount + 1, 'I');
+            if($row[""])
             $objPHPExcel -> getActiveSheet() -> setCellValueByColumnAndRow(2, $infoCount + 1, 'XX');
             $objPHPExcel -> getActiveSheet() -> setCellValueByColumnAndRow(3, $infoCount + 1, $row['name']);
             $objPHPExcel -> getActiveSheet() -> setCellValueByColumnAndRow(4, $infoCount + 1, $row['nameFather']);
