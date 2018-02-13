@@ -8,6 +8,8 @@ if(!isset($_SESSION['login_user'])) {
 }
 
 
+
+
 class getData{
 
     private $result = false;
@@ -36,6 +38,10 @@ class getData{
 $personData = new getData();
 $data = $personData->getRow();
 
+if($data["mailValid"] == 0){
+    die("Va rog verificati contul cu codul furnizat pe mail! <a href='validateMail.php'>Click pentru validare</a>" );
+}
+
 function get_client_ip_env() {
     $ipaddress = '';
     if (getenv('HTTP_CLIENT_IP'))
@@ -58,7 +64,7 @@ function get_client_ip_env() {
 
 $clientIP = get_client_ip_env();
 //$clientIP = '78.96.97.246';
-echo get_client_ip_env();
+//echo get_client_ip_env();
 
 $sql = "SELECT IP FROM vizitatori WHERE IP = '$clientIP' ";
 $result = mysqli_query($conn,$sql);
@@ -74,9 +80,9 @@ if($count >= 1){
     $SQL = "UPDATE vizitatori SET DATE = '$acum' WHERE IP = '$clientIP'";
 
     if ($conn->query($SQL) === TRUE) {
-        echo "Record updated successfully";
+        //echo "Record updated successfully";
     } else {
-        echo "Error updating record: " . $conn->error;
+        //echo "Error updating record: " . $conn->error;
     }
 }
 else{
@@ -165,11 +171,11 @@ else{
                     <input type = "radio" name = "IDtype" value = "Passport"> Pasaport
                 </div>
                 <div class = "form-group">
-                    <label> Seria de buletin  </label>
+                    <label> Seria act identitate </label>
                     <input type = "text" class = "form-control" name = "serialID" pattern = "[A-Za-z]{2}" value="<?php echo $data['serialID']; ?>">
                 </div>
                 <div class = "form-group">
-                    <label> Numar de buletin:  </label>
+                    <label> Numar act identitate:  </label>
                     <input type = "text" class = "form-control" name = "numberID" pattern = "[0-9]{6}" value="<?php echo $data['numberID']; ?>">
                 </div>
                 <div class = "form-group">
@@ -178,11 +184,11 @@ else{
                 </div>
                 <div class = "form-group">
                     <label> Data eliberarii:  </label>
-                    <input type = "date" class = "form-control" name = "dateEliberated" pattern = "/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/" value="<?php echo $data['dateEliberated']; ?>">
+                    <input type = "date" class = "form-control" name = "dateEliberated" id = "dateEliberated" pattern = "/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/" value="<?php echo $data['dateEliberated']; ?>">
                 </div>
                 <div class = "form-group">
                     <label> Valabil pana la:  </label>
-                    <input type = "date" class = "form-control" name = "valabilityDate" pattern = "/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/" value="<?php echo $data['valabilityDate']; ?>">
+                    <input type = "date" class = "form-control" name = "valabilityDate" id = "dateEliberated" pattern = "/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/" value="<?php echo $data['valabilityDate']; ?>">
                 </div>
                 <div class = "form-group">
                     <label> CNP  </label>
@@ -378,7 +384,7 @@ else{
                         <option value="PR">Puerto Rico</option>
                         <option value="QA">Qatar</option>
                         <option value="RE">Réunion</option>
-                        <option value="RO" selected = "selected">Romania</option>
+                        <option value="Romania" selected = "selected">Romania</option>
                         <option value="RU">Russian Federation</option>
                         <option value="RW">Rwanda</option>
                         <option value="BL">Saint Barthélemy</option>
@@ -451,10 +457,63 @@ else{
                 <div class = "form-group">
                     <label>Localitate:</label>
                     <input type = "text" class = "form-control" name = "city" value="<?php echo $data['city']; ?>">
-                </div>
+                </div><!--
                 <div class = "form-group">
                     <label> Judet:  </label>
                     <input type = "text" class = "form-control" name = "county" value="<?php echo $data['county']; ?>">
+                </div> -->
+                <div class = "form-group">
+                    <label> Judet/Sector </label>
+                    <select class = "form-control" name="county" value="<?php echo $data['county']; ?>">
+                        <option value="0">Alege Judet</option>
+                        <option value="Sector 1">Sector 1</option>
+                        <option value="Sector 2">Sector 2</option>
+                        <option value="Sector 3">Sector 3</option>
+                        <option value="Sector 4">Sector 4</option>
+                        <option value="Sector 5">Sector 5</option>
+                        <option value="Sector 6">Sector 6</option>
+                        <option value="Alba">Alba</option>
+                        <option value="Arad">Arad</option>
+                        <option value="Arges">Arges</option>
+                        <option value="Bacau">Bacau</option>
+                        <option value="Bihor">Bihor</option>
+                        <option value="Bistrita Nasaud">Bistrita Nasaud</option>
+                        <option value="Botosani">Botosani</option>
+                        <option value="Brasov">Brasov</option>
+                        <option value="Braila">Braila</option>
+                        <option value="Buzau">Buzau</option>
+                        <option value="Caras Severin">Caras Severin</option>
+                        <option value="Calarasi">Calarasi</option>
+                        <option value="Cluj">Cluj</option>
+                        <option value="Constanta">Constanta</option>
+                        <option value="Covasna">Covasna</option>
+                        <option value="Dambovita">Dambovita</option>
+                        <option value="Dolj">Dolj</option>
+                        <option value="Galati">Galati</option>
+                        <option value="Giurgiu">Giurgiu</option>
+                        <option value="Gorj">Gorj</option>
+                        <option value="Harghita">Harghita</option>
+                        <option value="Hunedoara">Hunedoara</option>
+                        <option value="Ialomita">Ialomita</option>
+                        <option value="Iasi">Iasi</option>
+                        <option value="Ilfov">Ilfov</option>
+                        <option value="Maramures">Maramures</option>
+                        <option value="Mehedinti">Mehedinti</option>
+                        <option value="Mures">Mures</option>
+                        <option value="Neamt">Neamt</option>
+                        <option value="Olt">Olt</option>
+                        <option value="Prahova">Prahova</option>
+                        <option value="Satu Mare">Satu Mare</option>
+                        <option value="Salaj">Salaj</option>
+                        <option value="Sibiu">Sibiu</option>
+                        <option value="Suceava">Suceava</option>
+                        <option value="Teleorman">Teleorman</option>
+                        <option value="Timis">Timis</option>
+                        <option value="Tulcea">Tulcea</option>
+                        <option value="Vaslui">Vaslui</option>
+                        <option value="Valcea">Valcea</option>
+                        <option value="Vrancea">Vrancea</option>
+                    </select>
                 </div>
                 <div class = "form-group">
                     <label> Cetatenie  </label>
@@ -465,8 +524,11 @@ else{
                     <input type = "text" class = "form-control" name = "ethnicity" value="<?php echo $data['ethnicity']; ?>">
                 </div>
                 <div class = "form-group">
-                    <label> Starea civila  </label>
-                    <input type = "text" class = "form-control" name = "maritalStatus" value="<?php echo $data['maritalStatus']; ?>">
+                    <label>Starea civila</label>
+                    <select class = "form-control" name = "maritalStatus" value="<?php echo $data['maritalStatus']; ?>">
+                        <option value="casatorit">Casatorit</option>
+                        <option value="necasatorit">Necasatorit</option>
+                    </select>
                 </div>
                 <div class = "form-group">
                     <labeL>Email valid: </labeL>
@@ -477,13 +539,267 @@ else{
 
             <div id = "contact" class="collapse centrat">
                 <label> Domiciliul stabil (din buletin)</label>
-                <div class = "form-group">
+                <!--<div class = "form-group">
                     <label> Tara </label>
                     <input
                             type = "text"
                             class="form-control"
                             name = "taraDomiciliu"
                             value="<?php echo $data['taraDomiciliu']; ?>">
+                </div>-->
+                <div class = "form-group">
+                    <label> Tara:</label>
+                    <select class = "form-control" name = "taraDomiciliu" id = "tara" value="<?php echo $data['taraDomiciliu']; ?>">
+                        <option value="AF">Afghanistan</option>
+                        <option value="AX">Åland Islands</option>
+                        <option value="AL">Albania</option>
+                        <option value="DZ">Algeria</option>
+                        <option value="AS">American Samoa</option>
+                        <option value="AD">Andorra</option>
+                        <option value="AO">Angola</option>
+                        <option value="AI">Anguilla</option>
+                        <option value="AQ">Antarctica</option>
+                        <option value="AG">Antigua and Barbuda</option>
+                        <option value="AR">Argentina</option>
+                        <option value="AM">Armenia</option>
+                        <option value="AW">Aruba</option>
+                        <option value="AU">Australia</option>
+                        <option value="AT">Austria</option>
+                        <option value="AZ">Azerbaijan</option>
+                        <option value="BS">Bahamas</option>
+                        <option value="BH">Bahrain</option>
+                        <option value="BD">Bangladesh</option>
+                        <option value="BB">Barbados</option>
+                        <option value="BY">Belarus</option>
+                        <option value="BE">Belgium</option>
+                        <option value="BZ">Belize</option>
+                        <option value="BJ">Benin</option>
+                        <option value="BM">Bermuda</option>
+                        <option value="BT">Bhutan</option>
+                        <option value="BO">Bolivia, Plurinational State of</option>
+                        <option value="BQ">Bonaire, Sint Eustatius and Saba</option>
+                        <option value="BA">Bosnia and Herzegovina</option>
+                        <option value="BW">Botswana</option>
+                        <option value="BV">Bouvet Island</option>
+                        <option value="BR">Brazil</option>
+                        <option value="IO">British Indian Ocean Territory</option>
+                        <option value="BN">Brunei Darussalam</option>
+                        <option value="BG">Bulgaria</option>
+                        <option value="BF">Burkina Faso</option>
+                        <option value="BI">Burundi</option>
+                        <option value="KH">Cambodia</option>
+                        <option value="CM">Cameroon</option>
+                        <option value="CA">Canada</option>
+                        <option value="CV">Cape Verde</option>
+                        <option value="KY">Cayman Islands</option>
+                        <option value="CF">Central African Republic</option>
+                        <option value="TD">Chad</option>
+                        <option value="CL">Chile</option>
+                        <option value="CN">China</option>
+                        <option value="CX">Christmas Island</option>
+                        <option value="CC">Cocos (Keeling) Islands</option>
+                        <option value="CO">Colombia</option>
+                        <option value="KM">Comoros</option>
+                        <option value="CG">Congo</option>
+                        <option value="CD">Congo, the Democratic Republic of the</option>
+                        <option value="CK">Cook Islands</option>
+                        <option value="CR">Costa Rica</option>
+                        <option value="CI">Côte d'Ivoire</option>
+                        <option value="HR">Croatia</option>
+                        <option value="CU">Cuba</option>
+                        <option value="CW">Curaçao</option>
+                        <option value="CY">Cyprus</option>
+                        <option value="CZ">Czech Republic</option>
+                        <option value="DK">Denmark</option>
+                        <option value="DJ">Djibouti</option>
+                        <option value="DM">Dominica</option>
+                        <option value="DO">Dominican Republic</option>
+                        <option value="EC">Ecuador</option>
+                        <option value="EG">Egypt</option>
+                        <option value="SV">El Salvador</option>
+                        <option value="GQ">Equatorial Guinea</option>
+                        <option value="ER">Eritrea</option>
+                        <option value="EE">Estonia</option>
+                        <option value="ET">Ethiopia</option>
+                        <option value="FK">Falkland Islands (Malvinas)</option>
+                        <option value="FO">Faroe Islands</option>
+                        <option value="FJ">Fiji</option>
+                        <option value="FI">Finland</option>
+                        <option value="FR">France</option>
+                        <option value="GF">French Guiana</option>
+                        <option value="PF">French Polynesia</option>
+                        <option value="TF">French Southern Territories</option>
+                        <option value="GA">Gabon</option>
+                        <option value="GM">Gambia</option>
+                        <option value="GE">Georgia</option>
+                        <option value="DE">Germany</option>
+                        <option value="GH">Ghana</option>
+                        <option value="GI">Gibraltar</option>
+                        <option value="GR">Greece</option>
+                        <option value="GL">Greenland</option>
+                        <option value="GD">Grenada</option>
+                        <option value="GP">Guadeloupe</option>
+                        <option value="GU">Guam</option>
+                        <option value="GT">Guatemala</option>
+                        <option value="GG">Guernsey</option>
+                        <option value="GN">Guinea</option>
+                        <option value="GW">Guinea-Bissau</option>
+                        <option value="GY">Guyana</option>
+                        <option value="HT">Haiti</option>
+                        <option value="HM">Heard Island and McDonald Islands</option>
+                        <option value="VA">Holy See (Vatican City State)</option>
+                        <option value="HN">Honduras</option>
+                        <option value="HK">Hong Kong</option>
+                        <option value="HU">Hungary</option>
+                        <option value="IS">Iceland</option>
+                        <option value="IN">India</option>
+                        <option value="ID">Indonesia</option>
+                        <option value="IR">Iran, Islamic Republic of</option>
+                        <option value="IQ">Iraq</option>
+                        <option value="IE">Ireland</option>
+                        <option value="IM">Isle of Man</option>
+                        <option value="IL">Israel</option>
+                        <option value="IT">Italy</option>
+                        <option value="JM">Jamaica</option>
+                        <option value="JP">Japan</option>
+                        <option value="JE">Jersey</option>
+                        <option value="JO">Jordan</option>
+                        <option value="KZ">Kazakhstan</option>
+                        <option value="KE">Kenya</option>
+                        <option value="KI">Kiribati</option>
+                        <option value="KP">Korea, Democratic People's Republic of</option>
+                        <option value="KR">Korea, Republic of</option>
+                        <option value="KW">Kuwait</option>
+                        <option value="KG">Kyrgyzstan</option>
+                        <option value="LA">Lao People's Democratic Republic</option>
+                        <option value="LV">Latvia</option>
+                        <option value="LB">Lebanon</option>
+                        <option value="LS">Lesotho</option>
+                        <option value="LR">Liberia</option>
+                        <option value="LY">Libya</option>
+                        <option value="LI">Liechtenstein</option>
+                        <option value="LT">Lithuania</option>
+                        <option value="LU">Luxembourg</option>
+                        <option value="MO">Macao</option>
+                        <option value="MK">Macedonia, the former Yugoslav Republic of</option>
+                        <option value="MG">Madagascar</option>
+                        <option value="MW">Malawi</option>
+                        <option value="MY">Malaysia</option>
+                        <option value="MV">Maldives</option>
+                        <option value="ML">Mali</option>
+                        <option value="MT">Malta</option>
+                        <option value="MH">Marshall Islands</option>
+                        <option value="MQ">Martinique</option>
+                        <option value="MR">Mauritania</option>
+                        <option value="MU">Mauritius</option>
+                        <option value="YT">Mayotte</option>
+                        <option value="MX">Mexico</option>
+                        <option value="FM">Micronesia, Federated States of</option>
+                        <option value="MD">Moldova, Republic of</option>
+                        <option value="MC">Monaco</option>
+                        <option value="MN">Mongolia</option>
+                        <option value="ME">Montenegro</option>
+                        <option value="MS">Montserrat</option>
+                        <option value="MA">Morocco</option>
+                        <option value="MZ">Mozambique</option>
+                        <option value="MM">Myanmar</option>
+                        <option value="NA">Namibia</option>
+                        <option value="NR">Nauru</option>
+                        <option value="NP">Nepal</option>
+                        <option value="NL">Netherlands</option>
+                        <option value="NC">New Caledonia</option>
+                        <option value="NZ">New Zealand</option>
+                        <option value="NI">Nicaragua</option>
+                        <option value="NE">Niger</option>
+                        <option value="NG">Nigeria</option>
+                        <option value="NU">Niue</option>
+                        <option value="NF">Norfolk Island</option>
+                        <option value="MP">Northern Mariana Islands</option>
+                        <option value="NO">Norway</option>
+                        <option value="OM">Oman</option>
+                        <option value="PK">Pakistan</option>
+                        <option value="PW">Palau</option>
+                        <option value="PS">Palestinian Territory, Occupied</option>
+                        <option value="PA">Panama</option>
+                        <option value="PG">Papua New Guinea</option>
+                        <option value="PY">Paraguay</option>
+                        <option value="PE">Peru</option>
+                        <option value="PH">Philippines</option>
+                        <option value="PN">Pitcairn</option>
+                        <option value="PL">Poland</option>
+                        <option value="PT">Portugal</option>
+                        <option value="PR">Puerto Rico</option>
+                        <option value="QA">Qatar</option>
+                        <option value="RE">Réunion</option>
+                        <option value="Romania" selected = "selected">Romania</option>
+                        <option value="RU">Russian Federation</option>
+                        <option value="RW">Rwanda</option>
+                        <option value="BL">Saint Barthélemy</option>
+                        <option value="SH">Saint Helena, Ascension and Tristan da Cunha</option>
+                        <option value="KN">Saint Kitts and Nevis</option>
+                        <option value="LC">Saint Lucia</option>
+                        <option value="MF">Saint Martin (French part)</option>
+                        <option value="PM">Saint Pierre and Miquelon</option>
+                        <option value="VC">Saint Vincent and the Grenadines</option>
+                        <option value="WS">Samoa</option>
+                        <option value="SM">San Marino</option>
+                        <option value="ST">Sao Tome and Principe</option>
+                        <option value="SA">Saudi Arabia</option>
+                        <option value="SN">Senegal</option>
+                        <option value="RS">Serbia</option>
+                        <option value="SC">Seychelles</option>
+                        <option value="SL">Sierra Leone</option>
+                        <option value="SG">Singapore</option>
+                        <option value="SX">Sint Maarten (Dutch part)</option>
+                        <option value="SK">Slovakia</option>
+                        <option value="SI">Slovenia</option>
+                        <option value="SB">Solomon Islands</option>
+                        <option value="SO">Somalia</option>
+                        <option value="ZA">South Africa</option>
+                        <option value="GS">South Georgia and the South Sandwich Islands</option>
+                        <option value="SS">South Sudan</option>
+                        <option value="ES">Spain</option>
+                        <option value="LK">Sri Lanka</option>
+                        <option value="SD">Sudan</option>
+                        <option value="SR">Suriname</option>
+                        <option value="SJ">Svalbard and Jan Mayen</option>
+                        <option value="SZ">Swaziland</option>
+                        <option value="SE">Sweden</option>
+                        <option value="CH">Switzerland</option>
+                        <option value="SY">Syrian Arab Republic</option>
+                        <option value="TW">Taiwan, Province of China</option>
+                        <option value="TJ">Tajikistan</option>
+                        <option value="TZ">Tanzania, United Republic of</option>
+                        <option value="TH">Thailand</option>
+                        <option value="TL">Timor-Leste</option>
+                        <option value="TG">Togo</option>
+                        <option value="TK">Tokelau</option>
+                        <option value="TO">Tonga</option>
+                        <option value="TT">Trinidad and Tobago</option>
+                        <option value="TN">Tunisia</option>
+                        <option value="TR">Turkey</option>
+                        <option value="TM">Turkmenistan</option>
+                        <option value="TC">Turks and Caicos Islands</option>
+                        <option value="TV">Tuvalu</option>
+                        <option value="UG">Uganda</option>
+                        <option value="UA">Ukraine</option>
+                        <option value="AE">United Arab Emirates</option>
+                        <option value="GB">United Kingdom</option>
+                        <option value="US">United States</option>
+                        <option value="UM">United States Minor Outlying Islands</option>
+                        <option value="UY">Uruguay</option>
+                        <option value="UZ">Uzbekistan</option>
+                        <option value="VU">Vanuatu</option>
+                        <option value="VE">Venezuela, Bolivarian Republic of</option>
+                        <option value="VN">Viet Nam</option>
+                        <option value="VG">Virgin Islands, British</option>
+                        <option value="VI">Virgin Islands, U.S.</option>
+                        <option value="WF">Wallis and Futuna</option>
+                        <option value="EH">Western Sahara</option>
+                        <option value="YE">Yemen</option>
+                        <option value="ZM">Zambia</option>
+                        <option value="ZW">Zimbabwe</option>
+                    </select>
                 </div>
                 <div class = "form-group">
                     <label> Localitate </label>
@@ -620,7 +936,7 @@ else{
                 </div>
                 <div class = "form-group">
                     <label> Date de contact alternative (parinte, tutore etc.) </label> <br>
-                    <label> Telfon fix </label>
+                    <label> Telefon fix </label>
                     <input
                             type = "text"
                             class= "form-control"
@@ -655,6 +971,7 @@ else{
                                     name="matematica"
                                     onchange="afiseaza(this)"
                                     value="matematica"
+                                    id="matematica"
                                     <?php if($data['matematica'] == 'matematica') echo 'checked'; ?> >
                             Matematica
                         </label>
@@ -665,6 +982,7 @@ else{
                                     name="informatica"
                                     onchange="afiseaza(this)"
                                     value="informatica"
+                                    id="informatica"
                                     <?php if($data['informatica'] == 'informatica') echo 'checked'; ?>>
                             Informatica</label>
                     </div>
@@ -674,6 +992,7 @@ else{
                                     name="cti"
                                     onchange="afiseaza(this)"
                                     value="cti"
+                                    id="cti"
                                     <?php if($data['cti'] == 'cti') echo 'checked'; ?>>
                             CTI</label>
                     </div>
@@ -707,12 +1026,12 @@ else{
                                     <?php if($data['matematicaInformatica'] == 1) echo 'checked'; ?>>
                                 Matematica-Informatica</label>
                         </div>
+                    </div><!--
+                    <div class="informatica" style="display: none;">
+                        <label><input type="checkbox" name = "informaticaSpecializare" value="informaticaSpecializare" <?php if($data['informatica'] == 1) echo 'checked'; ?> disabled>Informatica</label><br>
                     </div>
-                    <div class="informatica" >
-                        <label><input type="checkbox" value="" <?php if($data['informatica'] == 1) echo 'checked'; ?> disabled>Informatica</label><br>
-                    </div>
-                    <div class="cti" >
-                        <label><input type="checkbox" value="" <?php if($data['cti'] == 1) echo 'checked'; ?> disabled>Calculatoare si Tehnologia Informatiei </label>
+                    <div class="cti" style="display: none;">
+                        <label><input type="checkbox" name = "informaticaSpecializare" value="informaticaSpecializare" <?php if($data['cti'] == 1) echo 'checked'; ?> disabled>Calculatoare si Tehnologia Informatiei </label>
                     </div>
                 </div>
                 <!--<label>Specializare</label><br>
@@ -739,15 +1058,16 @@ else{
                         <label><input type="checkbox" value="" disabled>Calculatoare si Tehnologia Informatiei </label>
                     </div>
                 </div> -->
+                </div>
             </div>
 
             <div id = "liceu" class="collapse centrat">
 
                 <div class = "form-group">
                     <label>
-                        Denumire:
+                        Denumire:</label>
                         <input type = "text" name = "denumireLiceu" class="form-control" value = "<?php echo $data['denumireLiceu']; ?>">
-                    </label>
+
                 </div>
                 <div class = "form-group">
                     <label> Tara: </label>
@@ -1097,7 +1417,7 @@ else{
                             value = "<?php echo $data['notaMateBac']; ?>">
                 </div>
                 <div class = "form-group">
-                    <label> Diploma de bac: Serie:</label>
+                    <label> Diploma de bac: <br> Serie:</label>
                     <input type = "text" class="form-control" name = "serieBac" value = "<?php echo $data['serieBac']; ?>">
                     <label> Numar: </label>
                     <input type="number" class="form-control" name ="numarBac" value = "<?php echo $data['numarBac']; ?>">
@@ -1224,21 +1544,60 @@ else{
 
         </form>
 
-        <?php
-        $html = file_get_contents("http://fmi.unibuc.ro/ro/admitere_licenta/examen_admitere_iulie_2017/");
-        $cod = explode ("Numarul de candidati inscrisi la examenul de admitere", $html);
-        $cod = explode("table", $cod[1]);
-        $primulTabel = "<table ".$cod[1];
-        /*$dom = new DOMDocument;
-        $dom->loadHTML($primulTabel);
-        $images = $dom->getElementsByTagName('tr');
-        $numer = 0;
-        foreach ($images as $image) {
-            if(!($image instanceof \DomText))
-                $numer++;
-        }
-        */
-        echo $primulTabel;
-        ?>
+        <select id ="selectAn">
+            <option value = 2017> Anul 2017 </option>
+            <option value = 2016> Anul 2016 </option>
+            <option value = 2015> Anul 2015 </option>
+            <option value = 2014> Anul 2014 </option>
+        </select>
+
+        <button id="clickselect" onclick="gogo()">GO!</button>
+
+        <div id="tabel2017" style="display: inline">
+            <?php
+
+            $html = file_get_contents("http://fmi.unibuc.ro/ro/admitere_licenta/examen_admitere_iulie_2017/");
+            $cod = explode ("Numarul de candidati inscrisi la examenul de admitere", $html);
+            $cod = explode("table", $cod[1]);
+            $primulTabel = "<table ".$cod[1];
+
+            echo $primulTabel;
+
+            ?>
+        </div><!--
+        <div id="tabel2016" style="display: none">
+            <?php
+/*
+            $html = file_get_contents("http://fmi.unibuc.ro/ro/admitere_licenta/examen_admitere_iulie_2016/");
+            $cod = explode ("Numarul de candidati inscrisi la examenul de admitere", $html);
+            $cod = explode("table", $cod[1]);
+            $Tabel2016 = "<table ".$cod[1];
+
+            echo $Tabel2016;*/
+            ?>
+        </div>
+        <div id="tabel2015" style="display: none">
+            <?php
+/*
+            $html = file_get_contents("http://fmi.unibuc.ro/ro/admitere_licenta/examen_admitere_iulie_2015/");
+            $cod = explode ("Numarul de candidati inscrisi la examenul de admitere", $html);
+            $cod = explode("table", $cod[1]);
+            $Tabel2015 = "<table ".$cod[1];
+
+            echo $Tabel2015;*/
+            ?>
+        </div>
+        <div id="tabel2014" style="display: none">
+            <?php
+/*
+            $html = file_get_contents("http://fmi.unibuc.ro/ro/admitere_licenta/examen_admitere_iulie_2014/");
+            $cod = explode ("Numarul de candidati inscrisi la examenul de admitere", $html);
+            $cod = explode("table", $cod[1]);
+            $Tabel2014 = "<table ".$cod[1];
+
+            echo $Tabel2014;*/
+            ?>
+        </div>
+        -->
     </body>
 </html>

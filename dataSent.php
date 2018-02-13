@@ -297,7 +297,7 @@ catch (mysqli_sql_exception $e) {
 echo '<div id = "sumbitArea">
             <a href="home.php">Acasă</a>
             <a href="generate.php"> Print </a>
-            <a href="sendMail.php"> Send Mail </a>
+            <!--<a href="sendMail.php"> Send Mail </a>-->
       </div>';
 
 //var_dump($_POST);

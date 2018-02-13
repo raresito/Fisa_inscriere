@@ -35,6 +35,13 @@ $result = mysqli_query($conn,$sql);
 $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
 $count = mysqli_num_rows($result);
 
+$sql = "SELECT * FROM `vizitatori`
+ORDER BY Date DESC
+LIMIT 1";
+$result = mysqli_query($conn,$sql);
+$bow = mysqli_fetch_array($result,MYSQLI_ASSOC);
+$stat = "IP-ul ultimului vizitator: " . $bow['IP'] . " la data " . $bow['Date'];
+
 date_default_timezone_set("Europe/Bucharest");
 $acum = date("Y.m.d h:i:sa");
 
@@ -79,20 +86,38 @@ $data = $personData->getRow();
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="js/custom.js"></script>
+
+        <script type="text/javascript" src="js/jquery-latest.js"></script>
+        <script type="text/javascript" src="js/jquery.tablesorter.js"></script>
+        <script type="text/javascript" src="js/admin.js"></script>
     </head>
 
     <body>
-        Welcome Admin!
-        <h2><a href='exportAdmin.php' >Export</a></h2>
-        <?php echo "Numar de vizitatori unici:" . $count; ?>
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">Welcome <?php if(isset($_SESSION['login_user'])){echo $_SESSION['login_user'];}  ?></a>
+                </div>
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="index.php">Home</a></li>
+                    <li><a href="logout.php">Sign Out</a></li>
+                    <li><a href='exportAdmin.php' >Export</a></li>
+                </ul>
+            </div>
+        </nav>
+        <?php echo "Numar de vizitatori unici:" . $count . "<br>" . $stat; ?>
         <div class="container table-responsive">
-            <table class = "table">
+            <table id="myTable" class="table tablesorter">
                 <thead>
                 <tr>
                     <th>Email</th>
                     <th>Nume</th>
                     <th>Prenume</th>
+                    <th>Medie Bac</th>
+                    <th>Liceu</th>
+                    <th>Scutire Plata</th>
+                    <th>Scutire Examen</th>
+                    <!--<th>Ștergere</th>-->
                 </tr>
                 </thead>
                 <tbody>
@@ -103,12 +128,37 @@ $data = $personData->getRow();
                         <td><?php echo $row['uniqueEmail']; ?></td>
                         <td><?php echo $row['name']; ?></td>
                         <td><?php echo $row['surname']; ?></td>
+                        <td><?php echo $row['medieBac']; ?></td>
+                        <td><?php echo $row['denumireLiceu']; ?></td>
+                        <td><?php
+                            if($row['rromi'] == 'on' || $row['pretutindeni'] == 'on' || $row['olimpicAdmitere'] == 'on')
+                            {
+                                echo'Scutit';
+                            }?></td>
+                        <td><?php
+                            if($row['orfan'] == 'on' || $row['parinteProfesor'] == 'on' || $row['olimpicExamen'] == 'on')
+                            {
+                                echo'Scutit';
+                            }?></td>
+                        <!--<td>
+                            <form name = "2Form" action = "sters.php" method = "post">
+                                <input style = "display: none;" type = "text" name = "pangarit" value=" <?php echo $row['uniqueEmail']; ?>" >
+                                <button type = "submit" form = "2Form" > Sterge </button>
+                            </form>
+
+                        </td>-->
+
                     </tr>
                 <?php endwhile ?>
                 </tbody>
             </table>
         </div>
-        <h2><a href = 'logout.php'>Log Out</a></h2>
+        <!--
+        <form name = "2Form" action = "sters.php" method = "post">
+            <input style = "display: none;" type = "text" name = "pangarit" value=" <?php echo $row['uniqueEmail']; ?>" >
+            <input type="submit" name="submit" id="submit" class="button" form="2Form" value="Sterge"/>
+        </form>
+        -->
     </body>
 </html>
 

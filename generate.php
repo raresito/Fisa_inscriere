@@ -307,10 +307,10 @@ if($data['matematica'] == 'matematica') {
     $pdf -> Cell(65, 4, 'IF (invatamant cu frecventa)', 'LTR', 0, 'L');
     $pdf -> Cell(10, 4, '', 'LTR', 0, 'L');
     $pdf -> Cell(65, 4, 'Buget', 1, 0, 'L');
-    $pdf -> Cell(10, 4, '', 1, 1, 'L');
+    $pdf -> Cell(10, 4, 'x', 1, 1, 'L');
 
     $pdf -> Cell(65, 4, '', 'LR', 0, 'L');
-    $pdf -> Cell(10, 4, '', 'LR', 0, 'L');
+    $pdf -> Cell(10, 4, 'x', 'LR', 0, 'L');
     $pdf -> Cell(65, 4, 'Taxa', 1, 0, 'L');
     $pdf -> Cell(10, 4, '', 1, 1, 'L');
 
@@ -394,16 +394,16 @@ if($data['matematica'] == 'matematica') {
     $pdf -> Cell(4, 4, substr($data['CNP'], 11, 1), $border, 0);
     $pdf -> Cell(4, 4, substr($data['CNP'], 12, 1), $border, 0);
 
-    $pdf -> Cell($pdf -> GetStringWidth(" Data nasterii") + 3, 4, " Data nasterii", $border, 0);
+    $pdf -> Cell($pdf -> GetStringWidth(" Data nasterii") + 8, 4, " Data nasterii", $border, 0);
 
-    $pdf -> Cell(4, 4, '', $border, 0);
-    $pdf -> Cell(4, 4, '', $border, 0);
-    $pdf -> Cell(4, 4, '', $border, 0);
-    $pdf -> Cell(4, 4, '', $border, 0);
-    $pdf -> Cell(4, 4, '', $border, 0);
-    $pdf -> Cell(4, 4, '', $border, 0);
-    $pdf -> Cell(4, 4, '', $border, 0);
-    $pdf -> Cell(4, 4, '', $border, 1);
+    $pdf -> Cell(4, 4, substr($data['dateOfBirth'], 0, 1), $border, 0);
+    $pdf -> Cell(4, 4, substr($data['dateOfBirth'], 1, 1), $border, 0);
+    $pdf -> Cell(4, 4, substr($data['dateOfBirth'], 2, 1), $border, 0);
+    $pdf -> Cell(4, 4, substr($data['dateOfBirth'], 3, 1), $border, 0);
+    $pdf -> Cell(4, 4, substr($data['dateOfBirth'], 5, 1), $border, 0);
+    $pdf -> Cell(4, 4, substr($data['dateOfBirth'], 6, 1), $border, 0);
+    $pdf -> Cell(4, 4, substr($data['dateOfBirth'], 8, 1), $border, 0);
+    $pdf -> Cell(4, 4, substr($data['dateOfBirth'], 9, 1), $border, 1);
 
     $pdf -> Cell(23, 4, 'Locul nasterii', $border, 0);
     $pdf -> Cell(12, 4, 'Tara', $border, 0);
@@ -448,7 +448,7 @@ if($data['matematica'] == 'matematica') {
     $pdf -> Cell(9, 4, 'Ap.', $border, 0);
     $pdf -> Cell(9, 4, $data['apartamentDomiciliu'], $border, 0);
     $pdf -> Cell(20, 4, 'Judet/Sector', $border, 0);
-    $pdf -> Cell(20, 4, '', $border, 0);
+    $pdf -> Cell(20, 4, $data['county'], $border, 0);
     $pdf -> Cell(10, 4, 'Cod', $border, 0);
     $pdf -> Cell(14, 4, $data['codPostalDomiciliu'], $border, 1);
 
@@ -503,8 +503,12 @@ if($data['matematica'] == 'matematica') {
     $pdf -> Cell(72, 4.5, '(se bifeaza de catre candiat)', $border, 0, 'C');
     $pdf -> Cell(78, 4.5, '(se completeaza de catre Comisia de admitere)', $border, 1, 'C');
 
+    $rromi = '';
+    if(isset($data['rromi'])){
+        $rromi = 'x';
+    }
     $pdf -> Cell(63, 4.5, 'Locuri pentru rromi', 'LTR', 0, 'L');
-    $pdf -> Cell(9, 4.5, $data['rromi'], 'LTR', 0);
+    $pdf -> Cell(9, 4.5, $rromi, 'LTR', 0);
     $pdf -> Cell(11, 4.5, 'DA', $border, 0, 'L');
     $pdf -> Cell(9, 4.5, '', $border, 0);
     $pdf -> Cell(32, 4.5, '', 'LTR', 0, 'L');
@@ -517,8 +521,12 @@ if($data['matematica'] == 'matematica') {
     $pdf -> Cell(32, 4.5, '', 'LBR', 0, 'L');
     $pdf -> Cell(26, 4.5, '', 'LBR', 1, 'L');
 
+    $pretutindeni='';
+    if(isset($data['pretutindeni'])){
+        $pretutindeni = 'x';
+    }
     $pdf -> Cell(63, 4.5, 'Locuri pentru romanii de pretutindeni', 'LTR', 0, 'L');
-    $pdf -> Cell(9, 4.5, $data['pretutindeni'], 'LTR', 0);
+    $pdf -> Cell(9, 4.5, $pretutindeni, 'LTR', 0);
     $pdf -> Cell(11, 4.5, 'DA', $border, 0, 'L');
     $pdf -> Cell(9, 4.5, '', $border, 0);
     $pdf -> Cell(32, 4.5, '', 'LTR', 0, 'L');
@@ -531,8 +539,12 @@ if($data['matematica'] == 'matematica') {
     $pdf -> Cell(32, 4.5, '', 'LBR', 0, 'L');
     $pdf -> Cell(26, 4.5, '', 'LBR', 1, 'L');
 
+    $olimpicAdmitere='';
+    if(isset($data['olimpicAdmitere'])){
+        $olimpicAdmitere = 'x';
+    }
     $pdf -> Cell(63, 4.5, 'Locuri pentru olimpici, admitere fara', 'LTR', 0, 'L');
-    $pdf -> Cell(9, 4.5, $data['olimpicAdmitere'], 'LTR', 0);
+    $pdf -> Cell(9, 4.5, $olimpicAdmitere, 'LTR', 0);
     $pdf -> Cell(11, 4.5, 'DA', $border, 0, 'L');
     $pdf -> Cell(9, 4.5, '', $border, 0);
     $pdf -> Cell(32, 4.5, '', 'LTR', 0, 'L');
@@ -572,8 +584,13 @@ if($data['matematica'] == 'matematica') {
     $pdf -> Cell(72, 4.5, '(se bifeaza de catre candiat)', $border, 0, 'C');
     $pdf -> Cell(78, 4.5, '(se completeaza de catre Comisia de admitere)', $border, 1, 'C');
 
+    $orfan='';
+    if(isset($data['orfan'])){
+        $orfan = 'x';
+    }
+
     $pdf -> Cell(63, 4.5, 'Orfan de ambii parinti sau provenit din', 'LTR', 0, 'L');
-    $pdf -> Cell(9, 4.5, $data['orfan'], 'LTR', 0);
+    $pdf -> Cell(9, 4.5, $orfan, 'LTR', 0);
     $pdf -> Cell(11, 4.5, 'DA', $border, 0, 'L');
     $pdf -> Cell(9, 4.5, '', $border, 0);
     $pdf -> Cell(32, 4.5, '', 'LTR', 0, 'L');
@@ -586,8 +603,13 @@ if($data['matematica'] == 'matematica') {
     $pdf -> Cell(32, 4.5, '', 'LBR', 0, 'L');
     $pdf -> Cell(26, 4.5, '', 'LBR', 1, 'L');
 
+    $parinteprofesor='';
+    if(isset($data['parinteProfesor'])){
+        $parinteprofesor = 'x';
+    }
+
     $pdf -> Cell(63, 4.5, 'Parinte cadru didactic sau angajat la', 'LTR', 0, 'L');
-    $pdf -> Cell(9, 4.5, $data['parinteProfesor'], 'LTR', 0);
+    $pdf -> Cell(9, 4.5, $parinteprofesor, 'LTR', 0);
     $pdf -> Cell(11, 4.5, 'DA', $border, 0, 'L');
     $pdf -> Cell(9, 4.5, '', $border, 0);
     $pdf -> Cell(32, 4.5, '', 'LTR', 0, 'L');
@@ -600,8 +622,13 @@ if($data['matematica'] == 'matematica') {
     $pdf -> Cell(32, 4.5, '', 'LBR', 0, 'L');
     $pdf -> Cell(26, 4.5, '', 'LBR', 1, 'L');
 
+    $olimpicExamen='';
+    if(isset($data['olimpicExamen'])){
+        $olimpicExamen = 'x';
+    }
+
     $pdf -> Cell(63, 4.5, 'Olimpic, admis fara examen', 'LTR', 0, 'L');
-    $pdf -> Cell(9, 4.5, $data['olimpicExamen'], 'LTR', 0);
+    $pdf -> Cell(9, 4.5, $olimpicExamen, 'LTR', 0);
     $pdf -> Cell(11, 4.5, 'DA', $border, 0, 'L');
     $pdf -> Cell(9, 4.5, '', $border, 0);
     $pdf -> Cell(32, 4.5, '', 'LTR', 0, 'L');
@@ -797,10 +824,10 @@ if($data['informatica'] == 'informatica') {
     $pdf -> Cell(65, 4, 'IF (invatamant cu frecventa)', 'LTR', 0, 'L');
     $pdf -> Cell(10, 4, '', 'LTR', 0, 'L');
     $pdf -> Cell(65, 4, 'Buget', 1, 0, 'L');
-    $pdf -> Cell(10, 4, '', 1, 1, 'L');
+    $pdf -> Cell(10, 4, 'x', 1, 1, 'L');
 
     $pdf -> Cell(65, 4, '', 'LR', 0, 'L');
-    $pdf -> Cell(10, 4, '', 'LR', 0, 'L');
+    $pdf -> Cell(10, 4, 'x', 'LR', 0, 'L');
     $pdf -> Cell(65, 4, 'Taxa', 1, 0, 'L');
     $pdf -> Cell(10, 4, '', 1, 1, 'L');
 
@@ -886,14 +913,14 @@ if($data['informatica'] == 'informatica') {
 
     $pdf -> Cell($pdf -> GetStringWidth(" Data nasterii") + 3, 4, " Data nasterii", $border, 0);
 
-    $pdf -> Cell(4, 4, '', $border, 0);
-    $pdf -> Cell(4, 4, '', $border, 0);
-    $pdf -> Cell(4, 4, '', $border, 0);
-    $pdf -> Cell(4, 4, '', $border, 0);
-    $pdf -> Cell(4, 4, '', $border, 0);
-    $pdf -> Cell(4, 4, '', $border, 0);
-    $pdf -> Cell(4, 4, '', $border, 0);
-    $pdf -> Cell(4, 4, '', $border, 1);
+    $pdf -> Cell(4, 4, substr($data['dateOfBirth'], 0, 1), $border, 0);
+    $pdf -> Cell(4, 4, substr($data['dateOfBirth'], 1, 1), $border, 0);
+    $pdf -> Cell(4, 4, substr($data['dateOfBirth'], 2, 1), $border, 0);
+    $pdf -> Cell(4, 4, substr($data['dateOfBirth'], 3, 1), $border, 0);
+    $pdf -> Cell(4, 4, substr($data['dateOfBirth'], 5, 1), $border, 0);
+    $pdf -> Cell(4, 4, substr($data['dateOfBirth'], 6, 1), $border, 0);
+    $pdf -> Cell(4, 4, substr($data['dateOfBirth'], 8, 1), $border, 0);
+    $pdf -> Cell(4, 4, substr($data['dateOfBirth'], 9, 1), $border, 1);
 
     $pdf -> Cell(23, 4, 'Locul nasterii', $border, 0);
     $pdf -> Cell(12, 4, 'Tara', $border, 0);
@@ -938,7 +965,7 @@ if($data['informatica'] == 'informatica') {
     $pdf -> Cell(9, 4, 'Ap.', $border, 0);
     $pdf -> Cell(9, 4, $data['apartamentDomiciliu'], $border, 0);
     $pdf -> Cell(20, 4, 'Judet/Sector', $border, 0);
-    $pdf -> Cell(20, 4, '', $border, 0);
+    $pdf -> Cell(20, 4, $data['county'], $border, 0);
     $pdf -> Cell(10, 4, 'Cod', $border, 0);
     $pdf -> Cell(14, 4, $data['codPostalDomiciliu'], $border, 1);
 
@@ -993,8 +1020,12 @@ if($data['informatica'] == 'informatica') {
     $pdf -> Cell(72, 4.5, '(se bifeaza de catre candiat)', $border, 0, 'C');
     $pdf -> Cell(78, 4.5, '(se completeaza de catre Comisia de admitere)', $border, 1, 'C');
 
+    $rromi = '';
+    if(isset($data['rromi'])){
+        $rromi = 'x';
+    }
     $pdf -> Cell(63, 4.5, 'Locuri pentru rromi', 'LTR', 0, 'L');
-    $pdf -> Cell(9, 4.5, $data['rromi'], 'LTR', 0);
+    $pdf -> Cell(9, 4.5, $rromi, 'LTR', 0);
     $pdf -> Cell(11, 4.5, 'DA', $border, 0, 'L');
     $pdf -> Cell(9, 4.5, '', $border, 0);
     $pdf -> Cell(32, 4.5, '', 'LTR', 0, 'L');
@@ -1007,8 +1038,12 @@ if($data['informatica'] == 'informatica') {
     $pdf -> Cell(32, 4.5, '', 'LBR', 0, 'L');
     $pdf -> Cell(26, 4.5, '', 'LBR', 1, 'L');
 
+    $pretutindeni='';
+    if(isset($data['pretutindeni'])){
+        $pretutindeni = 'x';
+    }
     $pdf -> Cell(63, 4.5, 'Locuri pentru romanii de pretutindeni', 'LTR', 0, 'L');
-    $pdf -> Cell(9, 4.5, $data['pretutindeni'], 'LTR', 0);
+    $pdf -> Cell(9, 4.5, $pretutindeni, 'LTR', 0);
     $pdf -> Cell(11, 4.5, 'DA', $border, 0, 'L');
     $pdf -> Cell(9, 4.5, '', $border, 0);
     $pdf -> Cell(32, 4.5, '', 'LTR', 0, 'L');
@@ -1021,8 +1056,12 @@ if($data['informatica'] == 'informatica') {
     $pdf -> Cell(32, 4.5, '', 'LBR', 0, 'L');
     $pdf -> Cell(26, 4.5, '', 'LBR', 1, 'L');
 
+    $olimpicAdmitere='';
+    if(isset($data['olimpicAdmitere'])){
+        $olimpicAdmitere = 'x';
+    }
     $pdf -> Cell(63, 4.5, 'Locuri pentru olimpici, admitere fara', 'LTR', 0, 'L');
-    $pdf -> Cell(9, 4.5, $data['olimpicAdmitere'], 'LTR', 0);
+    $pdf -> Cell(9, 4.5, $olimpicAdmitere, 'LTR', 0);
     $pdf -> Cell(11, 4.5, 'DA', $border, 0, 'L');
     $pdf -> Cell(9, 4.5, '', $border, 0);
     $pdf -> Cell(32, 4.5, '', 'LTR', 0, 'L');
@@ -1062,8 +1101,13 @@ if($data['informatica'] == 'informatica') {
     $pdf -> Cell(72, 4.5, '(se bifeaza de catre candiat)', $border, 0, 'C');
     $pdf -> Cell(78, 4.5, '(se completeaza de catre Comisia de admitere)', $border, 1, 'C');
 
+    $orfan='';
+    if(isset($data['orfan'])){
+        $orfan = 'x';
+    }
+
     $pdf -> Cell(63, 4.5, 'Orfan de ambii parinti sau provenit din', 'LTR', 0, 'L');
-    $pdf -> Cell(9, 4.5, $data['orfan'], 'LTR', 0);
+    $pdf -> Cell(9, 4.5, $orfan, 'LTR', 0);
     $pdf -> Cell(11, 4.5, 'DA', $border, 0, 'L');
     $pdf -> Cell(9, 4.5, '', $border, 0);
     $pdf -> Cell(32, 4.5, '', 'LTR', 0, 'L');
@@ -1076,8 +1120,13 @@ if($data['informatica'] == 'informatica') {
     $pdf -> Cell(32, 4.5, '', 'LBR', 0, 'L');
     $pdf -> Cell(26, 4.5, '', 'LBR', 1, 'L');
 
+    $parinteprofesor='';
+    if(isset($data['parinteProfesor'])){
+        $parinteprofesor = 'x';
+    }
+
     $pdf -> Cell(63, 4.5, 'Parinte cadru didactic sau angajat la', 'LTR', 0, 'L');
-    $pdf -> Cell(9, 4.5, $data['parinteProfesor'], 'LTR', 0);
+    $pdf -> Cell(9, 4.5, $parinteprofesor, 'LTR', 0);
     $pdf -> Cell(11, 4.5, 'DA', $border, 0, 'L');
     $pdf -> Cell(9, 4.5, '', $border, 0);
     $pdf -> Cell(32, 4.5, '', 'LTR', 0, 'L');
@@ -1090,8 +1139,13 @@ if($data['informatica'] == 'informatica') {
     $pdf -> Cell(32, 4.5, '', 'LBR', 0, 'L');
     $pdf -> Cell(26, 4.5, '', 'LBR', 1, 'L');
 
+    $olimpicExamen='';
+    if(isset($data['olimpicExamen'])){
+        $olimpicExamen = 'x';
+    }
+
     $pdf -> Cell(63, 4.5, 'Olimpic, admis fara examen', 'LTR', 0, 'L');
-    $pdf -> Cell(9, 4.5, $data['olimpicExamen'], 'LTR', 0);
+    $pdf -> Cell(9, 4.5, $olimpicExamen, 'LTR', 0);
     $pdf -> Cell(11, 4.5, 'DA', $border, 0, 'L');
     $pdf -> Cell(9, 4.5, '', $border, 0);
     $pdf -> Cell(32, 4.5, '', 'LTR', 0, 'L');
@@ -1288,10 +1342,10 @@ if($data['cti'] == 'cti') {
     $pdf -> Cell(65, 4, 'IF (invatamant cu frecventa)', 'LTR', 0, 'L');
     $pdf -> Cell(10, 4, '', 'LTR', 0, 'L');
     $pdf -> Cell(65, 4, 'Buget', 1, 0, 'L');
-    $pdf -> Cell(10, 4, '', 1, 1, 'L');
+    $pdf -> Cell(10, 4, 'x', 1, 1, 'L');
 
     $pdf -> Cell(65, 4, '', 'LR', 0, 'L');
-    $pdf -> Cell(10, 4, '', 'LR', 0, 'L');
+    $pdf -> Cell(10, 4, 'x', 'LR', 0, 'L');
     $pdf -> Cell(65, 4, 'Taxa', 1, 0, 'L');
     $pdf -> Cell(10, 4, '', 1, 1, 'L');
 
@@ -1377,14 +1431,14 @@ if($data['cti'] == 'cti') {
 
     $pdf -> Cell($pdf -> GetStringWidth(" Data nasterii") + 3, 4, " Data nasterii", $border, 0);
 
-    $pdf -> Cell(4, 4, '', $border, 0);
-    $pdf -> Cell(4, 4, '', $border, 0);
-    $pdf -> Cell(4, 4, '', $border, 0);
-    $pdf -> Cell(4, 4, '', $border, 0);
-    $pdf -> Cell(4, 4, '', $border, 0);
-    $pdf -> Cell(4, 4, '', $border, 0);
-    $pdf -> Cell(4, 4, '', $border, 0);
-    $pdf -> Cell(4, 4, '', $border, 1);
+    $pdf -> Cell(4, 4, substr($data['dateOfBirth'], 0, 1), $border, 0);
+    $pdf -> Cell(4, 4, substr($data['dateOfBirth'], 1, 1), $border, 0);
+    $pdf -> Cell(4, 4, substr($data['dateOfBirth'], 2, 1), $border, 0);
+    $pdf -> Cell(4, 4, substr($data['dateOfBirth'], 3, 1), $border, 0);
+    $pdf -> Cell(4, 4, substr($data['dateOfBirth'], 5, 1), $border, 0);
+    $pdf -> Cell(4, 4, substr($data['dateOfBirth'], 6, 1), $border, 0);
+    $pdf -> Cell(4, 4, substr($data['dateOfBirth'], 8, 1), $border, 0);
+    $pdf -> Cell(4, 4, substr($data['dateOfBirth'], 9, 1), $border, 1);
 
     $pdf -> Cell(23, 4, 'Locul nasterii', $border, 0);
     $pdf -> Cell(12, 4, 'Tara', $border, 0);
@@ -1429,7 +1483,7 @@ if($data['cti'] == 'cti') {
     $pdf -> Cell(9, 4, 'Ap.', $border, 0);
     $pdf -> Cell(9, 4, $data['apartamentDomiciliu'], $border, 0);
     $pdf -> Cell(20, 4, 'Judet/Sector', $border, 0);
-    $pdf -> Cell(20, 4, '', $border, 0);
+    $pdf -> Cell(20, 4, $data['county'], $border, 0);
     $pdf -> Cell(10, 4, 'Cod', $border, 0);
     $pdf -> Cell(14, 4, $data['codPostalDomiciliu'], $border, 1);
 
@@ -1484,8 +1538,12 @@ if($data['cti'] == 'cti') {
     $pdf -> Cell(72, 4.5, '(se bifeaza de catre candiat)', $border, 0, 'C');
     $pdf -> Cell(78, 4.5, '(se completeaza de catre Comisia de admitere)', $border, 1, 'C');
 
+    $rromi = '';
+    if(isset($data['rromi'])){
+        $rromi = 'x';
+    }
     $pdf -> Cell(63, 4.5, 'Locuri pentru rromi', 'LTR', 0, 'L');
-    $pdf -> Cell(9, 4.5, $data['rromi'], 'LTR', 0);
+    $pdf -> Cell(9, 4.5, $rromi, 'LTR', 0);
     $pdf -> Cell(11, 4.5, 'DA', $border, 0, 'L');
     $pdf -> Cell(9, 4.5, '', $border, 0);
     $pdf -> Cell(32, 4.5, '', 'LTR', 0, 'L');
@@ -1498,8 +1556,12 @@ if($data['cti'] == 'cti') {
     $pdf -> Cell(32, 4.5, '', 'LBR', 0, 'L');
     $pdf -> Cell(26, 4.5, '', 'LBR', 1, 'L');
 
+    $pretutindeni='';
+    if(isset($data['pretutindeni'])){
+        $pretutindeni = 'x';
+    }
     $pdf -> Cell(63, 4.5, 'Locuri pentru romanii de pretutindeni', 'LTR', 0, 'L');
-    $pdf -> Cell(9, 4.5, $data['pretutindeni'], 'LTR', 0);
+    $pdf -> Cell(9, 4.5, $pretutindeni, 'LTR', 0);
     $pdf -> Cell(11, 4.5, 'DA', $border, 0, 'L');
     $pdf -> Cell(9, 4.5, '', $border, 0);
     $pdf -> Cell(32, 4.5, '', 'LTR', 0, 'L');
@@ -1512,8 +1574,12 @@ if($data['cti'] == 'cti') {
     $pdf -> Cell(32, 4.5, '', 'LBR', 0, 'L');
     $pdf -> Cell(26, 4.5, '', 'LBR', 1, 'L');
 
+    $olimpicAdmitere='';
+    if(isset($data['olimpicAdmitere'])){
+        $olimpicAdmitere = 'x';
+    }
     $pdf -> Cell(63, 4.5, 'Locuri pentru olimpici, admitere fara', 'LTR', 0, 'L');
-    $pdf -> Cell(9, 4.5, $data['olimpicAdmitere'], 'LTR', 0);
+    $pdf -> Cell(9, 4.5, $olimpicAdmitere, 'LTR', 0);
     $pdf -> Cell(11, 4.5, 'DA', $border, 0, 'L');
     $pdf -> Cell(9, 4.5, '', $border, 0);
     $pdf -> Cell(32, 4.5, '', 'LTR', 0, 'L');
@@ -1553,8 +1619,13 @@ if($data['cti'] == 'cti') {
     $pdf -> Cell(72, 4.5, '(se bifeaza de catre candiat)', $border, 0, 'C');
     $pdf -> Cell(78, 4.5, '(se completeaza de catre Comisia de admitere)', $border, 1, 'C');
 
+    $orfan='';
+    if(isset($data['orfan'])){
+        $orfan = 'x';
+    }
+
     $pdf -> Cell(63, 4.5, 'Orfan de ambii parinti sau provenit din', 'LTR', 0, 'L');
-    $pdf -> Cell(9, 4.5, $data['orfan'], 'LTR', 0);
+    $pdf -> Cell(9, 4.5, $orfan, 'LTR', 0);
     $pdf -> Cell(11, 4.5, 'DA', $border, 0, 'L');
     $pdf -> Cell(9, 4.5, '', $border, 0);
     $pdf -> Cell(32, 4.5, '', 'LTR', 0, 'L');
@@ -1567,8 +1638,13 @@ if($data['cti'] == 'cti') {
     $pdf -> Cell(32, 4.5, '', 'LBR', 0, 'L');
     $pdf -> Cell(26, 4.5, '', 'LBR', 1, 'L');
 
+    $parinteprofesor='';
+    if(isset($data['parinteProfesor'])){
+        $parinteprofesor = 'x';
+    }
+
     $pdf -> Cell(63, 4.5, 'Parinte cadru didactic sau angajat la', 'LTR', 0, 'L');
-    $pdf -> Cell(9, 4.5, $data['parinteProfesor'], 'LTR', 0);
+    $pdf -> Cell(9, 4.5, $parinteprofesor, 'LTR', 0);
     $pdf -> Cell(11, 4.5, 'DA', $border, 0, 'L');
     $pdf -> Cell(9, 4.5, '', $border, 0);
     $pdf -> Cell(32, 4.5, '', 'LTR', 0, 'L');
@@ -1581,8 +1657,13 @@ if($data['cti'] == 'cti') {
     $pdf -> Cell(32, 4.5, '', 'LBR', 0, 'L');
     $pdf -> Cell(26, 4.5, '', 'LBR', 1, 'L');
 
+    $olimpicExamen='';
+    if(isset($data['olimpicExamen'])){
+        $olimpicExamen = 'x';
+    }
+
     $pdf -> Cell(63, 4.5, 'Olimpic, admis fara examen', 'LTR', 0, 'L');
-    $pdf -> Cell(9, 4.5, $data['olimpicExamen'], 'LTR', 0);
+    $pdf -> Cell(9, 4.5, $olimpicExamen, 'LTR', 0);
     $pdf -> Cell(11, 4.5, 'DA', $border, 0, 'L');
     $pdf -> Cell(9, 4.5, '', $border, 0);
     $pdf -> Cell(32, 4.5, '', 'LTR', 0, 'L');
@@ -1594,7 +1675,6 @@ if($data['cti'] == 'cti') {
     $pdf -> Cell(9, 4.5, '', $border, 0);
     $pdf -> Cell(32, 4.5, '', 'LBR', 0, 'L');
     $pdf -> Cell(26, 4.5, '', 'LBR', 0, 'L');
-
     $border = 0;
     $pdf -> SetFont('Times', 'B', 10);
 

@@ -21,7 +21,7 @@ session_start();
                 </div>
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="index.php">Home</a></li>
-                    <li><a href="logout.php">Sign Out</a></li>
+                    <li><a href="logout.php"><?php if(!isset($_SESSION['login_user'])) {echo 'Login';} else { echo 'Sign Out';} ?></a></li>
                     <li><a href = "ContactPage.php"> Contacteaza-ne! </a></li>
                 </ul>
             </div>
